@@ -8,9 +8,17 @@ html {
   font-size: 62.5%;
   background: aliceblue;
   font-family: "Roboto", sans-serif;
+  overflow: hidden;
 }
 
 body {
+  -webkit-font-smoothing: antialiased;
 }
+
+img{
+  width: 100%;
+  height: auto;
+}
+
 
 @import "components/page";

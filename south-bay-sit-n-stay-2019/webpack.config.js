@@ -50,7 +50,13 @@ const common = {
       }
     ]
   },
-  plugins: [htmlPlugin]
+  plugins: [htmlPlugin],
+
+  //enable recompile : https://stackoverflow.com/a/45655104
+  watchOptions: {
+    poll: true,
+    ignored: /node_modules/
+  }
 };
 
 const development = {
