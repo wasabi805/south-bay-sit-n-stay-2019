@@ -1,11 +1,11 @@
 import React from "react";
 
-import LandingPresenter from "./Landing/LandingPresenter";
+import LandingContainer from "./Landing/landing-container";
 
 const PageContainer = props => {
   return (
     <div className="page">
-      <LandingPresenter />
+      <LandingContainer />
     </div>
   );
 };

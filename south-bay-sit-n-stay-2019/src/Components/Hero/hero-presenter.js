@@ -70,8 +70,6 @@ const HeroPresenter = props => {
     }
   });
 
-  //TODO : Have the props from LandingPresenter Passes as an Object then map
-
   return (
     <HeroWrapper className={props.heroClassName}>
       <HeroContext className={props.heroContext}>

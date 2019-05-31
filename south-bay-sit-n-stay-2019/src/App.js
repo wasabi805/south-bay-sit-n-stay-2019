@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import NavBarPresenter from "./Components/NavBar/nav-bar-presenter";
+import { Provider } from "react-redux";
+import store from "./store";
+import NavBarContainer from "./Components/NavBar/nav-bar-container";
 import PagePresenter from "./components/page/page-container";
 
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
-        <NavBarPresenter />
-        <PagePresenter />
-      </React.Fragment>
+      <Provider store={store}>
+        <div className="App.js">
+          <NavBarContainer />
+          <PagePresenter />
+        </div>
+      </Provider>
     );
   }
 }
