@@ -22,7 +22,7 @@ const heroTheme = theme => {
       h1: {
         color: "white",
         fontSize: "3rem",
-        marginBottom: "2rem",
+        marginBottom: "2rem"
 
         // [theme.breakpoints.up("md")]: {
         //         //   color: "red"
@@ -95,7 +95,7 @@ const HeroPresenter = props => {
       margin: "6px",
       borderRadius: "5rem",
       padding: "12px 7.5rem",
-      backgroundColor: "#00fff830"
+      backgroundColor: "#673ab736"
     }
   });
 

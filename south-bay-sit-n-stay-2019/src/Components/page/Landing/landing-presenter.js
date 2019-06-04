@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { styled } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import HeroPresenter from "../../Hero/hero-presenter";
-import CardSection from "../../Cards/card-section";
+import CardsSection from "../../Cards/card-section-component";
 
 class LandingPresenter extends Component {
   constructor(props) {
@@ -29,7 +29,10 @@ class LandingPresenter extends Component {
           heroButtonTwo={this.state.heroButtonTwo}
         />
 
-        <CardSection />
+        <CardsSection
+          landingCards={this.props.getLandingContext[1]}
+          landingCardsHeading={this.props.getCardSectionHeadings}
+        />
       </LandingPage>
     );
   }

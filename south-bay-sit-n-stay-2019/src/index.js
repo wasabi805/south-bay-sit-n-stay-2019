@@ -6,12 +6,13 @@ import { ThemeProvider } from "@material-ui/styles";
 import { createMuiTheme } from "@material-ui/core";
 import teal from "@material-ui/core/colors/teal";
 import grey from "@material-ui/core/colors/grey";
+import deepPurple from "@material-ui/core/colors/deepPurple";
 
 const h1FontColor = grey["100"];
 
 const appTheme = createMuiTheme({
   palette: {
-    primary: teal
+    primary: deepPurple
   },
 
   typography: {
