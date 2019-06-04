@@ -1,18 +1,50 @@
 import React from "react";
 import { styled } from "@material-ui/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { createMuiTheme } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
+import teal from "@material-ui/core/colors/teal";
+
+const heroTheme = createMuiTheme({
+  palette: {
+    primary: teal,
+    text: {
+      primary: "#ffffff",
+      secondary: "#00000"
+    }
+  },
+
+  typography: {
+    fontFamily: "Roboto",
+
+    h1: {
+      color: "white",
+      fontSize: "3rem",
+      marginBottom: "2rem"
+    },
+
+    h2: {
+      color: "white",
+      fontSize: "1.5rem"
+    }
+  }
+});
 
 const HeroPresenter = props => {
   const HeroWrapper = styled(Container)({
     minWidth: "100vw",
-    height: "80vh",
+    height: "100vh",
     position: "relative",
-    display: "block",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     textAlign: "center",
     //  ===== Hero Background Img =====
     background: props.heroImg,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
+
     "&:after": {
       content: " ' ' ",
       position: "absolute",
@@ -22,47 +54,38 @@ const HeroPresenter = props => {
       bottom: 0,
       width: "calc(100%)",
       background: "#00000069"
-    }
-  });
-
-  const HeroContext = styled(Container)({
-    position: "relative",
-    width: "90%",
-    left: 0,
-    right: 0,
-    paddingTop: "30rem",
-    marginLeft: "auto",
-    marginRight: "auto",
-    color: "white",
-    zIndex: 2,
+    },
 
     "& h1": {
-      fontSize: "5.7rem",
-      zIndex: 2,
       fontWeight: "lighter",
-      paddingBottom: "2rem"
+      zIndex: 5
     },
 
     "& h2": {
-      fontSize: "1.9rem",
-      zIndex: 2,
-      fontWeight: "lighter"
+      fontWeight: "lighter",
+      zIndex: 5
+    },
+
+    "& button": {
+      zIndex: 5,
+      backgroundColor: "#01968869",
+      flexBasis: "8%",
+      height: "6rem"
     }
   });
 
   const HeroButtonContainer = styled(Container)({
     position: "relative",
-    display: "inline-flex",
-    flexDirection: "column",
     padding: 0,
 
     width: "auto",
     color: "white",
     marginTop: "3rem",
+    zIndex: 10,
 
     "& button": {
       color: "white",
-      fontSize: "3rem",
+      fontSize: "2rem",
       margin: "6px",
       borderRadius: "5rem",
       padding: "12px 7.5rem",
@@ -71,17 +94,22 @@ const HeroPresenter = props => {
   });
 
   return (
-    <HeroWrapper className={props.heroClassName}>
-      <HeroContext className={props.heroContext}>
-        <h1> {props.heroHeader}</h1>
-        <h2>{props.heroSubHeader}</h2>
+    <ThemeProvider theme={heroTheme}>
+      <HeroWrapper className={props.heroClassName}>
+        <Typography variant="h1">
+          <h1> {props.heroHeader}</h1>
+        </Typography>
+
+        <Typography variant="h2">
+          <h2>{props.heroSubHeader}</h2>
+        </Typography>
 
         <HeroButtonContainer className={props.heroButtons}>
           <button>{props.heroButtonOne}</button>
           <button>{props.heroButtonTwo}</button>
         </HeroButtonContainer>
-      </HeroContext>
-    </HeroWrapper>
+      </HeroWrapper>
+    </ThemeProvider>
   );
 };
 

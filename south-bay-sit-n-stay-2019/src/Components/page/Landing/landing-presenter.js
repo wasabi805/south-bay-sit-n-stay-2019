@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { styled } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import HeroPresenter from "../../Hero/hero-presenter";
+import CardSection from "../../Cards/card-section";
 
 class LandingPresenter extends Component {
   constructor(props) {
@@ -28,6 +29,8 @@ class LandingPresenter extends Component {
           heroButtonOne={this.state.heroButtonOne}
           heroButtonTwo={this.state.heroButtonTwo}
         />
+
+        <CardSection />
       </LandingPage>
     );
   }

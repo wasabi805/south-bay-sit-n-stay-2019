@@ -6,6 +6,7 @@ export const INITIAL_STATE = Map({
   hero_context: List([
     Map({
       id: "hero-landing-context",
+      heroClassName: "hero-landing",
       heroImg:
         "url('https://sb-sit-2019.s3.amazonaws.com/zoe-ra-43393-cropped-2560X1440.jpg')",
       heroHeader: "We have you and your pet covered",
@@ -16,6 +17,18 @@ export const INITIAL_STATE = Map({
       heroButtons: "landing-hero-buttons",
       heroButtonOne: "Get Started",
       heroButtonTwo: "About US"
+    }),
+
+    Map({
+      id: "cards-landing-context-01"
+    }),
+
+    Map({
+      id: "cards-landing-context-02"
+    }),
+
+    Map({
+      id: "cards-landing-context-03"
     })
   ])
 });

@@ -21,12 +21,9 @@ const NavList = props => {
   return (
     <HeaderNav className={`${headerNavClassName}`} component="nav">
       {props.navLocations.map(link => {
-        console.log(link);
-        let renderLink = link;
-
         return (
           <ListItem key={`${link}` + "header-nav"}>
-            <ListItemText primary={`${renderLink}`} />
+            <ListItemText primary={`${link}`} />
           </ListItem>
         );
       })}
