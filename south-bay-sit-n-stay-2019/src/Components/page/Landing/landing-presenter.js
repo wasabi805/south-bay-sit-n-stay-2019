@@ -9,7 +9,6 @@ class LandingPresenter extends Component {
     super(props);
     this.state = this.props.getLandingContext[0];
   }
-
   render() {
     const LandingPage = styled(Grid)({
       minWidth: "100vw"

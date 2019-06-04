@@ -6,9 +6,6 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import teal from "@material-ui/core/colors/teal";
 
-//NOTE: Refactored theme into a function that returns createMuiTheme.
-//This is so I could use a media query on h1: the query is [theme.breakpoints.up().....]
-//see : https://stackoverflow.com/a/50780995/7857134
 const heroTheme = theme => {
   return createMuiTheme({
     palette: {
@@ -27,9 +24,9 @@ const heroTheme = theme => {
         fontSize: "3rem",
         marginBottom: "2rem",
 
-        [theme.breakpoints.up("md")]: {
-          color: "red"
-        }
+        // [theme.breakpoints.up("md")]: {
+        //         //   color: "red"
+        //         // }
       },
 
       h2: {
@@ -39,9 +36,6 @@ const heroTheme = theme => {
     }
   });
 };
-
-// console.log([heroTheme.breakpoints.up('md')], 'BREAKPOINTS')
-// console.log([theme.breakpoints.up('md')], 'BREAKPOINTS')
 
 const HeroPresenter = props => {
   const HeroWrapper = styled(Container)({

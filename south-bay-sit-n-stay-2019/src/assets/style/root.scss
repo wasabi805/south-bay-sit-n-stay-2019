@@ -6,7 +6,7 @@
 
 html {
   font-size: 62.5%;
-  background: aliceblue;
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
   font-family: "Roboto", sans-serif;
   //overflow: hidden;
 }
@@ -15,7 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img{
+img {
   width: 100%;
   height: auto;
 }
