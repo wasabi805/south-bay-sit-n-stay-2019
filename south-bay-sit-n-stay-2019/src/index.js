@@ -16,7 +16,6 @@ const appTheme = createMuiTheme({
   },
 
   typography: {
-    // fontFamily: 'BRUX',
     fontFamily: "Roboto",
     color: h1FontColor,
 

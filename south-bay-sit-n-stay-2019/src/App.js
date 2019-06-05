@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import NavBarContainer from "./Components/NavBar/nav-bar-container";
 import PagePresenter from "./components/page/page-container";
+import Footer from "./Components/Footer/footer";
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <div className="App.js">
           <NavBarContainer />
           <PagePresenter />
+          <Footer/>
         </div>
       </Provider>
     );

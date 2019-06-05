@@ -73,10 +73,11 @@ const CardContainer = styled("div")(
 
 //==========    ==========  ==========  ==========
 
-const useStyles = makeStyles(theme => ({
+let useStyles = makeStyles(theme => ({
   cardContainer: {
     display: "flex",
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
+    marginBottom: "15%"
   },
 
   cardContainerHeading: {
