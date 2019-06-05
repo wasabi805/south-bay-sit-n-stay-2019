@@ -3,6 +3,7 @@ import { styled } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import HeroPresenter from "../../Hero/hero-presenter";
 import CardsSection from "../../Cards/card-section-component";
+import BookingSection from "../../Booking-Calendar/booking-presenter"
 
 class LandingPresenter extends Component {
   constructor(props) {
@@ -33,6 +34,8 @@ class LandingPresenter extends Component {
           landingCards={this.props.getLandingContext[1]}
           landingCardsHeading={this.props.getCardSectionHeadings}
         />
+
+        <BookingSection/>
       </LandingPage>
     );
   }

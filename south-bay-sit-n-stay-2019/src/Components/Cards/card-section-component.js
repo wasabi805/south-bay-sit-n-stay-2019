@@ -13,6 +13,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
+import Box from "@material-ui/core/Box";
 import red from "@material-ui/core/colors/red";
 
 import teal from "@material-ui/core/colors/teal";
@@ -29,6 +30,7 @@ const CardSectionTheme = theme => {
 
     typography: {
       fontFamily: "Roboto",
+      fontSize: "24",
 
       h1: {
         fontSize: "3rem",
@@ -77,7 +79,7 @@ let useStyles = makeStyles(theme => ({
   cardContainer: {
     display: "flex",
     justifyContent: "space-evenly",
-    marginBottom: "15%"
+    marginBottom: "5%"
   },
 
   cardContainerHeading: {
@@ -149,7 +151,7 @@ const CardSectionComponent = props => {
                     color="textSecondary"
                     component="p"
                   >
-                    {card.cardContext}
+                    <Box fontSize={16}>{card.cardContext}</Box>
                   </Typography>
                 </CardContent>
               </Card>

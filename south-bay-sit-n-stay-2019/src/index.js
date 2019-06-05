@@ -18,6 +18,7 @@ const appTheme = createMuiTheme({
   typography: {
     fontFamily: "Roboto",
     color: h1FontColor,
+    fontSize: 20,
 
     h1: {
       fontWeight: "lighter",

@@ -2,7 +2,7 @@ import React from "react";
 import { ThemeProvider } from "@material-ui/styles";
 import { palette, compose, spacing } from "@material-ui/system";
 import { createMuiTheme, makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -22,16 +22,21 @@ const footerTheme = createMuiTheme({
     h1: {
       fontWeight: "800",
       fontSize: "3rem",
-      zIndex: 500
+      zIndex: 500,
+      marginBottom: "1rem"
     },
 
     h2: {
       fontSize: "1.5rem"
+    },
+
+    h6:{
+      fontWeight: 700
     }
   }
 });
 
-const FooterContainer = styled(Container)(
+const FooterContainer = styled(Box)(
   compose(
     spacing,
     palette
@@ -59,13 +64,14 @@ let useStyles = makeStyles(theme => ({
     //Below is a color I'm considering using
     // background: "linear-gradient(to bottom, #505285 0%, #585e92 12%, #65689f 25%, #7474b0 37%, #7e7ebb 50%, #8389c7 62%, #9795d4 75%, #a2a1dc 87%, #b5aee4 100%)",
     minHeight: "calc(40vh)",
-    paddingTop: "4rem",
+    padding: "4rem",
     color: "#e6e6e6"
   },
 
   footerColumn1: {
     flexBasis: "40%",
-    display: "block"
+    display: "block",
+    // border: "1px solid yellow"
   },
 
   footerColumn2: {
@@ -75,13 +81,16 @@ let useStyles = makeStyles(theme => ({
   },
 
   socialList: {
-    padding: 0
+    padding: 0,
+    marginTop: '6rem'
+
   },
 
   socialListItem: {
     padding: 0,
     display: "inline-block",
-    width: " 20%"
+    width: " 20%",
+
   }
 }));
 
@@ -92,11 +101,15 @@ const Footer = () => {
     <ThemeProvider theme={footerTheme}>
       <FooterContainer className={classes.footerMain}>
         <FooterColumn className={classes.footerColumn1}>
-          <Typography variant={"h1"} mb={2}>
+          <Typography variant={"h1"} >
             Contact
           </Typography>
 
-          <Typography variant={"h1"}>Follow us</Typography>
+          <Typography variant={"h1"} >
+            Like
+          </Typography>
+
+          <Typography variant={"h1"}>Follow</Typography>
 
           <SocialList className={classes.socialList}>
             <ListItem className={classes.socialListItem}>
