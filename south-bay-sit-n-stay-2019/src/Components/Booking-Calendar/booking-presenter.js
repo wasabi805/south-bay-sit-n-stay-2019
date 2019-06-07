@@ -33,7 +33,12 @@ const BookingSection = () => {
         Check out which days we can provide you service
       </Typography>
 
-      <Box component="div" display="inline-block" width={"50%"}>
+      <Box
+        component="div"
+        display="inline-block"
+        width={"50%"}
+        maxWidth={"84rem"}
+      >
         <CalendarComponent />
       </Box>
     </Box>

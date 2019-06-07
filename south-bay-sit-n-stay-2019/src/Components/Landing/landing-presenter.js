@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { styled } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
-import HeroPresenter from "../../Hero/hero-presenter";
-import CardsSection from "../../Cards/card-section-component";
-import BookingSection from "../../Booking-Calendar/booking-presenter"
+import HeroPresenter from "../Hero/hero-presenter";
+import CardsSection from "../Cards/card-section-component";
+import BookingSection from "../Booking-Calendar/booking-presenter";
+import GallerySection from "../Gallery/gallerySection";
 
 class LandingPresenter extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class LandingPresenter extends Component {
   }
   render() {
     const LandingPage = styled(Grid)({
-      minWidth: "100vw"
+      minWidth: "100vw",
+      textAlign: "center"
     });
 
     let { landingPage } = this.state;
@@ -35,7 +37,8 @@ class LandingPresenter extends Component {
           landingCardsHeading={this.props.getCardSectionHeadings}
         />
 
-        <BookingSection/>
+        <BookingSection />
+        <GallerySection />
       </LandingPage>
     );
   }

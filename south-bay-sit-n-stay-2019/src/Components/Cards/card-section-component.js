@@ -51,7 +51,6 @@ const CardSectionTheme = theme => {
 
 //==========    ==========  ==========  ==========
 
-let cardGrid = "card-grid";
 const CardGrid = styled(Grid)(
   compose(
     spacing,
@@ -80,6 +79,11 @@ let useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "space-evenly",
     marginBottom: "5%"
+  },
+
+  cardGrid: {
+    maxWidth: "210rem",
+    display: "inline-block"
   },
 
   cardContainerHeading: {
@@ -112,7 +116,7 @@ const CardSectionComponent = props => {
 
   return (
     <ThemeProvider theme={CardSectionTheme}>
-      <CardGrid className={`${cardGrid}`} p={1}>
+      <CardGrid className={classes.cardGrid} p={1}>
         <CardGridHeader
           className={classes.cardContainerHeading}
           variant={"h1"}

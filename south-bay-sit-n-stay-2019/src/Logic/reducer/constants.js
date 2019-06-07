@@ -1,7 +1,7 @@
 import { Map, List } from "immutable";
 
 export const INITIAL_STATE = Map({
-  nav_names: ["home ", "services ", "about us ", "gallery ", "contact "],
+  nav_names: ["home ", "services ", "about", "gallery ", "contact "],
 
   cardSectionHeadings: List([
     Map({

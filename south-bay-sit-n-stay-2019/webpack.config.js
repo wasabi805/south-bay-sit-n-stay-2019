@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const merge = require("webpack-merge");
+var path = require("path");
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
@@ -7,6 +8,13 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 const common = {
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    publicPath: "/"
+  },
+
   module: {
     rules: [
       {
@@ -61,6 +69,7 @@ const common = {
 
 const development = {
   devServer: {
+    historyApiFallback: true,
     proxy: {
       "/api/*": {
         target: "http://localhost:5000",

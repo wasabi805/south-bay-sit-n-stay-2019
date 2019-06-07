@@ -117,6 +117,9 @@ class CalendarComponet extends Component {
   }
 
   render() {
+
+    console.log(<Calendar/>)
+
     return (
       <Box width={"100%"}>
         <Card>
