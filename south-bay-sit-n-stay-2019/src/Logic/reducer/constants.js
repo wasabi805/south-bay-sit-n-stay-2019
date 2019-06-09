@@ -24,7 +24,7 @@ export const INITIAL_STATE = Map({
       heroContext: "landing-hero-context",
       heroButtons: "landing-hero-buttons",
       heroButtonOne: "Get Started",
-      heroButtonTwo: "About US"
+      heroButtonTwo: "AboutContainer US"
     }),
 
     List([
@@ -65,5 +65,30 @@ export const INITIAL_STATE = Map({
           "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text."
       }
     ])
+
+
+
+  ]),
+
+  about_context:List([
+      //
+      Map({
+        id: "hero-about-context",
+        heroClassName: "hero-about",
+        heroImg:
+            "url('https://sb-sit-2019.s3.amazonaws.com/dog-in-tp-1920x1280.jpg')",
+        heroHeader: "",
+        heroSubHeader: "",
+
+        heroHeaderBOne: "Neighborly",
+        heroHeaderBTwo: "Care Providers",
+        heroSubHeaderB:"We're serious about your dog's comfort",
+
+        pageClassName: "landing-page",
+        heroContext: "landing-hero-context",
+        heroButtons: "landing-hero-buttons",
+        heroButtonOne: "",
+        heroButtonTwo: ""
+      })
   ])
 });

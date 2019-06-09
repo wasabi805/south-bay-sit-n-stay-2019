@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { styled } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import HeroPresenter from "../Hero/hero-presenter";
@@ -45,3 +46,12 @@ class LandingPresenter extends Component {
 }
 
 export default LandingPresenter;
+
+LandingPresenter.propTypes = {
+  className: PropTypes.string,
+  getCardSectionHeadings: PropTypes.object.isRequired,
+  getLandingContext: PropTypes.array.isRequired,
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object
+};

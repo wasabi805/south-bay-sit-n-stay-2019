@@ -134,9 +134,7 @@ const Footer = () => {
 
         <FooterColumn className={classes.footerColumn}>
           <Typography variant={"h1"}>Newsletter</Typography>
-          <Typography variant={"p"}>
-            Sign up to recieve our newsletter to stay up to date.
-          </Typography>
+          <Typography variant={"body1"}>Sign up to receive our newsletter to stay up to date.</Typography>
         </FooterColumn>
       </FooterContainer>
     </ThemeProvider>

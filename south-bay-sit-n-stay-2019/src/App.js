@@ -3,12 +3,13 @@ import { Provider } from "react-redux";
 import store from "./store";
 import NavBarContainer from "./Components/NavBar/nav-bar-container";
 import LandingContainer from "./Components/Landing/landing-container";
-import About from "./Components/About/about-presenter";
+import AboutContainer from "./Components/About/about-container";
 import Footer from "./Components/Footer/footer";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class App extends Component {
   render() {
+
     return (
       <Router>
         <Switch>
@@ -16,7 +17,7 @@ class App extends Component {
             <div className="App.js">
               <NavBarContainer />
               <Route exact path="/" component={LandingContainer} />
-              <Route path="/about" component={About} />
+              <Route path="/about" component={AboutContainer} />
               <Footer />
             </div>
           </Provider>

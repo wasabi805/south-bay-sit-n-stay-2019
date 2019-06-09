@@ -10,6 +10,7 @@ import deepPurple from "@material-ui/core/colors/deepPurple";
 
 const h1FontColor = grey["100"];
 
+//GLOBAL APPTHEME
 const appTheme = createMuiTheme({
   palette: {
     primary: deepPurple
@@ -23,8 +24,8 @@ const appTheme = createMuiTheme({
     h1: {
       fontWeight: "lighter",
       fontSize: "3rem",
-      marginBottom: "5rem",
-      zIndex: 500
+      zIndex: 500,
+      marginBottom: "0.33em"
     },
 
     h2: {

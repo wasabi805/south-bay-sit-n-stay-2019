@@ -7,3 +7,7 @@ export const getLandingContext = ({ Logic }) =>
 
 export const getCardSectionHeadings = ({ Logic }) =>
   Logic.getIn(["cardSectionHeadings"]).toJS();
+//===== =====   AboutContainer Page   =====   ===== //
+//
+export const getAboutContext = ({ Logic }) =>
+    Logic.getIn(["about_context"]).toJS();

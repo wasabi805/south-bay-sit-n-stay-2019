@@ -1,8 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { styled } from "@material-ui/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { createMuiTheme } from "@material-ui/core";
-import Container from "@material-ui/core/Container";
+
+import HeroHeaderB from "./hero-header-b";
+import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import teal from "@material-ui/core/colors/teal";
 
@@ -37,82 +40,135 @@ const heroTheme = theme => {
   });
 };
 
-const HeroPresenter = props => {
-  const HeroWrapper = styled(Container)({
-    minWidth: "100vw",
-    height: "100vh",
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    textAlign: "center",
-    //  ===== Hero Background Img =====
-    background: props.heroImg,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
+class HeroPresenter extends Component {
+  constructor(props) {
+    super(props);
+    this.displayHeroButtons = this.displayHeroButtons.bind(this);
+    this.displayHeroHeader = this.displayHeroHeader.bind(this)
+  }
 
-    "&:after": {
-      content: " ' ' ",
-      position: "absolute",
-      zIndex: 1,
-      top: 0,
-      left: 0,
-      bottom: 0,
-      width: "calc(100%)",
-      background: "#00000069"
-    },
+  displayHeroButtons() {
+    let btn = this.props;
 
-    "& h1": {
-      fontWeight: "lighter",
-      zIndex: 5
-    },
-
-    "& h2": {
-      fontWeight: "lighter",
-      zIndex: 5
-    },
-
-    "& button": {
-      zIndex: 5,
-      backgroundColor: "#01968869",
-      flexBasis: "8%",
-      height: "6rem"
+    if (btn.heroButtonOne==="" && btn.heroButtonTwo === "") {
+      return
     }
-  });
 
-  const HeroButtonContainer = styled(Container)({
-    position: "relative",
-    padding: 0,
+    if (btn.heroButtonOne && btn.heroButtonTwo === "") {
+      return <button>{this.props.heroButtonOne}</button>;
+    }
 
-    width: "auto",
-    color: "white",
-    marginTop: "3rem",
-    zIndex: 10,
+    if (btn.heroButtonOne && btn.heroButtonTwo) {
+      return (
+        <React.Fragment>
+          <button>{this.props.heroButtonOne}</button>
+          <button>{this.props.heroButtonTwo}</button>
+        </React.Fragment>
+      );
+    }
+  }
 
-    "& button": {
+  displayHeroHeader(){
+    let header = this.props;
+
+    if(header.heroHeaderBOne){
+      return (
+          <HeroHeaderB
+              heroHeaderBOne={header.heroHeaderBOne}
+              heroHeaderBTwo={header.heroHeaderBTwo}
+              heroSubHeaderB={header.heroSubHeaderB}
+          />)
+    }
+  };
+  render() {
+
+    const HeroWrapper = styled(Box)({
+      minWidth: "100vw",
+      height: "100vh",
+      position: "relative",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      textAlign: "center",
+      padding: "2rem",
+      //  ===== Hero Background Img =====
+      background: this.props.heroImg,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+
+      "&:after": {
+        content: " ' ' ",
+        position: "absolute",
+        zIndex: 1,
+        top: 0,
+        left: 0,
+        bottom: 0,
+        width: "calc(100%)",
+        background: "#00000069"
+      },
+
+      "& h1": {
+        fontWeight: "lighter",
+        zIndex: 5
+      },
+
+      "& h2": {
+        fontWeight: "lighter",
+        zIndex: 5
+      },
+
+      "& button": {
+        zIndex: 5,
+        backgroundColor: "#01968869",
+        flexBasis: "8%",
+        height: "6rem"
+      }
+    });
+
+
+    const HeroButtonBox = styled(Box)({
+      position: "relative",
+      padding: 0,
+
+      width: "auto",
       color: "white",
-      fontSize: "2rem",
-      margin: "6px",
-      borderRadius: "5rem",
-      padding: "12px 7.5rem",
-      backgroundColor: "#673ab736"
-    }
-  });
+      marginTop: "3rem",
+      zIndex: 10,
 
-  return (
-    <ThemeProvider theme={heroTheme}>
-      <HeroWrapper className={props.heroClassName}>
-        <Typography variant="h1">{props.heroHeader}</Typography>
+      "& button": {
+        color: "white",
+        fontSize: "2rem",
+        margin: "6px",
+        borderRadius: "5rem",
+        padding: "12px 7.5rem",
+        backgroundColor: "#673ab736"
+      }
+    });
 
-        <Typography variant="h2">{props.heroSubHeader}</Typography>
+    return (
+      <ThemeProvider theme={heroTheme}>
+        <HeroWrapper className={this.props.heroClassName} button={""}>
+          <Typography variant="h1">{this.props.heroHeader}</Typography>
+          {this.displayHeroHeader()}
+          <Typography variant="h2">{this.props.heroSubHeader}</Typography>
 
-        <HeroButtonContainer className={props.heroButtons}>
-          <button>{props.heroButtonOne}</button>
-          <button>{props.heroButtonTwo}</button>
-        </HeroButtonContainer>
-      </HeroWrapper>
-    </ThemeProvider>
-  );
-};
+          <HeroButtonBox className={this.props.heroButtons}>
+            {this.displayHeroButtons()}
+          </HeroButtonBox>
+        </HeroWrapper>
+      </ThemeProvider>
+    );
+  }
+}
 
 export default HeroPresenter;
+
+HeroPresenter.propTypes={
+  heroHeaderBOne: PropTypes.string,
+  heroImg : PropTypes.string.isRequired,
+  HeroWrapper: PropTypes.element,
+  HeroHeaderB: PropTypes.element,
+
+  displayHeroHeader: PropTypes.func,
+  displayHeroButtons: PropTypes.func,
+};

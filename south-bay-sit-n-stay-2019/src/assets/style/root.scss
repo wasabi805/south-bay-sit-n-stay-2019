@@ -22,3 +22,14 @@ img {
 
 @import "components/page";
 @import "components/calendar";
+
+
+button {
+    .react-calendar__tile {
+      background-color: yellow;
+
+      &.i-am-booked {
+        border-color: green;
+      }
+    }
+}

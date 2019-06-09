@@ -6,14 +6,14 @@ import { palette, compose, spacing } from "@material-ui/system";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Grid from "@material-ui/core/Grid";
-
+import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import Box from "@material-ui/core/Box";
+
 import red from "@material-ui/core/colors/red";
 
 import teal from "@material-ui/core/colors/teal";
@@ -65,7 +65,7 @@ const CardGridHeader = styled(Typography)(
   )
 );
 
-const CardContainer = styled("div")(
+const CardContainer = styled(Box)(
   compose(
     spacing,
     palette
@@ -155,8 +155,8 @@ const CardSectionComponent = props => {
                     color="textSecondary"
                     component="p"
                   >
-                    <Box fontSize={16}>{card.cardContext}</Box>
                   </Typography>
+                  <Box fontSize={16}>{card.cardContext}</Box>
                 </CardContent>
               </Card>
             );

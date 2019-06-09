@@ -17,8 +17,8 @@ const NavBarPresenter = nav_names => {
     <div>
       <NavBarWrapper>
         <Toolbar>
-          <Typography variant="title" color="inherit">
-            <h1> South Bay Sit N' Stay</h1>
+          <Typography variant="h1" color="inherit">
+            South Bay Sit N' Stay
           </Typography>
 
           <NavList navLocations={navLocations} />
