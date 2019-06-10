@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Calendar from "react-calendar/dist/entry.nostyle";
+// import Calendar from "react-calendar";
 import CalendarStyles from "../../assets/style/components/calendar.scss";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -12,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-class CalendarComponet extends Component {
+class CalendarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,7 +62,7 @@ class CalendarComponet extends Component {
 
     return (
       <Box width={"100%"}>
-        <Card>
+
           <Calendar
             className={CalendarStyles["react-calendar"]}
             onChange={value =>
@@ -75,16 +76,15 @@ class CalendarComponet extends Component {
 
             tileClassName={({ date, view }) => {
               if (disabled.indexOf(date.toDateString()) >= 0) {
-                return CalendarStyles["i-am-booked"];
+                return 'i-am-booked';
               } else {
                 return null;
               }
             }}
           />
-        </Card>
       </Box>
     );
   }
 }
 
-export default CalendarComponet;
+export default CalendarComponent;

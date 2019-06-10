@@ -1,5 +1,5 @@
 import React from "react";
-import CalendarComponent from "./calendarComponet";
+import CalendarComponent from "./calendarComponent";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
@@ -30,8 +30,9 @@ const BookingSection = (props) => {
       <Box
         component="div"
         display="inline-block"
-        width={"50%"}
-        maxWidth={"84rem"}
+        width={"100%"}
+        height={"600px"}
+        // maxWidth={"84rem"}
       >
         <CalendarComponent />
       </Box>

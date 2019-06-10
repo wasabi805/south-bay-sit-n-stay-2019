@@ -35,9 +35,9 @@ const common = {
 
             //THESE OPTIONS make CSS modular with webpack; class name scoped locally and specific to component
             options: {
-              modules: true, //this is what enables css modules
+              // modules: true, //this is what enables css modules
               importLoaders: 1,
-              localIdentName: "[name]_[local]_[hash:base64]", //[name] = component name , [local]= name of class or id, [hash]=makes a unique hash for every css component
+              // localIdentName: "[name]_[local]_[hash:base64]", //[name] = component name , [local]= name of class or id, [hash]=makes a unique hash for every css component
               sourceMap: true
             }
           },
@@ -76,7 +76,7 @@ const development = {
         changeOrigin: true
       }
     },
-    port: 3000
+    port: 3000,
   }
 };
 
