@@ -30,8 +30,8 @@ const BookingSection = (props) => {
       <Box
         component="div"
         display="inline-block"
-        width={"100%"}
-        height={"600px"}
+        // width={"100%"}
+        // height={"600px"}
         // maxWidth={"84rem"}
       >
         <CalendarComponent />

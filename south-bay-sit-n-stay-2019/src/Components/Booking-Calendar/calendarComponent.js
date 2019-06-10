@@ -6,11 +6,18 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
+import Fab from "@material-ui/core/Fab";
 
 const useStyles = makeStyles(theme => ({
+  calendarWrapper: {
+    backgroundColor: "orange"
+  },
+
   card: {
     maxWidth: 345
-  }
+  },
+
+  test : ""
 }));
 
 class CalendarComponent extends Component {
@@ -19,16 +26,160 @@ class CalendarComponent extends Component {
     this.state = {
       date: new Date(),
       expired: "",
-      bookedDates: []
+      bookedDates: [],
+
+      monthOne: {
+        month:"",
+        datesInMonth: []
+      },
+
     };
 
     this.onChange = this.onChange.bind(this);
+    this.reviewDates = this.reviewDates.bind(this);
   }
 
   onChange(date) {
     this.setState({ date });
   }
+
+  reviewDates() {
+    let requestDates = this.state.bookedDates;
+    let formatDate = [];
+    let dMilliSecs = [];
+    let checkDateRange = [];
+
+    let getMonth = time => {
+      return new Date(time).getMonth() + 1;
+    };
+
+    let getNumDay = time => {
+      return new Date(time).getDate();
+    };
+
+    for (var dString = 0; dString < requestDates.length; dString++) {
+      dMilliSecs.push(new Date(requestDates[dString]).getTime());
+      dMilliSecs.sort();
+    }
+
+    //===== Group day Number to corresponding month =====
+    let curr1 = null,
+      curr2 = null,
+      curr3 = null,
+      curr4 = null;
+    var m1 = [],
+      m2 = [],
+      m3 = [],
+      m4 = [];
+    let z;
+
+    for (var i = 0; i < dMilliSecs.length; i++) {
+      // If user selects dates from  Month 1
+      if (curr1 === null) {
+        curr1 = getMonth(dMilliSecs[i]);
+
+        m1.push(curr1, [getNumDay(dMilliSecs[i])]);
+
+        i++;
+      }
+
+      //look at all the others except the first and push the days into the array
+      if (curr1 !== null && m1[0] === getMonth(dMilliSecs[i])) {
+        // console.log('push it real good' , m1[1]);
+        m1[1].push(getNumDay(dMilliSecs[i]));
+      }
+
+      //If user selects dates from Month1 & Month 2
+      if (curr1 < getMonth(dMilliSecs[i]) && curr2 === null) {
+        curr2 = getMonth(dMilliSecs[i]);
+        m2.push(curr2, [getNumDay(dMilliSecs[i])]);
+        i++;
+      }
+
+      if (curr2 !== null && getMonth(dMilliSecs[i]) === m2[0]) {
+        m2[1].push(getNumDay(dMilliSecs[i]));
+      }
+
+      //If user selects dates from Month1 & Month 2 & Month 3
+      if (getMonth(dMilliSecs[i]) > m2[0] && curr3 === null) {
+        console.log(getNumDay(dMilliSecs[i]), "i fire 3x");
+        curr3 = getMonth(dMilliSecs[i]);
+        m3.push(curr3, [getNumDay(dMilliSecs[i])]);
+        i++;
+      }
+
+      if (getMonth(dMilliSecs[i]) > m2[0] && curr4 === null) {
+        m3[1].push(getNumDay(dMilliSecs[i]));
+      }
+
+      //If user selects dates from Month1 & Month 2 & Month 3 & Month 4
+      if (getMonth(dMilliSecs[i]) > m3[0] && curr4 === null) {
+        curr4 = getMonth(dMilliSecs[i]);
+        m4.push(curr4, [getNumDay(dMilliSecs[i])]);
+        i++;
+      }
+
+      if (getMonth(dMilliSecs[i]) > m3[0] && curr4) {
+        m4[1].push(getNumDay(dMilliSecs[i]));
+      }
+    }
+
+    //=== Special Case ; if 4 months are visible to calendar===
+    if ((curr1, curr2, curr3, curr4)) {
+      let result = m3[1].pop();
+    }
+
+    console.log(Array.isArray(m1) , "whats in m1");
+    console.log(m2, "whats in m2");
+    console.log(m3, "whats in m3");
+    console.log(m4, "whats in m4");
+
+    let testArr = [1, 2, 3, 4, 5, 6, 45, 67, 89, 99, 100, 101, 102, 103];
+
+    //===== ===== ===== Arrange the dates in date ranges ===== ===== ===== ===== =====
+    function getRanges([month, array]) {
+      var ranges = [],
+        rstart,
+        rend;
+      for (var i = 0; i < array.length; i++) {
+        rstart = array[i];
+        rend = rstart;
+        while (array[i + 1] - array[i] == 1) {
+          rend = array[i + 1]; // increment the index if the numbers sequential
+          i++;
+        }
+        ranges.push(rstart == rend ? rstart + "" : rstart + "-" + rend);
+      }
+      return [month, ranges];
+    }
+
+    console.log(getRanges(m1));
+
+
+    this.setState(
+        {
+          monthOne: {
+            month : getRanges(m1)[0],
+            datesInMonth:  getRanges(m1)[1]
+          }}
+    )
+
+
+  }
+
+  //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
   render() {
+
+    console.log(
+        this.state.monthOne.month, "THIS IS THE TEST STATEMENT"
+    );
+
+    console.log(
+        this.state.monthOne.datesInMonth, "THIS IS THE TEST STATEMENT"
+    );
+
+
+
     //Ceiling on Future Calendar Days
     //ref : https://stackoverflow.com/questions/563406/add-days-to-javascript-date
     Date.prototype.addDays = function(days) {
@@ -46,7 +197,7 @@ class CalendarComponent extends Component {
       let dates = this.state.bookedDates;
       let valString = val.toDateString();
       let dateInArray = dates.indexOf(valString) >= 0;
-      // if the date clicked is in the array dateInArray is true
+      // if the date clicked is in the array , dateInArray is true
 
       if (!dateInArray) {
         dates.push(valString);
@@ -56,32 +207,40 @@ class CalendarComponent extends Component {
         dates.splice(index, 1);
         this.setState({ bookedDates: dates });
       }
+      console.log(this.state.bookedDates, "this.state.bookedDate");
     };
 
     let disabled = this.state.bookedDates;
 
-    return (
-      <Box width={"100%"}>
+    //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
 
+    return (
+      <Box className={"calendar-wrapper"}>
+        <Card width={"100%"}>
           <Calendar
-            className={CalendarStyles["react-calendar"]}
-            onChange={value =>
-              // console.log(value.toString())
-              dayClicked(value)
-            }
-            // value={[new Date(2019, 6, 15), new Date(2019, 6, 18)]}
+            onChange={value => dayClicked(value)}
             minDate={floor}
             maxDate={ceiling}
             // onClickDay={dayClicked()}
 
+            //Toggle calendar day tile when clicked
             tileClassName={({ date, view }) => {
               if (disabled.indexOf(date.toDateString()) >= 0) {
-                return 'i-am-booked';
+                return "i-am-booked";
               } else {
                 return null;
               }
             }}
           />
+        </Card>
+
+        <Fab
+          onClick={() => {
+            this.reviewDates();
+          }}
+        >
+          Review Dates
+        </Fab>
       </Box>
     );
   }

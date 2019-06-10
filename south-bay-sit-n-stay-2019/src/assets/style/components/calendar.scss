@@ -1,3 +1,16 @@
+.calendar-wrapper{
+  background-color: orange;
+
+
+  @media only screen
+  and (min-width: 668px)
+  and (max-width: 1600px) {
+    background-color: blue;
+    width: 50%;
+  }
+
+}
+
 .react-calendar{
   //Lets keep the calendar shape as a square
 
@@ -23,13 +36,11 @@
   @media only screen
   and (min-width: 668px)
   and (max-width: 1600px) {
-    max-width: 60%;
     background-color: lime;
   }
 }
 
 .react-calendar__tile{
-
   &.calendar__tile{
 
   }
