@@ -1,9 +1,10 @@
-import React from "react";
+import React, {Component} from "react";
 import CalendarComponent from "./calendarComponent";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import SimpleModal from "../Modal/modal";
 
 
 let useStyles = makeStyles(theme => ({
@@ -19,25 +20,40 @@ let useStyles = makeStyles(theme => ({
   }
 }));
 
-const BookingSection = (props) => {
-  const classes = useStyles();
-  return (
-    <Box p={6} className={classes.bookingContainer}>
-      <Typography variant={"h1"} align="left">
-        Check out which days we can provide you service
-      </Typography>
+// const classes = useStyles();
 
-      <Box
-        component="div"
-        display="inline-block"
-        // width={"100%"}
-        // height={"600px"}
-        // maxWidth={"84rem"}
-      >
-        <CalendarComponent />
-      </Box>
-    </Box>
-  );
+class BookingSection extends Component{
+
+    constructor(props){
+        super(props);
+    }
+
+  render(){
+      console.log(this.props, "IN THE COMP , FROM THE ACTION")
+        return (
+
+            <Box p={6} className={useStyles.bookingContainer}>
+                <Typography variant={"h1"} align="left">
+                    Check out which days we can provide you service
+                </Typography>
+
+                <button>THIS DOT PROPS</button>
+
+                <Box
+                    component="div"
+                    display="inline-block"
+                    // width={"100%"}
+                    // height={"600px"}
+                    // maxWidth={"84rem"}
+                >
+                    <CalendarComponent
+                        getRequestedDates={this.props.getRequestedDates}
+                    />
+                    <SimpleModal/>
+                </Box>
+            </Box>
+        );
+    }
 };
 
 export default BookingSection;

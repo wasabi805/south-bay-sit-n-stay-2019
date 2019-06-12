@@ -1,0 +1,5 @@
+export const TEST_ACTION = 'TEST_ACTION';
+
+
+export const GET_DATE_RANGES = 'GET_DATE_RANGES';
+export const GET_REQUESTED_DATES = "GET_REQUESTED_DATES";

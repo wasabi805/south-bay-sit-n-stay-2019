@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 345
   },
 
-  test : ""
+  test: ""
 }));
 
 class CalendarComponent extends Component {
@@ -26,17 +26,36 @@ class CalendarComponent extends Component {
     this.state = {
       date: new Date(),
       expired: "",
+
       bookedDates: [],
 
       monthOne: {
-        month:"",
+        month: "",
         datesInMonth: []
       },
 
+      monthTwo: {
+        month: "",
+        datesInMonth: []
+      },
+
+      monthThree: {
+        month: "",
+        datesInMonth: []
+      },
+
+      monthFour: {
+        month: "",
+        datesInMonth: []
+      }
     };
 
     this.onChange = this.onChange.bind(this);
     this.reviewDates = this.reviewDates.bind(this);
+    this.setMonthOne=this.setMonthOne.bind(this);
+    this.setMonthTwo=this.setMonthTwo.bind(this);
+    this.setMonthThree=this.setMonthThree.bind(this);
+    this.setMonthFour=this.setMonthFour.bind(this);
   }
 
   onChange(date) {
@@ -44,6 +63,7 @@ class CalendarComponent extends Component {
   }
 
   reviewDates() {
+
     let requestDates = this.state.bookedDates;
     let formatDate = [];
     let dMilliSecs = [];
@@ -77,9 +97,7 @@ class CalendarComponent extends Component {
       // If user selects dates from  Month 1
       if (curr1 === null) {
         curr1 = getMonth(dMilliSecs[i]);
-
         m1.push(curr1, [getNumDay(dMilliSecs[i])]);
-
         i++;
       }
 
@@ -123,16 +141,18 @@ class CalendarComponent extends Component {
         m4[1].push(getNumDay(dMilliSecs[i]));
       }
     }
-
     //=== Special Case ; if 4 months are visible to calendar===
     if ((curr1, curr2, curr3, curr4)) {
       let result = m3[1].pop();
     }
 
-    console.log(Array.isArray(m1) , "whats in m1");
+    console.log(Array.isArray(m1), "whats in m1");
     console.log(m2, "whats in m2");
     console.log(m3, "whats in m3");
     console.log(m4, "whats in m4");
+
+    console.log(this.props, "DO OR DIE!")
+
 
     let testArr = [1, 2, 3, 4, 5, 6, 45, 67, 89, 99, 100, 101, 102, 103];
 
@@ -153,32 +173,55 @@ class CalendarComponent extends Component {
       return [month, ranges];
     }
 
-    console.log(getRanges(m1));
+    console.log('ALMOST THERE ' ,'m1 :', m1 , 'm1[0]:', m1[0] )
+
+    if(m1.length > 0){
+      let month = m1[0];
+      let numDays = m1[1]
 
 
-    this.setState(
-        {
-          monthOne: {
-            month : getRanges(m1)[0],
-            datesInMonth:  getRanges(m1)[1]
-          }}
-    )
+      this.setMonthOne(getRanges(m1)[0] ,getRanges(m1)[1] );
+    }
 
+    if(m2.length > 0){
+      this.setMonthTwo(getRanges(m2)[0] ,getRanges(m2)[1] );
+    }
 
   }
 
+  setMonthOne(dates){
+    // this.setState({
+    //   monthOne: {
+    //     month: dates.payload[0],
+    //     numDays: dates.payload[1],
+    //   },
+    // });
+    console.log('setMOnth1 fired from comp state')
+  }
+
+  setMonthTwo(){
+    // this.setState({
+    //   monthTwo:{
+    //     month: month,
+    //     datesInMonth: dates
+    //   },
+    // });
+    console.log('setMOnth2 fired from comp state')
+  }
+
+  setMonthThree(){
+
+  }
+
+  setMonthFour(){
+
+  }
+
+
   //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
   render() {
-
-    console.log(
-        this.state.monthOne.month, "THIS IS THE TEST STATEMENT"
-    );
-
-    console.log(
-        this.state.monthOne.datesInMonth, "THIS IS THE TEST STATEMENT"
-    );
-
-
+    // console.log(this.state, "THIS IS THE TEST STATEMENT");
+    console.log(this.props, 'HERE WE GO')
 
     //Ceiling on Future Calendar Days
     //ref : https://stackoverflow.com/questions/563406/add-days-to-javascript-date
@@ -236,7 +279,10 @@ class CalendarComponent extends Component {
 
         <Fab
           onClick={() => {
-            this.reviewDates();
+            this.props.getRequestedDates(this.state.bookedDates)
+
+            //DO NOT DELETE BELOW : THE ORIGINAL WORKING FNUC
+            // this.reviewDates(this.state.bookedDates);
           }}
         >
           Review Dates

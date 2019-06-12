@@ -4,6 +4,8 @@ import Logic from "./Logic/reducer/logic-reducer";
 
 const middleware = [thunk];
 
+
+
 const store = createStore(
   combineReducers({
     Logic

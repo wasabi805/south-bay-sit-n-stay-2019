@@ -18,15 +18,22 @@ const NavList = props => {
     margin: "auto"
   });
 
+
+  console.log(props.navNames.map((item)=>{
+    return item
+  }), 'FROM NAV LIST')
+
   return (
     <HeaderNav className={`${headerNavClassName}`} component="nav">
-      {props.navLocations.map(link => {
-        return (
-          <ListItem key={`${link}` + "header-nav"}>
-            <ListItemText primary={`${link}`} />
-          </ListItem>
-        );
-      })}
+      {/*{props.navNames.map(link => {*/}
+        {/*return (*/}
+          {/*<ListItem key={`${link}` + "header-nav"}>*/}
+            {/*<ListItemText primary={`${link}`} />*/}
+          {/*</ListItem>*/}
+        {/*);*/}
+      {/*})}*/}
+
+
     </HeaderNav>
   );
 };

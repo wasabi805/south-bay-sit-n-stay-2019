@@ -4,7 +4,7 @@ import { styled } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import HeroPresenter from "../Hero/hero-presenter";
 import CardsSection from "../Cards/card-section-component";
-import BookingSection from "../Booking-Calendar/booking-presenter";
+import BookingSection from "../Booking-Calendar/booking-container";
 import GallerySection from "../Gallery/gallerySection";
 
 class LandingPresenter extends Component {
@@ -13,6 +13,10 @@ class LandingPresenter extends Component {
     this.state = this.props.getLandingContext[0];
   }
   render() {
+      console.log(this.props ,'FROM LANDING PRESENTER')
+
+
+
     const LandingPage = styled(Grid)({
       minWidth: "100vw",
       textAlign: "center"
@@ -34,7 +38,7 @@ class LandingPresenter extends Component {
         />
 
         <CardsSection
-          landingCards={this.props.getLandingContext[1]}
+          landingCards={this.props.getLandingContext[0].cards}
           landingCardsHeading={this.props.getCardSectionHeadings}
         />
 

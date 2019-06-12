@@ -114,6 +114,8 @@ let useStyles = makeStyles(theme => ({
 const CardSectionComponent = props => {
   const classes = useStyles();
 
+  console.log( props , 'WHAT ARE THE PROPS')
+
   return (
     <ThemeProvider theme={CardSectionTheme}>
       <CardGrid className={classes.cardGrid} p={1}>
