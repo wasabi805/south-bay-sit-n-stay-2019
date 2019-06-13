@@ -30,7 +30,7 @@ const footerTheme = createMuiTheme({
       fontSize: "1.5rem"
     },
 
-    h6:{
+    h6: {
       fontWeight: 700
     }
   }
@@ -70,7 +70,7 @@ let useStyles = makeStyles(theme => ({
 
   footerColumn1: {
     flexBasis: "40%",
-    display: "block",
+    display: "block"
     // border: "1px solid yellow"
   },
 
@@ -82,15 +82,13 @@ let useStyles = makeStyles(theme => ({
 
   socialList: {
     padding: 0,
-    marginTop: '6rem'
-
+    marginTop: "6rem"
   },
 
   socialListItem: {
     padding: 0,
     display: "inline-block",
-    width: " 20%",
-
+    width: " 20%"
   }
 }));
 
@@ -101,13 +99,9 @@ const Footer = () => {
     <ThemeProvider theme={footerTheme}>
       <FooterContainer className={classes.footerMain}>
         <FooterColumn className={classes.footerColumn1}>
-          <Typography variant={"h1"} >
-            Contact
-          </Typography>
+          <Typography variant={"h1"}>Contact</Typography>
 
-          <Typography variant={"h1"} >
-            Like
-          </Typography>
+          <Typography variant={"h1"}>Like</Typography>
 
           <Typography variant={"h1"}>Follow</Typography>
 
@@ -134,7 +128,9 @@ const Footer = () => {
 
         <FooterColumn className={classes.footerColumn}>
           <Typography variant={"h1"}>Newsletter</Typography>
-          <Typography variant={"body1"}>Sign up to receive our newsletter to stay up to date.</Typography>
+          <Typography variant={"body1"}>
+            Sign up to receive our newsletter to stay up to date.
+          </Typography>
         </FooterColumn>
       </FooterContainer>
     </ThemeProvider>

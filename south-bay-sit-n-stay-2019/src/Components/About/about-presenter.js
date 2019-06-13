@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import HeroPresenter from "../../Components/Hero/hero-presenter";
-import CommonBodyContainer01 from "../../Components/common-body/common-body-container-01"
+import CommonBodyContainer01 from "../../Components/common-body/common-body-container-01";
 
 const AboutPresenter = props => {
   let aboutHero = props.getAboutContext[0];
@@ -15,7 +15,7 @@ const AboutPresenter = props => {
         heroSubHeaderB={aboutHero.heroSubHeaderB}
       />
 
-      <CommonBodyContainer01 myProps={'the props coming from about'}/>
+      <CommonBodyContainer01 myProps={"the props coming from about"} />
     </div>
   );
 };

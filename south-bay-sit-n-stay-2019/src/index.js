@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Root from "./Root";
-import { render } from 'react-dom'
-import { createStore } from 'redux'
-import store from './store'
+import { render } from "react-dom";
+import { createStore } from "redux";
+import store from "./store";
 
 require("./assets/style/root.scss");
 import { ThemeProvider } from "@material-ui/styles";
@@ -40,7 +40,7 @@ const appTheme = createMuiTheme({
 
 ReactDOM.render(
   <ThemeProvider theme={appTheme}>
-    <Root store={store}/>
+    <Root store={store} />
   </ThemeProvider>,
   document.getElementById("root")
 );

@@ -4,6 +4,7 @@ import { styled } from "@material-ui/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import PropTypes from "prop-types";
 
 const NavList = props => {
   let headerNavClassName = "headerNav";
@@ -18,24 +19,21 @@ const NavList = props => {
     margin: "auto"
   });
 
-
-  console.log(props.navNames.map((item)=>{
-    return item
-  }), 'FROM NAV LIST')
-
   return (
     <HeaderNav className={`${headerNavClassName}`} component="nav">
-      {/*{props.navNames.map(link => {*/}
-        {/*return (*/}
-          {/*<ListItem key={`${link}` + "header-nav"}>*/}
-            {/*<ListItemText primary={`${link}`} />*/}
-          {/*</ListItem>*/}
-        {/*);*/}
-      {/*})}*/}
-
-
+      {props.navNames.map(link => {
+        return (
+          <ListItem key={`${link}` + "header-nav"}>
+            <ListItemText primary={`${link}`} />
+          </ListItem>
+        );
+      })}
     </HeaderNav>
   );
 };
 
 export default NavList;
+
+NavList.propTypes = {
+  navNames: PropTypes.array.isRequired
+};

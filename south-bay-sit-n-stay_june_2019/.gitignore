@@ -1,8 +1,0 @@
-/node_modules
-/dist
-/.idea/
-.idea/workspace.xml
-.env
-
-npm-debug.log
-.DS_Store

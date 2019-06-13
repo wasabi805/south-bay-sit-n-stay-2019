@@ -35,8 +35,8 @@ export const getDateRanges = ([ month, array]) => {
 
 
 
-
-export const getRequestedDates = ( selectedCalState )=>{
+// export const get_nav_names =( name ) => dispatch =>{
+export const getRequestedDates = ( selectedCalState ) => dispatch =>{
 
     let requestDates = selectedCalState;
     let formatDate = [];
@@ -177,27 +177,28 @@ export const getRequestedDates = ( selectedCalState )=>{
     }
 
 
-
-    return{
-        type: "GET_REQUESTED_DATES",
+    return dispatch({
+        type: GET_REQUESTED_DATES,
         payload: {
-            monthOne : {
-                name : m1Result,
-                day: "",
-            },
-            monthTwo : {
-                name : "",
-                day: "",
-            },
-            monthThree : {
-                name : "",
-                day: "",
-            },
-            monthFour : {
-                name : "",
-                day: "",
-            },
+            test : "TESTING GET_REQUESTED_DATES ACTION "
         }
-    }
-
+    })
 };
+
+
+
+
+// import {GET_NAV_NAMES} from '../reducers/types';
+//
+// export const get_nav_names =( name ) => dispatch =>{
+//     console.log(name ,  "<===== IS THE ARG MAKING IT TO THE FUNC??")
+//
+//     let myName = `Hello my name is ${name}`;
+//
+//     console.log(myName)
+//
+//     return dispatch({
+//         type : GET_NAV_NAMES ,
+//         payload: myName
+//     })
+// };

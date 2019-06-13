@@ -44,14 +44,14 @@ class HeroPresenter extends Component {
   constructor(props) {
     super(props);
     this.displayHeroButtons = this.displayHeroButtons.bind(this);
-    this.displayHeroHeader = this.displayHeroHeader.bind(this)
+    this.displayHeroHeader = this.displayHeroHeader.bind(this);
   }
 
   displayHeroButtons() {
     let btn = this.props;
 
-    if (btn.heroButtonOne==="" && btn.heroButtonTwo === "") {
-      return
+    if (btn.heroButtonOne === "" && btn.heroButtonTwo === "") {
+      return;
     }
 
     if (btn.heroButtonOne && btn.heroButtonTwo === "") {
@@ -68,20 +68,20 @@ class HeroPresenter extends Component {
     }
   }
 
-  displayHeroHeader(){
+  displayHeroHeader() {
     let header = this.props;
 
-    if(header.heroHeaderBOne){
+    if (header.heroHeaderBOne) {
       return (
-          <HeroHeaderB
-              heroHeaderBOne={header.heroHeaderBOne}
-              heroHeaderBTwo={header.heroHeaderBTwo}
-              heroSubHeaderB={header.heroSubHeaderB}
-          />)
+        <HeroHeaderB
+          heroHeaderBOne={header.heroHeaderBOne}
+          heroHeaderBTwo={header.heroHeaderBTwo}
+          heroSubHeaderB={header.heroSubHeaderB}
+        />
+      );
     }
-  };
+  }
   render() {
-
     const HeroWrapper = styled(Box)({
       minWidth: "100vw",
       height: "100vh",
@@ -125,7 +125,6 @@ class HeroPresenter extends Component {
       }
     });
 
-
     const HeroButtonBox = styled(Box)({
       position: "relative",
       padding: 0,
@@ -163,12 +162,12 @@ class HeroPresenter extends Component {
 
 export default HeroPresenter;
 
-HeroPresenter.propTypes={
+HeroPresenter.propTypes = {
   heroHeaderBOne: PropTypes.string,
-  heroImg : PropTypes.string.isRequired,
+  heroImg: PropTypes.string.isRequired,
   HeroWrapper: PropTypes.element,
   HeroHeaderB: PropTypes.element,
 
   displayHeroHeader: PropTypes.func,
-  displayHeroButtons: PropTypes.func,
+  displayHeroButtons: PropTypes.func
 };

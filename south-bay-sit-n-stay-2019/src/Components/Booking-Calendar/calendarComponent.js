@@ -52,10 +52,10 @@ class CalendarComponent extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.reviewDates = this.reviewDates.bind(this);
-    this.setMonthOne=this.setMonthOne.bind(this);
-    this.setMonthTwo=this.setMonthTwo.bind(this);
-    this.setMonthThree=this.setMonthThree.bind(this);
-    this.setMonthFour=this.setMonthFour.bind(this);
+    this.setMonthOne = this.setMonthOne.bind(this);
+    this.setMonthTwo = this.setMonthTwo.bind(this);
+    this.setMonthThree = this.setMonthThree.bind(this);
+    this.setMonthFour = this.setMonthFour.bind(this);
   }
 
   onChange(date) {
@@ -63,7 +63,6 @@ class CalendarComponent extends Component {
   }
 
   reviewDates() {
-
     let requestDates = this.state.bookedDates;
     let formatDate = [];
     let dMilliSecs = [];
@@ -151,8 +150,7 @@ class CalendarComponent extends Component {
     console.log(m3, "whats in m3");
     console.log(m4, "whats in m4");
 
-    console.log(this.props, "DO OR DIE!")
-
+    console.log(this.props, "DO OR DIE!");
 
     let testArr = [1, 2, 3, 4, 5, 6, 45, 67, 89, 99, 100, 101, 102, 103];
 
@@ -173,55 +171,48 @@ class CalendarComponent extends Component {
       return [month, ranges];
     }
 
-    console.log('ALMOST THERE ' ,'m1 :', m1 , 'm1[0]:', m1[0] )
+    console.log("ALMOST THERE ", "m1 :", m1, "m1[0]:", m1[0]);
 
-    if(m1.length > 0){
+    if (m1.length > 0) {
       let month = m1[0];
-      let numDays = m1[1]
+      let numDays = m1[1];
 
-
-      this.setMonthOne(getRanges(m1)[0] ,getRanges(m1)[1] );
+      this.setMonthOne(getRanges(m1)[0], getRanges(m1)[1]);
     }
 
-    if(m2.length > 0){
-      this.setMonthTwo(getRanges(m2)[0] ,getRanges(m2)[1] );
+    if (m2.length > 0) {
+      this.setMonthTwo(getRanges(m2)[0], getRanges(m2)[1]);
     }
-
   }
 
-  setMonthOne(dates){
+  setMonthOne(dates) {
     // this.setState({
     //   monthOne: {
     //     month: dates.payload[0],
     //     numDays: dates.payload[1],
     //   },
     // });
-    console.log('setMOnth1 fired from comp state')
+    console.log("setMOnth1 fired from comp state");
   }
 
-  setMonthTwo(){
+  setMonthTwo() {
     // this.setState({
     //   monthTwo:{
     //     month: month,
     //     datesInMonth: dates
     //   },
     // });
-    console.log('setMOnth2 fired from comp state')
+    console.log("setMOnth2 fired from comp state");
   }
 
-  setMonthThree(){
+  setMonthThree() {}
 
-  }
-
-  setMonthFour(){
-
-  }
-
+  setMonthFour() {}
 
   //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
   render() {
     // console.log(this.state, "THIS IS THE TEST STATEMENT");
-    console.log(this.props, 'HERE WE GO')
+    console.log(this.props, "HERE WE GO");
 
     //Ceiling on Future Calendar Days
     //ref : https://stackoverflow.com/questions/563406/add-days-to-javascript-date
@@ -279,7 +270,7 @@ class CalendarComponent extends Component {
 
         <Fab
           onClick={() => {
-            this.props.getRequestedDates(this.state.bookedDates)
+            return this.props.getRequestedDates(this.state.bookedDates);
 
             //DO NOT DELETE BELOW : THE ORIGINAL WORKING FNUC
             // this.reviewDates(this.state.bookedDates);

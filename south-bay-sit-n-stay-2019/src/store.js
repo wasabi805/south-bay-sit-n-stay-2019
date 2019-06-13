@@ -1,15 +1,14 @@
+import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { combineReducers, applyMiddleware, createStore } from "redux";
-import Logic from "./Logic/reducer/logic-reducer";
+import rootReducer from "./Logic/reducers";
+
+const initialState = {};
 
 const middleware = [thunk];
 
-
-
 const store = createStore(
-  combineReducers({
-    Logic
-  }),
+  rootReducer,
+  initialState,
   applyMiddleware(...middleware)
 );
 

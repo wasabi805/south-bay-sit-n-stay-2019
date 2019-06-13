@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { styled } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
@@ -7,54 +7,47 @@ import CardsSection from "../Cards/card-section-component";
 import BookingSection from "../Booking-Calendar/booking-container";
 import GallerySection from "../Gallery/gallerySection";
 
-class LandingPresenter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props.getLandingContext[0];
-  }
-  render() {
-      console.log(this.props ,'FROM LANDING PRESENTER')
+const LandingPresenter = props => {
+  const LandingPage = styled(Grid)({
+    minWidth: "100vw",
+    textAlign: "center"
+  });
 
+  return (
+    <LandingPage className={""}>
+      <HeroPresenter
+        heroId={props.heroId}
+        heroClassName={props.heroClassName}
+        heroImg={props.heroImg}
+        heroHeader={props.heroHeader}
+        heroSubHeader={props.heroSubHeader}
+        heroButtonOne={props.heroButtonOne}
+        heroButtonTwo={props.heroButtonTwo}
+      />
 
+      <CardsSection
+        body_01={props.body_01}
 
-    const LandingPage = styled(Grid)({
-      minWidth: "100vw",
-      textAlign: "center"
-    });
+        // landingCardsHeading={this.props.getCardSectionHeadings}
+      />
 
-    let { landingPage } = this.state;
-
-    return (
-      <LandingPage className={`${landingPage}`}>
-        <HeroPresenter
-          heroClassName={this.state.heroClassName}
-          heroContext={this.state.heroContext}
-          heroButtons={this.state.heroButtons}
-          heroImg={this.state.heroImg}
-          heroHeader={this.state.heroHeader}
-          heroSubHeader={this.state.heroSubHeader}
-          heroButtonOne={this.state.heroButtonOne}
-          heroButtonTwo={this.state.heroButtonTwo}
-        />
-
-        <CardsSection
-          landingCards={this.props.getLandingContext[0].cards}
-          landingCardsHeading={this.props.getCardSectionHeadings}
-        />
-
-        <BookingSection />
-        <GallerySection />
-      </LandingPage>
-    );
-  }
-}
+      <BookingSection />
+      <GallerySection />
+    </LandingPage>
+  );
+};
 
 export default LandingPresenter;
 
 LandingPresenter.propTypes = {
-  className: PropTypes.string,
-  getCardSectionHeadings: PropTypes.object.isRequired,
-  getLandingContext: PropTypes.array.isRequired,
+  heroId: PropTypes.string,
+  heroClassName: PropTypes.string,
+  heroImg: PropTypes.string.isRequired,
+  heroHeader: PropTypes.string.isRequired,
+  heroSubHeader: PropTypes.string.isRequired,
+  heroButtonOne: PropTypes.string.isRequired,
+  heroButtonTwo: PropTypes.string.isRequired,
+
   history: PropTypes.object,
   location: PropTypes.object,
   match: PropTypes.object

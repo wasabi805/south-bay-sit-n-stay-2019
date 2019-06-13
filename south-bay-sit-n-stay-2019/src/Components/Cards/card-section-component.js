@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { styled } from "@material-ui/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import { createMuiTheme } from "@material-ui/core";
@@ -15,7 +16,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 
 import red from "@material-ui/core/colors/red";
-
 import teal from "@material-ui/core/colors/teal";
 
 const CardSectionTheme = theme => {
@@ -114,8 +114,6 @@ let useStyles = makeStyles(theme => ({
 const CardSectionComponent = props => {
   const classes = useStyles();
 
-  console.log( props , 'WHAT ARE THE PROPS')
-
   return (
     <ThemeProvider theme={CardSectionTheme}>
       <CardGrid className={classes.cardGrid} p={1}>
@@ -125,11 +123,13 @@ const CardSectionComponent = props => {
           color={"black"}
           p={6}
         >
-          {props.landingCardsHeading.header}
+          {/*CARD GRID HEADER*/}
+          {props.body_01.header}
         </CardGridHeader>
 
+        {/*CARD CONTAINER*/}
         <CardContainer className={classes.cardContainer}>
-          {props.landingCards.map(card => {
+          {props.body_01.context.map(card => {
             return (
               <Card key={card.id} className={classes.card}>
                 <CardHeader
@@ -156,8 +156,7 @@ const CardSectionComponent = props => {
                     variant={"body2"}
                     color="textSecondary"
                     component="p"
-                  >
-                  </Typography>
+                  />
                   <Box fontSize={16}>{card.cardContext}</Box>
                 </CardContent>
               </Card>
@@ -170,3 +169,7 @@ const CardSectionComponent = props => {
 };
 
 export default CardSectionComponent;
+
+CardSectionComponent.propTypes = {
+  body_01: PropTypes.object
+};
