@@ -1,17 +1,15 @@
 export const INITIAL_STATE = {
   reqCalendarDates: {
-    test : ''
+    test: ""
   },
 
-
   nav_names: ["home ", "services ", "about", "gallery ", "contact "],
-
 
   cardSectionHeadings: [
     {
       id: "landing",
       header:
-          "Explore how we can provide the best level of comfort for your pets."
+        "Explore how we can provide the best level of comfort for your pets."
     }
   ],
 
@@ -20,10 +18,10 @@ export const INITIAL_STATE = {
       id: "hero-landing-context",
       heroClassName: "hero-landing",
       heroImg:
-          "url('https://sb-sit-2019.s3.amazonaws.com/zoe-ra-43393-cropped-2560X1440.jpg')",
+        "url('https://sb-sit-2019.s3.amazonaws.com/zoe-ra-43393-cropped-2560X1440.jpg')",
       heroHeader: "We have you and your pet covered",
       heroSubHeader:
-          "Have us for drop in visits, schedule boarding when you're away, or have us sit for you.",
+        "Have us for drop in visits, schedule boarding when you're away, or have us sit for you.",
       pageClassName: "landing-page",
       heroContext: "landing-hero-context",
       heroButtons: "landing-hero-buttons",
@@ -37,11 +35,11 @@ export const INITIAL_STATE = {
           avatarLetter: "D",
           title: "Drop In Visits",
           imgOrIcon:
-              "https://sb-sit-2019.s3.amazonaws.com/dog-out-car-window.jpg",
+            "https://sb-sit-2019.s3.amazonaws.com/dog-out-car-window.jpg",
           imgTitle: "Dog Loving the Car Ride",
           subHeader: "Have us come to you!",
           cardContext:
-              "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text."
+            "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text."
         },
 
         {
@@ -53,7 +51,7 @@ export const INITIAL_STATE = {
           imgTitle: "Dog Enjoying the Evening",
           subHeader: "On site sitting",
           cardContext:
-              "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text."
+            "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text."
         },
 
         {
@@ -65,33 +63,25 @@ export const INITIAL_STATE = {
           imgTitle: "Dog Hanging with the Sitter",
           subHeader: "Have them stay with us",
           cardContext:
-              "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text."
+            "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text."
         }
-      ],
-
-    },
-
-
-
-
-
-
-
+      ]
+    }
   ],
 
-  about_context:[
+  about_context: [
     //
     {
       id: "hero-about-context",
       heroClassName: "hero-about",
       heroImg:
-          "url('https://sb-sit-2019.s3.amazonaws.com/dog-in-tp-1920x1280.jpg')",
+        "url('https://sb-sit-2019.s3.amazonaws.com/dog-in-tp-1920x1280.jpg')",
       heroHeader: "",
       heroSubHeader: "",
 
       heroHeaderBOne: "Neighborly",
       heroHeaderBTwo: "Care Providers",
-      heroSubHeaderB:"We're serious about your dog's comfort",
+      heroSubHeaderB: "We're serious about your dog's comfort",
 
       pageClassName: "landing-page",
       heroContext: "landing-hero-context",
@@ -100,6 +90,4 @@ export const INITIAL_STATE = {
       heroButtonTwo: ""
     }
   ]
-}
-
-
+};

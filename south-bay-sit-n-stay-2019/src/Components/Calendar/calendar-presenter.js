@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   test: ""
 }));
 
-class CalendarComponent extends Component {
+class CalendarPresenter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -248,7 +248,10 @@ class CalendarComponent extends Component {
 
     //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
 
+    console.log(this.props , 'IN OPEN?');
     return (
+
+
       <Box className={"calendar-wrapper"}>
         <Card width={"100%"}>
           <Calendar
@@ -269,12 +272,14 @@ class CalendarComponent extends Component {
         </Card>
 
         <Fab
-          onClick={() => {
-            return this.props.getRequestedDates(this.state.bookedDates);
-
             //DO NOT DELETE BELOW : THE ORIGINAL WORKING FNUC
             // this.reviewDates(this.state.bookedDates);
-          }}
+          // onClick={() => this.props.confirmCalendarDates(this.state.bookedDates)}
+
+            onClick={() =>{
+              this.props.confirmCalendarDates(this.state.bookedDates);
+              this.props.openModal() //THIS DEFINITELY NEEDS TO BE HERE
+            }}
         >
           Review Dates
         </Fab>
@@ -283,4 +288,4 @@ class CalendarComponent extends Component {
   }
 }
 
-export default CalendarComponent;
+export default CalendarPresenter;

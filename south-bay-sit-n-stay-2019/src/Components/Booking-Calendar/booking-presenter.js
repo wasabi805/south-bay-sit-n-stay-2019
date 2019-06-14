@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import CalendarComponent from "./calendarComponent";
+import React, {Component} from "react";
+import CalendarContainer from "../Calendar/calendar-container";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import SimpleModal from "../Modal/modal";
+import SimpleModal from "../Modal/modal-conatainer";
 
 let useStyles = makeStyles(theme => ({
   bookingContainer: {
@@ -19,37 +19,77 @@ let useStyles = makeStyles(theme => ({
   }
 }));
 
-// const classes = useStyles();
+class BookingSection extends Component{
+    constructor(props){
+        super(props);
 
-class BookingSection extends Component {
-  constructor(props) {
-    super(props);
-  }
+        this.state={
+            open : false,
+            test: 'TIM',
+            confirmMonthOne: null
+        };
 
-  render() {
-    return (
-      <Box p={6} className={useStyles.bookingContainer}>
-        <Typography variant={"h1"} align="left">
-          Check out which days we can provide you service
-        </Typography>
+        this.setStateConfirmDates = this.setStateConfirmDates.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
 
-        <button>THIS DOT PROPS</button>
+    setStateConfirmDates(){
+        this.setState(
+            {open: true}
+        )
+    }
 
-        <Box
-          component="div"
-          display="inline-block"
-          // width={"100%"}
-          // height={"600px"}
-          // maxWidth={"84rem"}
-        >
-          <CalendarComponent getRequestedDates={this.props.getRequestedDates} />
-          <SimpleModal />
-        </Box>
-      </Box>
-    );
-  }
+    openModal(){
+        this.setState({
+            open : true
+        })
+    }
+
+    closeModal(){
+        this.setState({
+            open : false
+        })
+    }
+
+    render(){
+        return (
+            <Box p={6} className={useStyles.bookingContainer}>
+                <Typography variant={"h1"} align="left">
+                    Check out which days we can provide you service
+                </Typography>
+
+                <button>THIS DOT PROPS</button>
+
+                <Box
+                    component="div"
+                    display="inline-block"
+                >
+                    <CalendarContainer
+                        openModal={this.openModal}
+                        confirmCalendarDates={this.props.confirmCalendarDates}
+                        setStateConfirmDates={this.setStateConfirmDates} />
+
+
+                    <SimpleModal
+                        firstMonth={this.props.firstMonth}
+                        firstMonthDays={this.props.firstMonthDays}
+                        secondMonth={this.props.secondMonth}
+                        secondMonthDays={this.props.secondMonthDays}
+
+                        open={this.state.open}
+                        openModal={this.openModal}
+                        closeModal={this.closeModal}
+
+                    />
+                </Box>
+            </Box>
+        );
+    }
 }
 
 export default BookingSection;
 
-BookingSection.propTypes = {};
+BookingSection.propTypes = {
+    open : PropTypes.bool
+};
