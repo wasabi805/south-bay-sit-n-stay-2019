@@ -127,6 +127,7 @@ export const confirmCalendarDates = selectedCalState => dispatch => {
   // console.log(m4, "whats in m4");
 
   let monthOne, monthTwo, monthThree, monthFour;
+  let monthOneDays, monthTwoDays, monthThreeDays, monthFourDays;
 
   //===== ===== ===== Arrange the dates in date ranges ===== ===== ===== ===== =====
   function getRanges([month, array]) {
@@ -149,39 +150,55 @@ export const confirmCalendarDates = selectedCalState => dispatch => {
 
   console.log("ALMOST THERE ", "m1 :", m1, "m1[0]:", m1[0]);
 
+  //ORGANIZE SELECTED DATES INTO OBJECT TO SEND AS PROPS TO:
+  // BOOKING CONTAINER --> MODAL PRESENTER .
+
+  // (TO DISPLAY & CONFIRM USER SELECTED DATES IN MODAL)
   if (m1.length > 0) {
-    let month_01 = m1[0];
-    let numDays_for_month_01 = m1[1];
+    monthOne = getRanges(m1)[0];
+    monthOneDays= getRanges(m1)[1]
 
-    console.log("this is month_01: ", month_01);
-    console.log("this is numDays_for_month_01: ", numDays_for_month_01);
-    // this.setMonthOne(this.props.getDateRanges([month ,numDays ]) );
-
-    console.log(getRanges(m1)[0], getRanges(m1)[1], "FROM ACTIONS");
-
-    monthOne = [getRanges(m1)[0], getRanges(m1)[1]];
   } else {
     monthOne = "";
+    monthOneDays = ""
   }
 
   if (m2.length > 0) {
-    let month_02 = m2[0];
-    let numDays_for_month_02 = m2[1];
-
-    console.log("this is month_02: ", month_02);
-    console.log("this is numDays_for_month_02: ", numDays_for_month_02);
-    // this.setMonthOne(this.props.getDateRanges([month ,numDays ]) );
-
-    console.log(getRanges(m2)[0], getRanges(m2)[1], "FROM ACTIONS");
-    monthTwo = [getRanges(m2)[0], getRanges(m2)[1]];
+    monthTwo = getRanges(m2)[0];
+    monthTwoDays = getRanges(m2)[1]
   } else {
     monthTwo = "";
+    monthTwoDays=""
   }
+
+  if (m3.length > 0) {
+    monthThree = getRanges(m3)[0];
+    monthThreeDays = getRanges(m3)[1]
+  } else {
+    monthThree = "";
+    monthThreeDays=""
+  }
+
+  if (m4.length > 0) {
+    monthFour = getRanges(m4)[0];
+    monthFourDays = getRanges(m4)[1]
+  } else {
+    monthFour = "";
+    monthFourDays=""
+  }
+
 
   return dispatch({
     type: CONFIRM_CALENDAR_DATES,
 
     payload: {
+      months : [
+        {id: 'month-one' , name: monthOne ,  days : monthOneDays },
+        {id: 'month-two' , name: monthTwo ,  days : monthTwoDays},
+        {id: 'month-three' , name: monthThree ,  days : monthThreeDays},
+        {id: 'month-four' , name: monthFour ,  days : monthFourDays},
+      ],
+
       monthOne: monthOne,
       monthTwo: monthTwo
     }

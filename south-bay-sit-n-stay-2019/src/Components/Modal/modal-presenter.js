@@ -36,56 +36,87 @@ class SimpleModal extends Component {
 
     this.handleClose = this.handleClose.bind(this);
     this.classes = this.classes.bind(this);
-    this.convertDateM1 = this.convertDateM1.bind(this);
-    this.convertDateM2 = this.convertDateM2.bind(this);
+    this.showConfirmDates = this.showConfirmDates.bind(this);
   }
 
   handleClose() {
     return this.props.closeModal;
   }
 
+  //used for Material UI to style modal
   classes() {
     return useStyles;
   }
 
-  convertDateM1(month) {
-    if (month === undefined) {
-      return "Please Start by selecting a date.";
-    }
+  // Method that Displays the dates the user selected from the calendar
+  showConfirmDates() {
+    //console.log(this.props) , [monthAsNum , [ range of dates]]
+    let { months } = this.props;
+    let showMonthOne = "",
+      showMonthOneDays = "",
+      showMonthTwo = "",
+      showMonthTwoDays = "";
+    let showMonthThree = "",
+      showMonthThreeDays = "",
+      showMonthFour = "",
+      showMonthFourDays = "";
 
-    if (month) {
+    if (months) {
+      let thisYear = new Date().getFullYear();
+
+      const getMonthNumber = n => months[n].name;
+      const getMonthDays = n => months[n].days;
+      const convertMonthNumberToEnglish = n =>
+        new Date(thisYear, n - 1, 1).toLocaleString("en-us", { month: "long" });
+
+      // if none of the calendar tiles were clicked and user hits button to display selected calendar dates ....
+      if (months[0].name.length === 0 || months[0].name === "") {
+        return "PLEASE START BY SELECTING A DATE";
+      }
+      //if dates in first month are selected...
+      if (months[0].name) {
+        // let mNum = months[0].name;
+        let mNum = getMonthNumber(0);
+        let mDays = getMonthDays(0);
+        showMonthOne = convertMonthNumberToEnglish(mNum);
+        showMonthOneDays = mDays;
+      }
+
+      if (months[1].name > 0) {
+        let mNum = getMonthNumber(1);
+        let mDays = getMonthDays(1);
+        showMonthTwo = convertMonthNumberToEnglish(mNum);
+        showMonthTwoDays = mDays;
+      }
+
+      if (months[2].name > 0) {
+        let mNum = getMonthNumber(2);
+        let mDays = getMonthDays(2);
+        showMonthThree = convertMonthNumberToEnglish(mNum);
+        showMonthThreeDays = mDays;
+      }
+
+      if (months[3].name > 0) {
+        let mNum = getMonthNumber(3);
+        let mDays = getMonthDays(3);
+        showMonthFour = convertMonthNumberToEnglish(mNum);
+        showMonthFourDays = mDays;
+      }
+
       return (
-        <p>
-          {new Date(1900, month - 1, 1).toLocaleString("en-us", {
-            month: "long"
-          })}
-          {"  " + this.props.firstMonthDays + "," + "  "}
-        </p>
+        <React.Fragment>
+          {showMonthOne} : {showMonthOneDays}
+          {showMonthTwo} : {showMonthTwoDays}
+          {showMonthThree} : {showMonthThreeDays}
+          {showMonthFour} : {showMonthFourDays}
+        </React.Fragment>
       );
-    } else {
-      return "";
-    }
-  }
-
-  convertDateM2(month) {
-    console.log(this.props);
-
-    if (month) {
-      return (
-        <p>
-          {new Date(1900, month - 1, 1).toLocaleString("en-us", {
-            month: "long"
-          })}
-          {"  " + this.props.secondMonthDays + "," + "  "}
-        </p>
-      );
-    } else {
-      return "";
     }
   }
 
   render() {
-    console.log(this.props, "THEY BETTER BE IN HERE");
+    //UnComment below for debugging
+    // console.log(this.props, "FROM THE MODAL PRESENTER - BOOKING CONTAINER IS PASSING PROPS TO THIS COMP");
 
     return (
       <div>
@@ -108,8 +139,8 @@ class SimpleModal extends Component {
             </Typography>
 
             <Typography variant="body1" id="simple-modal-description">
-              {this.convertDateM1(this.props.firstMonth)}
-              {this.convertDateM2(this.props.secondMonth)}
+              {/*Renders all the dates selected by the user from clicking calendar tiles*/}
+              {this.showConfirmDates()}
             </Typography>
             <SimpleModal />
           </div>

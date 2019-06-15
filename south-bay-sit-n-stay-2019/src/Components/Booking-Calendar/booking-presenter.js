@@ -53,6 +53,8 @@ class BookingSection extends Component{
     }
 
     render(){
+        console.log(this.props.months , "&&&&&&&& MAIN PRESENTER PROPS &&&&&&&&")
+
         return (
             <Box p={6} className={useStyles.bookingContainer}>
                 <Typography variant={"h1"} align="left">
@@ -76,6 +78,10 @@ class BookingSection extends Component{
                         firstMonthDays={this.props.firstMonthDays}
                         secondMonth={this.props.secondMonth}
                         secondMonthDays={this.props.secondMonthDays}
+
+                        //months = user selected months : SEE actions.js & confirmCalendarDates()
+                        months={this.props.months}
+
 
                         open={this.state.open}
                         openModal={this.openModal}

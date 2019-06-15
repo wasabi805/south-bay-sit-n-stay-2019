@@ -6,9 +6,11 @@ import {
   renderCalendarModalDates
 } from "../../Logic/actions";
 
-const mapStateToProps = state => ({
-  testMe: "This is a dummy test . We go Dumb"
-});
+const mapStateToProps = state => {
+  return {
+    testMe: "This is a dummy test . We go Dumb"
+  };
+};
 
 const Container = connect(
   mapStateToProps,
