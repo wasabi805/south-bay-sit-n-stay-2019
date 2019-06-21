@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 
 import Presenter from "./calendar-presenter";
 import {
-  confirmCalendarDates,
+  getCalendarDates,
   renderCalendarModalDates
 } from "../../Logic/actions";
 
@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 
 const Container = connect(
   mapStateToProps,
-  { confirmCalendarDates, renderCalendarModalDates }
+  { getCalendarDates: getCalendarDates, renderCalendarModalDates }
 )(Presenter);
 
 export default Container;

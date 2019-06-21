@@ -1,101 +1,137 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import CalendarContainer from "../Calendar/calendar-container";
-import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import { styled } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import SimpleModal from "../Modal/modal-conatainer";
 
-let useStyles = makeStyles(theme => ({
-  bookingContainer: {
-    "& h1": {
-      marginBottom: "5rem"
-    },
-    background:
-      "url('https://sb-sit-2019.s3.amazonaws.com/calendar01-transparent.png')",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "right",
-    backgroundSize: "55%"
+import CalendarModal from "../Modals/calendar-modal";
+
+const BookingContainer = styled(Box)({
+  "& h1": {
+    marginBottom: "5rem"
+  },
+  background:
+    "url('https://sb-sit-2019.s3.amazonaws.com/calendar01-transparent.png')",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "right",
+  backgroundSize: "55%"
+});
+
+class BookingSection extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      //MODAL PROPS
+      open: false,
+      modalName: "",
+
+      //calendar props
+      bookedDates: [],
+      renderDates: []
+    };
   }
-}));
 
-class BookingSection extends Component{
-    constructor(props){
-        super(props);
+  //==========  ==========  CALENDAR METHODS  ==========  ==========
 
-        this.state={
-            open : false,
-            test: 'TIM',
-            confirmMonthOne: null
-        };
+  //Gets the days that were clicked from react-calendar module
+  getDaysClicked = days => {
+    let months = this.props.getCalendarDates(days).payload.months;
+    let groupedDates = this.props.renderCalendarModalDates(months).payload;
+    let renderDates = [];
 
-        this.setStateConfirmDates = this.setStateConfirmDates.bind(this);
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-    }
+    let convertMonth = month => {
+      return new Date(2019, parseInt(month - 1, 10), 1).toLocaleString(
+        "en-us",
+        { month: "long" }
+      );
+    };
 
-    setStateConfirmDates(){
-        this.setState(
-            {open: true}
-        )
-    }
+    //TRANSLATE DATES FROM REDUCER INTO ENGLISH
+    groupedDates.forEach(item => {
+      let month = Object.values(item)[1];
+      let days = Object.values(item)[2];
 
-    openModal(){
-        this.setState({
-            open : true
-        })
-    }
+      if (month) {
+        let convertedMonth = convertMonth(month);
 
-    closeModal(){
-        this.setState({
-            open : false
-        })
-    }
+        //ADD COMMAS TO DATES
+        for (var i = 0; i < days.length - 1; i++) {
+          days[i] = days[i] + ",";
+        }
 
-    render(){
-        console.log(this.props.months , "&&&&&&&& MAIN PRESENTER PROPS &&&&&&&&")
+        renderDates.push({ month: convertedMonth, days: days });
+      }
+    });
 
-        return (
-            <Box p={6} className={useStyles.bookingContainer}>
-                <Typography variant={"h1"} align="left">
-                    Check out which days we can provide you service
-                </Typography>
+    //SET STATE TO TRANSLATED DATES
+    this.setState({
+      renderDates: renderDates
+    });
+  };
 
-                <button>THIS DOT PROPS</button>
+  //==========  ==========  MODAL METHODS ==========  ==========
+  handleOpenGenericModal = () => {
+    this.setState({
+      isCalendarHidden: 1,
+      open: true
+    });
+  };
 
-                <Box
-                    component="div"
-                    display="inline-block"
-                >
-                    <CalendarContainer
-                        openModal={this.openModal}
-                        confirmCalendarDates={this.props.confirmCalendarDates}
-                        setStateConfirmDates={this.setStateConfirmDates} />
+  handleCloseGenericModal = () => {
+    this.setState({
+      open: false,
+      modalName: ""
+    });
+  };
 
+  /////////////////////////////////////////////////////////////////////////////////
 
-                    <SimpleModal
-                        firstMonth={this.props.firstMonth}
-                        firstMonthDays={this.props.firstMonthDays}
-                        secondMonth={this.props.secondMonth}
-                        secondMonthDays={this.props.secondMonthDays}
+  // RENDER
 
-                        //months = user selected months : SEE actions.js & confirmCalendarDates()
-                        months={this.props.months}
+  /////////////////////////////////////////////////////////////////////////////////
+  render() {
+    console.log("this.state.renderDates", this.state.renderDates);
+    console.log("this.state.bookedDates", this.state.bookedDates);
 
+    let CalendarModalBtn = styled(Button)({
+      //PUT STYLES IN HERE LATER
+    });
 
-                        open={this.state.open}
-                        openModal={this.openModal}
-                        closeModal={this.closeModal}
+    return (
+      <BookingContainer p={6} className={""}>
+        <Typography variant={"h1"} align="left">
+          Check out which days we can provide you service
+        </Typography>
 
-                    />
-                </Box>
-            </Box>
-        );
-    }
+        {/*CALENDAR*/}
+        <Box component="div" display="inline-block">
+          <CalendarContainer getDaysClicked={this.getDaysClicked} />
+        </Box>
+
+        {/*THIS WILL OPEN THE CALENDAR MODAL*/}
+        <CalendarModalBtn
+          variant="outlined"
+          onClick={() => this.handleOpenGenericModal()}
+        >
+          NEW REVIEW DATES
+        </CalendarModalBtn>
+
+        {/*THIS IS THE CALENDAR MODAL*/}
+        <CalendarModal
+          open={this.state.open}
+          onClose={this.handleCloseGenericModal}
+          renderDates={this.state.renderDates}
+        />
+      </BookingContainer>
+    );
+  }
 }
 
 export default BookingSection;
 
 BookingSection.propTypes = {
-    open : PropTypes.bool
+  open: PropTypes.bool
 };

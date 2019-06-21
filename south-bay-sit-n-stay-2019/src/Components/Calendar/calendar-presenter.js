@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import Calendar from "react-calendar/dist/entry.nostyle";
-// import Calendar from "react-calendar";
-import CalendarStyles from "../../assets/style/components/calendar.scss";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
-import Fab from "@material-ui/core/Fab";
 
 const useStyles = makeStyles(theme => ({
   calendarWrapper: {
@@ -26,42 +22,49 @@ class CalendarPresenter extends Component {
     this.state = {
       date: new Date(),
       expired: "",
-
-      bookedDates: [],
-
-      monthOne: {
-        month: "",
-        datesInMonth: []
-      },
-
-      monthTwo: {
-        month: "",
-        datesInMonth: []
-      },
-
-      monthThree: {
-        month: "",
-        datesInMonth: []
-      },
-
-      monthFour: {
-        month: "",
-        datesInMonth: []
-      }
+      bookedDates: []
     };
-
-    this.onChange = this.onChange.bind(this);
   }
+  //PART I : STORES OR REMOVES THE CLICKED DATE IN COMP STATE.
+  dayClicked = val => {
+    let dates = this.state.bookedDates;
 
-  onChange(date) {
-    this.setState({ date });
-  }
+    let valString = val.toDateString();
+    let dateInArray = dates.indexOf(valString) >= 0;
+
+    console.log(val);
+
+    // if the date is not in the array , push it into the array(this.state.bookedDates).
+    if (!dateInArray) {
+      dates.push(valString);
+      this.setState({ bookedDates: dates });
+    }
+
+    //if the date is already in there and the button is clicked again, remove the date from the array (this.state.bookedDates)
+    else {
+      let index = dates.indexOf(valString);
+      dates.splice(index, 1);
+      this.setState({ bookedDates: dates });
+    }
+
+    // PART II :
+    //SENDS THE CLICKED DATES BACK TO BOOKING PRESENTER --> BOOKING PRESENTER SENDS THE DATES TO MODAL FOR DISPLAY
+    this.props.getDaysClicked(dates);
+  };
+
+  //PART III : PAINT THE CLICKED DAYS
+  paintDayClicked = ({ date, view }) => {
+    let disabled = this.state.bookedDates;
+
+    if (disabled.indexOf(date.toDateString()) >= 0) {
+      return "i-am-booked";
+    } else {
+      return null;
+    }
+  };
 
   //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
   render() {
-    // console.log(this.state, "THIS IS THE TEST STATEMENT");
-    console.log(this.props, "HERE WE GO");
-
     //Ceiling on Future Calendar Days
     //ref : https://stackoverflow.com/questions/563406/add-days-to-javascript-date
     Date.prototype.addDays = function(days) {
@@ -74,60 +77,22 @@ class CalendarPresenter extends Component {
 
     //Floor on Calendar date
     let floor = new Date();
-
-    let dayClicked = val => {
-      let dates = this.state.bookedDates;
-      let valString = val.toDateString();
-      let dateInArray = dates.indexOf(valString) >= 0;
-      // if the date clicked is in the array , dateInArray is true
-
-      if (!dateInArray) {
-        dates.push(valString);
-        this.setState({ bookedDates: dates });
-      } else {
-        let index = dates.indexOf(valString);
-        dates.splice(index, 1);
-        this.setState({ bookedDates: dates });
-      }
-      console.log(this.state.bookedDates, "this.state.bookedDate");
-    };
-
-    let disabled = this.state.bookedDates;
+    //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
 
     //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
-    console.log("+++++++++++++", this.props, "+++++++++++++++");
     return (
       <Box className={"calendar-wrapper"}>
         <Card width={"100%"}>
           <Calendar
-            onChange={value => dayClicked(value)}
+            onChange={value => this.dayClicked(value)}
             minDate={floor}
             maxDate={ceiling}
-            // onClickDay={dayClicked()}
-
-            //Toggle calendar day tile when clicked
+            //paints the tiles that are clicked
             tileClassName={({ date, view }) => {
-              if (disabled.indexOf(date.toDateString()) >= 0) {
-                return "i-am-booked";
-              } else {
-                return null;
-              }
+              return this.paintDayClicked({ date, view });
             }}
           />
         </Card>
-
-        <Fab
-          //DO NOT DELETE BELOW : THE ORIGINAL WORKING FNUC
-          // this.reviewDates(this.state.bookedDates);
-          // onClick={() => this.props.confirmCalendarDates(this.state.bookedDates)}
-
-          onClick={() => {
-            this.props.confirmCalendarDates(this.state.bookedDates);
-            this.props.openModal(); //THIS DEFINITELY NEEDS TO BE HERE
-          }}
-        >
-          Review Dates
-        </Fab>
       </Box>
     );
   }

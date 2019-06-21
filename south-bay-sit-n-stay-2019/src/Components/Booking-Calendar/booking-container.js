@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import Presenter from "./booking-presenter";
+import {getCalendarDates, renderCalendarModalDates} from "../../Logic/actions"
 
 const mapStateToProps = state => {
   // uncomment for debugging calendar comp
@@ -10,6 +11,6 @@ const mapStateToProps = state => {
   };
 };
 
-const Container = connect(mapStateToProps)(Presenter);
+const Container = connect(mapStateToProps, {getCalendarDates, renderCalendarModalDates})(Presenter);
 
 export default Container;

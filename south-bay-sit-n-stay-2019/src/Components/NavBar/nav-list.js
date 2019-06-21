@@ -5,6 +5,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const NavList = props => {
   let headerNavClassName = "headerNav";
@@ -16,16 +17,22 @@ const NavList = props => {
     maxWidth: "35%",
     left: "0",
     right: "0",
-    margin: "auto"
+    margin: "auto",
+    "& a" :{
+      color :'white',
+      textDecoration : 'none',
+    }
   });
 
   return (
     <HeaderNav className={`${headerNavClassName}`} component="nav">
       {props.navNames.map(link => {
         return (
-          <ListItem key={`${link}` + "header-nav"}>
-            <ListItemText primary={`${link}`} />
-          </ListItem>
+          <Link to={link.id} key={link.id}>
+            <ListItem key={`${link.id}` + "header-nav"}>
+              <ListItemText primary={`${link.name}`} />
+            </ListItem>
+          </Link>
         );
       })}
     </HeaderNav>

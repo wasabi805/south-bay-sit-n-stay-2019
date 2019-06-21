@@ -82,6 +82,7 @@ class HeroPresenter extends Component {
     }
   }
   render() {
+
     const HeroWrapper = styled(Box)({
       minWidth: "100vw",
       height: "100vh",

@@ -1,5 +1,5 @@
 .calendar-wrapper{
-  background-color: orange;
+  background-color: #673ab7;
 
 
   @media only screen
@@ -38,6 +38,14 @@
   and (max-width: 1600px) {
     background-color: lime;
   }
+
+  @media only screen
+  and (min-width: 1601px) {
+    background-color: #673ab7;
+    color: #fff;
+    font-size: 2rem;
+    max-width: 50vw;
+  }
 }
 
 .react-calendar__tile{
@@ -52,7 +60,10 @@
   max-height: 14vh;
 }
 
+
+
+
 .i-am-booked {
-  background-color: red ;
+  background-color: #e4d9ec ;
 }
 

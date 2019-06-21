@@ -78,7 +78,8 @@ let useStyles = makeStyles(theme => ({
   cardContainer: {
     display: "flex",
     justifyContent: "space-evenly",
-    marginBottom: "5%"
+    marginBottom: "5%",
+    maxWidth : '85vw'
   },
 
   cardGrid: {

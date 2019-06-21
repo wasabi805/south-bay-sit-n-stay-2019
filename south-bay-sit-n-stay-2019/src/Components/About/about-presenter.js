@@ -4,15 +4,13 @@ import HeroPresenter from "../../Components/Hero/hero-presenter";
 import CommonBodyContainer01 from "../../Components/common-body/common-body-container-01";
 
 const AboutPresenter = props => {
-  let aboutHero = props.getAboutContext[0];
-
   return (
     <div>
       <HeroPresenter
-        heroImg={aboutHero.heroImg}
-        heroHeaderBOne={aboutHero.heroHeaderBOne}
-        heroHeaderBTwo={aboutHero.heroHeaderBTwo}
-        heroSubHeaderB={aboutHero.heroSubHeaderB}
+        heroImg={props.hero.heroImg}
+        heroHeaderBOne={props.hero.heroHeaderBOne}
+        heroHeaderBTwo={props.hero.heroHeaderBTwo}
+        heroSubHeaderB={props.hero.heroSubHeaderB}
       />
 
       <CommonBodyContainer01 myProps={"the props coming from about"} />

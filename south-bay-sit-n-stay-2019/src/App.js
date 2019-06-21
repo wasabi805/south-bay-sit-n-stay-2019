@@ -9,8 +9,9 @@ const App = () => {
   return (
     <div>
       <NavBarContainer />
-      <Route exact path="/" component={LandingContainer} />
+      <Route exact path="/" render={props => <LandingContainer />} />
       <Route path="/about" component={AboutContainer} />
+
       <Footer />
     </div>
   );

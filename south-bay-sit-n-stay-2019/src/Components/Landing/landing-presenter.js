@@ -31,7 +31,11 @@ const LandingPresenter = props => {
         // landingCardsHeading={this.props.getCardSectionHeadings}
       />
 
-      <BookingSection />
+      <BookingSection
+        handleOpenGenericModal={props.handleOpenGenericModal}
+        handleCloseGenericModal={props.handleCloseGenericModal}
+        setModalName={props.setModalName}
+      />
       <GallerySection />
     </LandingPage>
   );

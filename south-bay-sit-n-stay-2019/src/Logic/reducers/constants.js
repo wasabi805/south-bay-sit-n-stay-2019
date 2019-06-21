@@ -3,7 +3,15 @@ export const INITIAL_STATE = {
     test: ""
   },
 
-  nav_names: ["home ", "services ", "about", "gallery ", "contact "],
+  nav_names: [
+      // "home ", "services ", "about", "gallery ", "contact "
+    {id: '/' ,        name: 'home'},
+    {id: 'about' ,    name: 'about'},
+    {id: 'services' , name: 'services'},
+    {id: 'book-now' , name: 'book now'},
+    {id: 'gallery' ,  name: 'gallery'},
+    {id: 'contact' ,  name: 'contact'},
+  ],
 
   cardSectionHeadings: [
     {
