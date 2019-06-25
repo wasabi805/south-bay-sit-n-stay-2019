@@ -23,14 +23,37 @@ class BookingSection extends Component {
   constructor(props) {
     super(props);
 
+    //btn refs
+
     this.state = {
       //MODAL PROPS
       open: false,
-      modalName: "",
+      modalName: "dates",
+
+      showModal1: true,
+      showModal2: false,
 
       //calendar props
       bookedDates: [],
-      renderDates: []
+      renderDates: [],
+
+      nextBtnId: "next-01",
+      backBtnId: "",
+
+      //customer booking form
+
+      contactForm: {
+        contactFirstName: "",
+        contactLastName: "",
+        contactPhone: "",
+        contactEmail: "",
+        contactCity: "",
+        dogName: "",
+        dogBreed: "",
+        dogAge: "",
+        dogWeight: "",
+        comments: ""
+      }
     };
   }
 
@@ -58,9 +81,9 @@ class BookingSection extends Component {
         let convertedMonth = convertMonth(month);
 
         //ADD COMMAS TO DATES
-        for (var i = 0; i < days.length - 1; i++) {
-          days[i] = days[i] + ",";
-        }
+        // for (var i = 0; i < days.length - 1; i++) {
+        //   days[i] = days[i] + ",";
+        // }
 
         renderDates.push({ month: convertedMonth, days: days });
       }
@@ -87,14 +110,57 @@ class BookingSection extends Component {
     });
   };
 
+  handleNext = e => {
+    let { id } = e.currentTarget;
+
+    switch (id) {
+      case "next-01":
+        this.setState({
+          showModal1: false,
+          backBtnId: "back-01",
+          nextBtnId: "next-02",
+          showModal2: true
+        });
+    }
+
+    console.log(id, "i fired");
+  };
+
+  handleBack = e => {
+    let { id } = e.currentTarget;
+
+    console.log("back it up", id);
+
+    switch (id) {
+      case "back-01":
+        this.setState({
+          showModal1: true,
+          backBtnId: "",
+          nextBtnId: "next-01",
+          showModal2: false
+        });
+    }
+  };
+
+  handleFormFieldChange = name => event => {
+    console.log(event.target, "what is name");
+    event.preventDefault();
+
+    this.setState(
+      {
+        contactForm: { ...this.state.contactForm, [name]: event.target.value }
+      },
+      () => console.log("THE CURRENT STATE -BOOKING")
+    );
+  };
+
   /////////////////////////////////////////////////////////////////////////////////
 
   // RENDER
 
   /////////////////////////////////////////////////////////////////////////////////
   render() {
-    console.log("this.state.renderDates", this.state.renderDates);
-    console.log("this.state.bookedDates", this.state.bookedDates);
+    console.log("this.state.renderDates", this.state, "****************");
 
     let CalendarModalBtn = styled(Button)({
       //PUT STYLES IN HERE LATER
@@ -123,7 +189,16 @@ class BookingSection extends Component {
         <CalendarModal
           open={this.state.open}
           onClose={this.handleCloseGenericModal}
+          modalName={this.state.modalName}
           renderDates={this.state.renderDates}
+          handleNext={this.handleNext}
+          handleBack={this.handleBack}
+          nextBtnId={this.state.nextBtnId}
+          backBtnId={this.state.backBtnId}
+          showModal1={this.state.showModal1}
+          showModal2={this.state.showModal2}
+          contactForm={this.state.contactForm}
+          handleFormFieldChange={this.handleFormFieldChange}
         />
       </BookingContainer>
     );

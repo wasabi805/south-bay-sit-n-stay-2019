@@ -1,15 +1,22 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-
+import Box from "@material-ui/core/Box";
+import Chip from "@material-ui/core/Chip";
+import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
+
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
+
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+
+import Grow from "@material-ui/core/Grow";
+
+import BookForm from "../Forms/book-form";
 
 //MODAL
 const styles = theme => ({
@@ -21,13 +28,23 @@ const styles = theme => ({
     position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: theme.palette.grey[500]
+    color: theme.palette.grey[200]
+  },
+
+  showDates: {
+    backgroundColor: "lime"
+  },
+
+  next_01_btn: {
+    background: "blue"
+  },
+
+  chip: {
+    margin: theme.spacing(1)
   }
 });
 
 const DialogTitle = withStyles(styles)(props => {
-  console.log(props, "WHAT ARE THE PROPS HERE?");
-
   const { children, classes, onClose } = props;
 
   return (
@@ -55,59 +72,99 @@ const DialogContent = withStyles(theme => ({
 const DialogActions = withStyles(theme => ({
   root: {
     margin: 0,
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
+    background: "pink"
   }
 }))(MuiDialogActions);
 
 class CalendarModal extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {};
   }
 
   render() {
-    console.log(this.props.onClose);
-
     return (
-      <React.Fragment>
-        hello
-        <Dialog open={this.props.open} onClose={this.props.onClose}>
-          <DialogTitle
-            id="customized-dialog-title"
-            onClose={this.props.onClose}
-          >
-            Your Requested Dates
-          </DialogTitle>
+      <Dialog open={this.props.open} onClose={this.props.onClose}>
+        <DialogTitle id="customized-dialog-title" onClose={this.props.onClose}>
+          Your Requested Dates
+        </DialogTitle>
 
-          <DialogContent dividers>
-            <Typography gutterBottom>
-              Here are the dates you've selected
-            </Typography>
-            <Typography gutterBottom>
-              {this.props.renderDates.map(date => {
-                console.log(date);
-                return (
-                  <React.Fragment>
-                    <span>
-                      {date.month}, {date.days}
-                    </span>
-                    <br />
-                  </React.Fragment>
-                );
-              })}
-            </Typography>
-            <Typography gutterBottom>
-              We'll just need some additional information before we can book,
-              click next
-            </Typography>
-          </DialogContent>
+        <DialogContent
+          dividers
+          style={{
+            position: "relative",
+            background: "aliceblue",
+            minWidth: "30vw",
+            minHeight: "20vh",
+            padding: 0
+          }}
+        >
+          <Grow in={this.props.showModal1}>
+            <div
+              style={{
+                position: "absolute",
+                border: "1px solid red",
+                display: "inline-block",
+                width: "100%",
+                left: 0,
+                right: 0,
+                margin: "0 auto"
+              }}
+            >
+              <Typography gutterBottom>
+                Here are the dates you've selected
+              </Typography>
+              <Typography gutterBottom>
+                {this.props.renderDates.map(date => {
+                  return (
+                    <Box>
+                      <Chip
+                        avatar={<Avatar>MB</Avatar>}
+                        label={date.month + date.days}
+                        className={styles.chip}
+                      />
+                    </Box>
+                  );
+                })}
+              </Typography>
 
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              NEXT
+              <Typography gutterBottom>
+                We'll just need some additional information before we can book,
+                click next
+              </Typography>
+            </div>
+          </Grow>
+
+          <BookForm
+            showModal2={this.props.showModal2}
+            contactForm={this.props.contactForm}
+            handleFormFieldChange={this.props.handleFormFieldChange}
+          />
+        </DialogContent>
+
+        {/*MODAL BTNS*/}
+
+        <DialogActions ref={this.props.modalName}>
+          {this.props.backBtnId ? (
+            <Button
+              id={this.props.backBtnId}
+              onClick={e => this.props.handleBack(e)}
+              color="primary"
+            >
+              Back
             </Button>
-          </DialogActions>
-        </Dialog>
-      </React.Fragment>
+          ) : null}
+
+          <Button
+            id={this.props.nextBtnId}
+            onClick={e => this.props.handleNext(e)}
+          >
+            Next
+          </Button>
+        </DialogActions>
+      </Dialog>
     );
   }
 }
