@@ -36,7 +36,7 @@ class BookForm extends Component {
           noValidate
           autoComplete="off"
         >
-          {/*NOTE : Material UI have an example where they add value as a prop however, it will cause the label to
+          {/*NOTE : Material UI has an example in docs where they add value as a prop however, it will cause the label to
                         overlap the form input if you include a 'value' prop.
                         YOU WILL NEED TO SPECIFY A NAME prop though.
 
