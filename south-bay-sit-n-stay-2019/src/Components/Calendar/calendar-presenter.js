@@ -32,8 +32,6 @@ class CalendarPresenter extends Component {
     let valString = val.toDateString();
     let dateInArray = dates.indexOf(valString) >= 0;
 
-    console.log(val);
-
     // if the date is not in the array , push it into the array(this.state.bookedDates).
     if (!dateInArray) {
       dates.push(valString);

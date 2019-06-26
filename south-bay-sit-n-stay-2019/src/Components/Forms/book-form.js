@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
+import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 
 import Grow from "@material-ui/core/Grow";
@@ -29,10 +29,13 @@ class BookForm extends Component {
   }
 
   render() {
-    console.log(this.props, "WHAT ARE THE PROPS IN BOOK FORM??");
     return (
       <Grow in={this.props.showModal2}>
-        <form style={{ position: "relative" }} noValidate autoComplete="off">
+        <form
+          style={{ position: "relative", textAlign: "center" }}
+          noValidate
+          autoComplete="off"
+        >
           {/*NOTE : Material UI have an example where they add value as a prop however, it will cause the label to
                         overlap the form input if you include a 'value' prop.
                         YOU WILL NEED TO SPECIFY A NAME prop though.
@@ -84,7 +87,7 @@ class BookForm extends Component {
             label="City"
             className={useStyles.textField}
             name={"contactCity"}
-            onChange={this.props.handleFormFieldChange("City")}
+            onChange={this.props.handleFormFieldChange("contactCity")}
             margin="normal"
             variant="outlined"
           />
@@ -145,3 +148,14 @@ class BookForm extends Component {
 }
 
 export default BookForm;
+
+BookForm.propTypes = {
+  //Shows the Form Modal
+  showModal2: PropTypes.bool.isRequired,
+
+  //State from parent for form Input Fields
+  contactForm: PropTypes.object.isRequired,
+
+  //sets state in parent when form input is entered by user
+  handleFormFieldChange: PropTypes.func.isRequired
+};

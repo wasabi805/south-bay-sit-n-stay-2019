@@ -43,33 +43,31 @@ const heroTheme = theme => {
 class HeroPresenter extends Component {
   constructor(props) {
     super(props);
-    this.displayHeroButtons = this.displayHeroButtons.bind(this);
-    this.displayHeroHeader = this.displayHeroHeader.bind(this);
   }
 
-  displayHeroButtons() {
-    let btn = this.props;
+  displayHeroButtons = () => {
+    let btn = this.props.heroContext;
 
     if (btn.heroButtonOne === "" && btn.heroButtonTwo === "") {
       return;
     }
 
     if (btn.heroButtonOne && btn.heroButtonTwo === "") {
-      return <button>{this.props.heroButtonOne}</button>;
+      return <button>{btn.heroButtonOne}</button>;
     }
 
     if (btn.heroButtonOne && btn.heroButtonTwo) {
       return (
         <React.Fragment>
-          <button>{this.props.heroButtonOne}</button>
-          <button>{this.props.heroButtonTwo}</button>
+          <button>{btn.heroButtonOne}</button>
+          <button>{btn.heroButtonTwo}</button>
         </React.Fragment>
       );
     }
-  }
+  };
 
-  displayHeroHeader() {
-    let header = this.props;
+  displayHeroHeader = () => {
+    let header = this.props.heroContext;
 
     if (header.heroHeaderBOne) {
       return (
@@ -80,8 +78,15 @@ class HeroPresenter extends Component {
         />
       );
     }
-  }
+  };
   render() {
+    let {
+      heroClassName,
+      header,
+      heroSubHeader,
+      heroButtons,
+      heroImg
+    } = this.props.heroContext;
 
     const HeroWrapper = styled(Box)({
       minWidth: "100vw",
@@ -93,7 +98,7 @@ class HeroPresenter extends Component {
       textAlign: "center",
       padding: "2rem",
       //  ===== Hero Background Img =====
-      background: this.props.heroImg,
+      background: heroImg,
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
 
@@ -147,12 +152,12 @@ class HeroPresenter extends Component {
 
     return (
       <ThemeProvider theme={heroTheme}>
-        <HeroWrapper className={this.props.heroClassName} button={""}>
-          <Typography variant="h1">{this.props.heroHeader}</Typography>
+        <HeroWrapper className={heroClassName} button={""}>
+          <Typography variant="h1">{header}</Typography>
           {this.displayHeroHeader()}
-          <Typography variant="h2">{this.props.heroSubHeader}</Typography>
+          <Typography variant="h2">{heroSubHeader}</Typography>
 
-          <HeroButtonBox className={this.props.heroButtons}>
+          <HeroButtonBox className={heroButtons}>
             {this.displayHeroButtons()}
           </HeroButtonBox>
         </HeroWrapper>
@@ -164,11 +169,17 @@ class HeroPresenter extends Component {
 export default HeroPresenter;
 
 HeroPresenter.propTypes = {
+  heroContext: PropTypes.object.isRequired,
+  heroClassName: PropTypes.string,
+  header: PropTypes.string,
+  heroSubHeader: PropTypes.string,
+  heroButtons: PropTypes.string,
   heroHeaderBOne: PropTypes.string,
-  heroImg: PropTypes.string.isRequired,
-  HeroWrapper: PropTypes.element,
-  HeroHeaderB: PropTypes.element,
+  heroImg: PropTypes.string,
 
   displayHeroHeader: PropTypes.func,
-  displayHeroButtons: PropTypes.func
+  displayHeroButtons: PropTypes.func,
+
+  HeroWrapper: PropTypes.element,
+  HeroHeaderB: PropTypes.element
 };

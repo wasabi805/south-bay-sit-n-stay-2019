@@ -15,15 +15,7 @@ const LandingPresenter = props => {
 
   return (
     <LandingPage className={""}>
-      <HeroPresenter
-        heroId={props.heroId}
-        heroClassName={props.heroClassName}
-        heroImg={props.heroImg}
-        heroHeader={props.heroHeader}
-        heroSubHeader={props.heroSubHeader}
-        heroButtonOne={props.heroButtonOne}
-        heroButtonTwo={props.heroButtonTwo}
-      />
+      <HeroPresenter heroContext={props.heroContext} />
 
       <CardsSection
         body_01={props.body_01}
@@ -31,12 +23,9 @@ const LandingPresenter = props => {
         // landingCardsHeading={this.props.getCardSectionHeadings}
       />
 
-      <BookingSection
-        handleOpenGenericModal={props.handleOpenGenericModal}
-        handleCloseGenericModal={props.handleCloseGenericModal}
-        setModalName={props.setModalName}
-      />
+      <BookingSection/>
       <GallerySection />
+
     </LandingPage>
   );
 };
@@ -44,14 +33,6 @@ const LandingPresenter = props => {
 export default LandingPresenter;
 
 LandingPresenter.propTypes = {
-  heroId: PropTypes.string,
-  heroClassName: PropTypes.string,
-  heroImg: PropTypes.string.isRequired,
-  heroHeader: PropTypes.string.isRequired,
-  heroSubHeader: PropTypes.string.isRequired,
-  heroButtonOne: PropTypes.string.isRequired,
-  heroButtonTwo: PropTypes.string.isRequired,
-
   history: PropTypes.object,
   location: PropTypes.object,
   match: PropTypes.object

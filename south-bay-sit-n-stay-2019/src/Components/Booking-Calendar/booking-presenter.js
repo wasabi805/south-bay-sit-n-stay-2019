@@ -30,18 +30,23 @@ class BookingSection extends Component {
       open: false,
       modalName: "dates",
 
-      showModal1: true,
-      showModal2: false,
-
       //calendar props
       bookedDates: [],
       renderDates: [],
 
-      nextBtnId: "next-01",
-      backBtnId: "",
+      //new
+      modalView: {
+        showModal1: true,
+        showModal2: false,
+        showModal3: false
+      },
+
+      btnView: {
+        nextBtnId: "next-01",
+        backBtnId: ""
+      },
 
       //customer booking form
-
       contactForm: {
         contactFirstName: "",
         contactLastName: "",
@@ -116,42 +121,78 @@ class BookingSection extends Component {
     switch (id) {
       case "next-01":
         this.setState({
-          showModal1: false,
-          backBtnId: "back-01",
-          nextBtnId: "next-02",
-          showModal2: true
+          modalView: {
+            showModal1: false,
+            showModal2: true,
+            showModal3: false
+          },
+
+          btnView: {
+            backBtnId: "back-01",
+            nextBtnId: "next-02"
+          }
+        });
+        return;
+
+      case "next-02":
+        this.setState({
+          btnView: {
+            backBtnId: "back-02",
+            nextBtnId: ""
+          },
+
+          modalView: {
+            showModal1: false,
+            showModal2: false,
+            showModal3: true
+          },
+
+          confirmSubmit: true
         });
     }
-
-    console.log(id, "i fired");
   };
 
   handleBack = e => {
     let { id } = e.currentTarget;
-
-    console.log("back it up", id);
-
     switch (id) {
       case "back-01":
         this.setState({
-          showModal1: true,
-          backBtnId: "",
-          nextBtnId: "next-01",
-          showModal2: false
+          modalView: {
+            showModal1: true,
+            showModal2: false,
+            showModal3: false
+          },
+
+          btnView: {
+            backBtnId: "",
+            nextBtnId: "next-01"
+          }
         });
+        return;
+
+      case "back-02":
+        this.setState({
+          modalView: {
+            showModal1: false,
+            showModal2: true,
+            showModal3: false
+          },
+
+          btnView: {
+            backBtnId: "back-01",
+            nextBtnId: "next-02"
+          }
+        });
+        return;
     }
   };
 
   handleFormFieldChange = name => event => {
-    console.log(event.target, "what is name");
     event.preventDefault();
 
-    this.setState(
-      {
-        contactForm: { ...this.state.contactForm, [name]: event.target.value }
-      },
-      () => console.log("THE CURRENT STATE -BOOKING")
-    );
+    this.setState({
+      contactForm: { ...this.state.contactForm, [name]: event.target.value }
+    });
   };
 
   /////////////////////////////////////////////////////////////////////////////////
@@ -160,8 +201,6 @@ class BookingSection extends Component {
 
   /////////////////////////////////////////////////////////////////////////////////
   render() {
-    console.log("this.state.renderDates", this.state, "****************");
-
     let CalendarModalBtn = styled(Button)({
       //PUT STYLES IN HERE LATER
     });
@@ -185,19 +224,24 @@ class BookingSection extends Component {
           NEW REVIEW DATES
         </CalendarModalBtn>
 
-        {/*THIS IS THE CALENDAR MODAL*/}
+        {/*THIS IS THE CALENDAR MODAL THAT SUPPLIES USER REQ DATES AND USER INFO*/}
         <CalendarModal
+          //open: boolean opens main modal
+          //onClose : setState boolean closes main modal
           open={this.state.open}
           onClose={this.handleCloseGenericModal}
           modalName={this.state.modalName}
+          //Array of dates that are clicked by user
           renderDates={this.state.renderDates}
+          //Booking Form Fields for customer and Dog
+          contactForm={this.state.contactForm}
+          //Modal View Booleans
+          modalView={this.state.modalView}
+          btnView={this.state.btnView}
+          //Modal Button Functions
           handleNext={this.handleNext}
           handleBack={this.handleBack}
-          nextBtnId={this.state.nextBtnId}
-          backBtnId={this.state.backBtnId}
-          showModal1={this.state.showModal1}
-          showModal2={this.state.showModal2}
-          contactForm={this.state.contactForm}
+          //Modal Form
           handleFormFieldChange={this.handleFormFieldChange}
         />
       </BookingContainer>
@@ -208,5 +252,7 @@ class BookingSection extends Component {
 export default BookingSection;
 
 BookingSection.propTypes = {
+  getCalendarDates: PropTypes.func.isRequired,
+  renderCalendarModalDates: PropTypes.func.isRequired,
   open: PropTypes.bool
 };

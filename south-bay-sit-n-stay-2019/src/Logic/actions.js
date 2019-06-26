@@ -1,7 +1,7 @@
 import {
   TEST_ACTION,
   CONFIRM_CALENDAR_DATES,
-  RENDER_CALENDAR_MODAL_DATE,
+  RENDER_CALENDAR_MODAL_DATE
 } from "./types";
 
 import React from "react";
@@ -17,8 +17,6 @@ export const testAction = data => {
 export const getCalendarDates = selectedCalState => dispatch => {
   let requestDates = selectedCalState;
   let dMilliSecs = [];
-
-  console.log(selectedCalState, 'WHAT IS THIS????')
 
   let getMonth = time => {
     return new Date(time).getMonth() + 1;
@@ -124,7 +122,7 @@ export const getCalendarDates = selectedCalState => dispatch => {
       );
     }
 
-    console.log('if you see this, then it works', [month, ranges])
+    // console.log('if you see this, then it works', [month, ranges])
     return [month, ranges];
   }
 
@@ -135,7 +133,6 @@ export const getCalendarDates = selectedCalState => dispatch => {
   if (m1.length > 0) {
     monthOne = getRanges(m1)[0];
     monthOneDays = getRanges(m1)[1];
-
   } else {
     monthOne = "";
     monthOneDays = "";
@@ -170,7 +167,6 @@ export const getCalendarDates = selectedCalState => dispatch => {
 
     payload: {
       modalContext: {
-
         btns: {
           id: "calendar-modal",
           buttonNext: {
@@ -196,7 +192,7 @@ export const getCalendarDates = selectedCalState => dispatch => {
 //this will return the updates from getCalendarDates
 export const renderCalendarModalDates = obj => {
   // uncomment below for debugging.
-  console.log("IM the payload to renderCalendarModalDates", obj);
+  // console.log("IM the payload to renderCalendarModalDates", obj);
 
   return {
     type: RENDER_CALENDAR_MODAL_DATE,

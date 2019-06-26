@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import React from "react";
+import { withStyles} from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Chip from "@material-ui/core/Chip";
@@ -17,6 +18,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Grow from "@material-ui/core/Grow";
 
 import BookForm from "../Forms/book-form";
+import ConfirmBook from "../Forms/confirm-book";
 
 //MODAL
 const styles = theme => ({
@@ -65,108 +67,129 @@ const DialogTitle = withStyles(styles)(props => {
 
 const DialogContent = withStyles(theme => ({
   root: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    background: "pink"
   }
 }))(MuiDialogContent);
 
 const DialogActions = withStyles(theme => ({
   root: {
     margin: 0,
-    padding: theme.spacing(1),
-    background: "pink"
+    padding: theme.spacing(1)
+    // background: "pink"
   }
 }))(MuiDialogActions);
 
-class CalendarModal extends Component {
-  constructor(props) {
-    super(props);
+const CalendarModal = withStyles(styles)(props => {
+  const { classes, modalView, btnView } = props;
 
-    this.state = {};
-  }
+  return (
+    <Dialog maxWidth={"md"} open={props.open} onClose={props.onClose}>
+      <DialogTitle id="customized-dialog-title" onClose={props.onClose}>
+        Your Requested Dates
+      </DialogTitle>
 
-  render() {
-    return (
-      <Dialog open={this.props.open} onClose={this.props.onClose}>
-        <DialogTitle id="customized-dialog-title" onClose={this.props.onClose}>
-          Your Requested Dates
-        </DialogTitle>
-
-        <DialogContent
-          dividers
-          style={{
-            position: "relative",
-            background: "aliceblue",
-            minWidth: "30vw",
-            minHeight: "20vh",
-            padding: 0
-          }}
-        >
-          <Grow in={this.props.showModal1}>
-            <div
-              style={{
-                position: "absolute",
-                border: "1px solid red",
-                display: "inline-block",
-                width: "100%",
-                left: 0,
-                right: 0,
-                margin: "0 auto"
-              }}
-            >
-              <Typography gutterBottom>
-                Here are the dates you've selected
-              </Typography>
-              <Typography gutterBottom>
-                {this.props.renderDates.map(date => {
-                  return (
-                    <Box>
-                      <Chip
-                        avatar={<Avatar>MB</Avatar>}
-                        label={date.month + date.days}
-                        className={styles.chip}
-                      />
-                    </Box>
-                  );
-                })}
-              </Typography>
-
-              <Typography gutterBottom>
-                We'll just need some additional information before we can book,
-                click next
-              </Typography>
-            </div>
-          </Grow>
-
-          <BookForm
-            showModal2={this.props.showModal2}
-            contactForm={this.props.contactForm}
-            handleFormFieldChange={this.props.handleFormFieldChange}
-          />
-        </DialogContent>
-
-        {/*MODAL BTNS*/}
-
-        <DialogActions ref={this.props.modalName}>
-          {this.props.backBtnId ? (
-            <Button
-              id={this.props.backBtnId}
-              onClick={e => this.props.handleBack(e)}
-              color="primary"
-            >
-              Back
-            </Button>
-          ) : null}
-
-          <Button
-            id={this.props.nextBtnId}
-            onClick={e => this.props.handleNext(e)}
+      <DialogContent
+        dividers
+        style={{
+          position: "relative",
+          background: "aliceblue",
+          minWidth: "30vw",
+          minHeight: "55vh",
+          padding: 0
+        }}
+      >
+        <Grow in={modalView.showModal1}>
+          <div
+            style={{
+              position: "absolute",
+              border: "1px solid red",
+              display: "inline-block",
+              width: "100%",
+              left: 0,
+              right: 0,
+              margin: "0 auto"
+            }}
           >
-            Next
+            <Typography gutterBottom>
+              Here are the dates you've selected
+            </Typography>
+            <Box>
+              {props.renderDates.map((date, index) => {
+                return (
+                  <Chip
+                    key={date.month + "-" + index}
+                    avatar={<Avatar>MB</Avatar>}
+                    label={date.month + date.days}
+                    className={styles.chip}
+                  />
+                );
+              })}
+            </Box>
+
+            <Typography gutterBottom>
+              We'll just need some additional information before we can book,
+              click next
+            </Typography>
+          </div>
+        </Grow>
+
+        <BookForm
+          showModal2={modalView.showModal2}
+          contactForm={props.contactForm}
+          handleFormFieldChange={props.handleFormFieldChange}
+        />
+
+        <ConfirmBook
+          showModal3={modalView.showModal3}
+          renderDates={props.renderDates}
+          contactForm={props.contactForm}
+        />
+      </DialogContent>
+
+      {/*/!*MODAL BTNS*!/*/}
+
+      <DialogActions>
+        {btnView.backBtnId ? (
+          <Button
+            id={btnView.backBtnId}
+            onClick={e => props.handleBack(e)}
+            color="primary"
+          >
+            Back
           </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-}
+        ) : null}
+
+        <Button id={btnView.nextBtnId} onClick={e => props.handleNext(e)}>
+          Next
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+});
 
 export default CalendarModal;
+
+CalendarModal.propTypes = {
+  //style object
+  classes: PropTypes.object,
+
+  //Dates stored here when user clicks a calendar date tile
+  renderDates: PropTypes.array,
+
+  //Required boolean prop to open Material UI modals && function to flip boolean to close the modal.
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+
+  //modal props
+  modalView: PropTypes.object.isRequired,
+  btnView: PropTypes.object.isRequired,
+  contactForm: PropTypes.object.isRequired,
+
+  //modal buttons functionality
+  handleNext: PropTypes.func.isRequired,
+  handleBack: PropTypes.func.isRequired,
+
+  //add form inputs to parent component state
+  handleFormFieldChange: PropTypes.func.isRequired
+};
