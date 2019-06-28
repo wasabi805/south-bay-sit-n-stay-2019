@@ -17,7 +17,7 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import Grow from "@material-ui/core/Grow";
 
-import BookForm from "../Forms/book-form";
+import BookFormContainer from "../Forms/book-form-container";
 import ConfirmBook from "../Forms/confirm-book";
 
 //MODAL
@@ -81,7 +81,8 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 const CalendarModal = withStyles(styles)(props => {
-  const { classes, modalView, btnView } = props;
+  const { classes, modalView, btnView , errors } = props;
+
 
   return (
     <Dialog maxWidth={"md"} open={props.open} onClose={props.onClose}>
@@ -134,7 +135,8 @@ const CalendarModal = withStyles(styles)(props => {
           </div>
         </Grow>
 
-        <BookForm
+        <BookFormContainer
+            errors={errors}
           showModal2={modalView.showModal2}
           contactForm={props.contactForm}
           handleFormFieldChange={props.handleFormFieldChange}

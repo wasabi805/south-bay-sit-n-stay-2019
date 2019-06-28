@@ -71,7 +71,6 @@ const ConfirmBook = props => {
     comments
   } = props.contactForm;
 
-  console.log(props, 'THESE ARE THE PROPS')
 
   return (
     <Grow in={props.showModal3}>

@@ -57,7 +57,18 @@ class BookingSection extends Component {
         dogBreed: "",
         dogAge: "",
         dogWeight: "",
-        comments: ""
+        comments: "",
+        alias: ""
+      },
+
+      isSubmit: false,
+
+      isErrors: true,
+
+      errors: {
+        contactFirstName: {
+          error: false
+        }
       }
     };
   }
@@ -135,20 +146,58 @@ class BookingSection extends Component {
         return;
 
       case "next-02":
-        this.setState({
-          btnView: {
-            backBtnId: "back-02",
-            nextBtnId: ""
-          },
+        //FORM VALIDATION OCCURS HERE
 
-          modalView: {
-            showModal1: false,
-            showModal2: false,
-            showModal3: true
-          },
+        let {
+          contactFirstName,
+          contactLastName,
+          contactPhone
+        } = this.state.contactForm;
 
-          confirmSubmit: true
-        });
+        let errors = {};
+
+        if (contactFirstName.length === 0) {
+          errors["contactFirstName"] = {
+            error: true,
+            msg1: "First name can't be blank."
+          };
+        }
+
+        if (contactLastName.length === 0) {
+          errors["contactLastName"] = {
+            error: true,
+            msg1: "Last name can't be blank."
+          };
+        }
+
+        // If the the errors object is has errors | If there are no errors, move to confirm
+        if (Object.keys(errors).length > 0) {
+          //set the errors object to state
+          this.setState({
+            errors: errors
+          });
+
+          alert("THIS WORKED");
+        } else {
+          this.setState(
+            {
+              btnView: {
+                backBtnId: "back-02",
+                nextBtnId: ""
+              },
+              modalView: {
+                showModal1: false,
+                showModal2: false,
+                showModal3: true
+              },
+
+              isSubmit: true
+            },
+            () => {
+              console.log(this.state.isErrors, "FORM SUBMIT WAS CLICKED");
+            }
+          );
+        }
     }
   };
 
@@ -188,11 +237,39 @@ class BookingSection extends Component {
   };
 
   handleFormFieldChange = name => event => {
-    event.preventDefault();
+    let { isSubmit } = this.state;
 
-    this.setState({
-      contactForm: { ...this.state.contactForm, [name]: event.target.value }
-    });
+    this.setState(
+      {
+        contactForm: { ...this.state.contactForm, [name]: event.target.value }
+      },
+      () => this.handleValidation()
+    );
+  };
+
+  handleValidation = () => {
+    // console.log(this.state.contactForm, 'contactForm')
+    // console.log(Object.values(this.state.contactForm)[0], 'Object.values(this.state.contactForm).length')
+    // console.log('THE ERRORS', this.state.errors)
+
+    //  if contactFirstNAme is entered, reset input color border
+    if (
+      Object.values(this.state.contactForm)[0].length > 5 &&
+      this.state.errors.contactFirstName.error === true
+    ) {
+      alert("SOMETHING SHOULD HAPPEN");
+      this.setState({
+        errors: {
+          ...this.state.errors,
+          contactFirstName: {
+            error: false,
+            msg1: ""
+          }
+        }
+      });
+    }
+
+    //if it's empty again...
   };
 
   /////////////////////////////////////////////////////////////////////////////////
@@ -201,6 +278,8 @@ class BookingSection extends Component {
 
   /////////////////////////////////////////////////////////////////////////////////
   render() {
+    console.log(this.state.errors);
+
     let CalendarModalBtn = styled(Button)({
       //PUT STYLES IN HERE LATER
     });
@@ -235,6 +314,8 @@ class BookingSection extends Component {
           renderDates={this.state.renderDates}
           //Booking Form Fields for customer and Dog
           contactForm={this.state.contactForm}
+          //Boolean of errors for form validation
+          errors={this.state.errors}
           //Modal View Booleans
           modalView={this.state.modalView}
           btnView={this.state.btnView}

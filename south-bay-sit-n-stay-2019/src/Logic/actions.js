@@ -1,7 +1,8 @@
 import {
   TEST_ACTION,
   CONFIRM_CALENDAR_DATES,
-  RENDER_CALENDAR_MODAL_DATE
+  RENDER_CALENDAR_MODAL_DATE,
+  SET_CONTACT_FORM_FIELDS
 } from "./types";
 
 import React from "react";
@@ -12,6 +13,13 @@ export const testAction = data => {
     type: TEST_ACTION,
     payload: data
   };
+};
+
+export const setContactFormFields =()=>{
+  return{
+    type: SET_CONTACT_FORM_FIELDS,
+    payload: "",
+  }
 };
 
 export const getCalendarDates = selectedCalState => dispatch => {
