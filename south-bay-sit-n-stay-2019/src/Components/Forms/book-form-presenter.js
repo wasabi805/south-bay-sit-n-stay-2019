@@ -1,38 +1,12 @@
-import React, { Component } from "react";
-import { makeStyles, styled } from "@material-ui/core/styles";
+import React  from "react";
+import { styled } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-
-import FormControl from "@material-ui/core/FormControl";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputLabel from "@material-ui/core/InputLabel";
-
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 import Grow from "@material-ui/core/Grow";
 
-// const useStyles = makeStyles(theme => ({
-//   container: {
-//     display: "flex",
-//     flexWrap: "wrap"
-//   },
-//   textField: {
-//     marginLeft: theme.spacing(1),
-//     marginRight: theme.spacing(1),
-//     backgroundColor: 'magenta',
-//     width: '100%'
-//   },
-//   dense: {
-//     marginTop: theme.spacing(2)
-//   },
-//   menu: {
-//     width: 200
-//   }
-// }));
-
 const FormInput = styled(TextField)({
-  width: "45%"
+  width: "100%"
 });
 
 const BookFormPresenter = props => {
@@ -52,123 +26,123 @@ const BookFormPresenter = props => {
 
                         see : https://github.com/mui-org/material-ui/issues/5501
                     */}
-        <TextField
-          id="outlined-name"
-          label="First Name"
-          // className={useStyles.textField}
-          name={"contactFirstName"}
-          onChange={props.handleFormFieldChange("contactFirstName")}
-          margin="normal"
-          variant="outlined"
-          error={errors.contactFirstName.error}
-        />
+        <div className={"row"}>
+          <div className={"col"}>
+            <FormInput
+              id="contactFirstName"
+              label="First Name"
+              name={"contactFirstName"}
+              onChange={props.handleFormFieldChange("contactFirstName")}
+              margin="normal"
+              variant="outlined"
+              error={errors.contactFirstName.error}
+            />
+            <p className={"err-msg-start"}>{errors.contactFirstName.msg}</p>
+          </div>
 
-        <FormInput
-          id="outlined-name"
-          label="Last Name"
-          // className={useStyles.textField}
-          name={"contactLastName"}
-          onChange={props.handleFormFieldChange("contactLastName")}
-          margin="normal"
-          variant="outlined"
-          error={errors.contactLastName}
-        />
+          <div className={"col"}>
+            <FormInput
+              id="contactLastName"
+              label="Last Name"
+              name={"contactLastName"}
+              onChange={props.handleFormFieldChange("contactLastName")}
+              margin="normal"
+              variant="outlined"
+              error={errors.contactLastName.error}
+            />
+            <p className={"err-msg-start"}>{errors.contactLastName.msg}</p>
+          </div>
+        </div>
 
-        {/*<TextField*/}
-        {/*id="outlined-contactPhone"*/}
-        {/*label="Phone"*/}
-        {/*className={useStyles.textField}*/}
-        {/*name={"contactPhone"}*/}
-        {/*onChange={this.props.handleFormFieldChange("contactPhone")}*/}
-        {/*margin="normal"*/}
-        {/*variant="outlined"*/}
-        {/*/>*/}
+        <div className={"row"}>
+          <div className={"col"}>
+            <FormInput
+              id="contactEmail"
+              label="Email"
+              name={"contactEmail"}
+              onChange={props.handleFormFieldChange("contactEmail")}
+              margin="normal"
+              variant="outlined"
+              error={errors.contactEmail.error}
+            />
+            <p className={"err-msg-start"}>{errors.contactEmail.msg}</p>
+          </div>
+        </div>
 
-        {/*<TextField*/}
-        {/*id="outlined-contactEmail"*/}
-        {/*label="Email"*/}
-        {/*className={useStyles.textField}*/}
-        {/*name={"contactEmail"}*/}
-        {/*onChange={this.props.handleFormFieldChange("contactEmail")}*/}
-        {/*margin="normal"*/}
-        {/*variant="outlined"*/}
-        {/*/>*/}
+        <div className={"row"}>
+          <div className={"col"}>
+            <FormInput
+              id="contactPhone"
+              label="Phone"
+              name={"contactPhone"}
+              onChange={props.handleFormFieldChange("contactPhone")}
+              margin="normal"
+              variant="outlined"
+              error={errors.contactPhone.error}
+            />
+            <p className={"err-msg-start"}>{errors.contactPhone.msg}</p>
+          </div>
 
-        {/*<TextField*/}
-        {/*id="outlined-contactCity"*/}
-        {/*label="City"*/}
-        {/*className={useStyles.textField}*/}
-        {/*name={"contactCity"}*/}
-        {/*onChange={this.props.handleFormFieldChange("contactCity")}*/}
-        {/*margin="normal"*/}
-        {/*variant="outlined"*/}
-        {/*/>*/}
+          <div className={"col"}>
+            <FormInput
+              id="contactCity"
+              label="City"
+              name={"contactCity"}
+              onChange={props.handleFormFieldChange("contactCity")}
+              margin="normal"
+              variant="outlined"
+              error={errors.contactCity.error}
+            />
+          </div>
+        </div>
 
-        {/*<TextField*/}
-        {/*id="outlined-contactCity"*/}
-        {/*label="Dog Name"*/}
-        {/*className={useStyles.textField}*/}
-        {/*name={"dogName"}*/}
-        {/*onChange={this.props.handleFormFieldChange("dogName")}*/}
-        {/*margin="normal"*/}
-        {/*variant="outlined"*/}
-        {/*/>*/}
+        <div className={"row"}>
+          <div className={"col"}>
+            <FormInput
+              id="outlined-contactCity"
+              label="Dog Name"
+              name={"dogName"}
+              onChange={props.handleFormFieldChange("dogName")}
+              margin="normal"
+              variant="outlined"
+            />
+            <p className={"err-msg-start"}>{""}</p>
+          </div>
+          <div className={"col"}>
+            <FormInput
+              id="outlined-contactCity"
+              label="Breed"
+              name={"dogBreed"}
+              onChange={props.handleFormFieldChange("dogBreed")}
+              margin="normal"
+              variant="outlined"
+            />
+            <p className={"err-msg-start"}>{""}</p>
+          </div>
+          <div className={"col"}>
+            <FormInput
+              id="outlined-contactCity"
+              label="Age"
+              name={"dogAge"}
+              onChange={props.handleFormFieldChange("dogAge")}
+              margin="normal"
+              variant="outlined"
+            />
+          </div>
+          <p className={"err-msg-start"}>{""}</p>
+        </div>
 
-        {/*<TextField*/}
-        {/*id="outlined-contactCity"*/}
-        {/*label="Breed"*/}
-        {/*className={useStyles.textField}*/}
-        {/*name={"dogBreed"}*/}
-        {/*onChange={this.props.handleFormFieldChange("dogBreed")}*/}
-        {/*margin="normal"*/}
-        {/*variant="outlined"*/}
-        {/*/>*/}
-
-        {/*<TextField*/}
-        {/*id="outlined-contactCity"*/}
-        {/*label="Age"*/}
-        {/*className={useStyles.textField}*/}
-        {/*name={"dogAge"}*/}
-        {/*onChange={this.props.handleFormFieldChange("dogAge")}*/}
-        {/*margin="normal"*/}
-        {/*variant="outlined"*/}
-        {/*/>*/}
-
-        {/*<TextField*/}
-        {/*id="outlined-contactCity"*/}
-        {/*label="Weight"*/}
-        {/*className={useStyles.textField}*/}
-        {/*name={"dogWeight"}*/}
-        {/*onChange={this.props.handleFormFieldChange("dogWeight")}*/}
-        {/*margin="normal"*/}
-        {/*variant="outlined"*/}
-        {/*/>*/}
-
-        {/*<TextField*/}
-        {/*id="outlined-contactCity"*/}
-        {/*label="Comments | Questions"*/}
-        {/*className={useStyles.textField}*/}
-        {/*name={"comments"}*/}
-        {/*onChange={this.props.handleFormFieldChange("comments")}*/}
-        {/*margin="normal"*/}
-        {/*variant="outlined"*/}
-        {/*/>*/}
-
-        {/*<ValidatorForm*/}
-        {/*ref="form"*/}
-        {/*onSubmit={this.handleSubmit}*/}
-        {/*onError={errors => console.log(errors)}*/}
-        {/*>*/}
-        {/*<TextValidator*/}
-        {/*label="Email"*/}
-        {/*onChange={this.handleChange}*/}
-        {/*name="email"*/}
-        {/*value={email}*/}
-        {/*validators={['required', 'isEmail']}*/}
-        {/*errorMessages={['this field is required', 'email is not valid bitch']}*/}
-        {/*/>*/}
-        {/*<Button type="submit">Submit</Button>*/}
-        {/*</ValidatorForm>*/}
+        <div className={"row"}>
+          <div className={"col"}>
+            <TextField
+              placeholder="Questions or Comments"
+              multiline={true}
+              rows={3}
+              rowsMax={4}
+              variant="outlined"
+            />
+          </div>
+        </div>
       </form>
     </Grow>
   );

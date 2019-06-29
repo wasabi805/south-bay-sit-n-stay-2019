@@ -95,9 +95,9 @@ const CalendarModal = withStyles(styles)(props => {
         style={{
           position: "relative",
           background: "aliceblue",
-          minWidth: "30vw",
+          minWidth: "52vw",
           minHeight: "55vh",
-          padding: 0
+          padding: '0 13px'
         }}
       >
         <Grow in={modalView.showModal1}>

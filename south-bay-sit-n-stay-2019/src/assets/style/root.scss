@@ -20,8 +20,10 @@ img {
   height: auto;
 }
 
+@import "grid/grid-style";
 @import "components/page";
 @import "components/calendar";
+
 
 
 

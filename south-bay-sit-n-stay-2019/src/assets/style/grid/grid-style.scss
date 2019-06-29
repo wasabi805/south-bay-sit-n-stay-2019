@@ -1,0 +1,19 @@
+.row{
+  position: relative;
+  display: flex;
+
+}
+
+.col{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 3px;
+
+  .err-msg-start{
+    min-height: 14px;
+    color: #f34335;
+    align-self: flex-start;
+  }
+
+}
