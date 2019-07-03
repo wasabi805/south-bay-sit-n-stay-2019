@@ -1,10 +1,28 @@
+var dotenv = require("dotenv").config({ path: __dirname + "/.env" });
+const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const merge = require("webpack-merge");
 var path = require("path");
+const Dotenv = require("dotenv-webpack");
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
+  // template: "./handlebars/index.handlebars",
   filename: "./index.html"
+});
+
+const dotEnv = new Dotenv({
+  path: "./.env", // Path to .env file (this is the default)
+  safe: false // load .env.example (defaults to "false" which does not use dotenv-safe)
+});
+
+//see example set up at : https://github.com/survivejs/webpack-merge/issues/58
+//need to actually define the key 'process.env' to use in the front end.
+const definePlugin = new webpack.DefinePlugin({
+  "process.env": {
+    NODE_ENV: JSON.stringify("development"),
+    GOOGLE_MAPS: JSON.stringify(process.env.googleAPIKey)
+  }
 });
 
 const common = {
@@ -58,7 +76,8 @@ const common = {
       }
     ]
   },
-  plugins: [htmlPlugin],
+
+  plugins: [htmlPlugin, dotEnv, definePlugin], //see const definePlugin above for config to pass .env vars to the front end
 
   //enable recompile : https://stackoverflow.com/a/45655104
   watchOptions: {
@@ -76,7 +95,7 @@ const development = {
         changeOrigin: true
       }
     },
-    port: 3000,
+    port: 3000
   }
 };
 
@@ -84,7 +103,7 @@ module.exports = (env, argv) => {
   let config = common;
 
   if (argv.mode === "development") {
-    config = merge(common, development);
+    config = merge([common, development]);
   }
 
   return config;

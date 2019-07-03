@@ -197,7 +197,7 @@ const ConfirmBook = props => {
 
 export default ConfirmBook;
 
-ConfirmBook.propTypes={
+ConfirmBook.propTypes = {
   //Boolean from parent that displays to confirm dates req and user info is correct before submitting
   showModal3: PropTypes.bool.isRequired,
 
@@ -205,5 +205,5 @@ ConfirmBook.propTypes={
   renderDates: PropTypes.array.isRequired,
 
   //parent state updated with info provided by user form
-  contactForm: PropTypes.object.isRequired,
+  contactForm: PropTypes.object.isRequired
 };

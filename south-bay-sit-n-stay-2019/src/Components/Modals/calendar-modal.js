@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -81,11 +81,15 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 const CalendarModal = withStyles(styles)(props => {
-  const { classes, modalView, btnView , errors } = props;
-
+  const { classes, modalView, btnView, errors } = props;
 
   return (
-    <Dialog maxWidth={"md"} open={props.open} onClose={props.onClose}>
+    <Dialog
+      maxWidth={"md"}
+      open={props.open}
+      onClose={props.onClose}
+      style={{ zIndex: 1 }}
+    >
       <DialogTitle id="customized-dialog-title" onClose={props.onClose}>
         Your Requested Dates
       </DialogTitle>
@@ -97,7 +101,7 @@ const CalendarModal = withStyles(styles)(props => {
           background: "aliceblue",
           minWidth: "52vw",
           minHeight: "55vh",
-          padding: '0 13px'
+          padding: "0 13px"
         }}
       >
         <Grow in={modalView.showModal1}>
@@ -136,16 +140,18 @@ const CalendarModal = withStyles(styles)(props => {
         </Grow>
 
         <BookFormContainer
-            errors={errors}
+          errors={errors}
           showModal2={modalView.showModal2}
           contactForm={props.contactForm}
           handleFormFieldChange={props.handleFormFieldChange}
+          updateCity={props.updateCity}
         />
 
         <ConfirmBook
           showModal3={modalView.showModal3}
           renderDates={props.renderDates}
           contactForm={props.contactForm}
+          contactCity={props.contactCity}
         />
       </DialogContent>
 

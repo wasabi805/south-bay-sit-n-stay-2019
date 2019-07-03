@@ -70,6 +70,9 @@ class BookingSection extends Component {
         alias: ""
       },
 
+      city: "",
+      query: "",
+
       isSubmit: false,
       isErrors: true,
 
@@ -120,6 +123,16 @@ class BookingSection extends Component {
       }
     };
   }
+
+  //INPUT FROM AUTO COMPLETE FOR CITY : located in book-form-presenter.js
+  updateCity = (city, query) => {
+    this.setState({
+      contactForm: {
+        ...this.state.contactForm,
+        contactCity: query
+      }
+    });
+  };
 
   //==========  ==========  CALENDAR METHODS  ==========  ==========
 
@@ -571,6 +584,8 @@ class BookingSection extends Component {
           renderDates={this.state.renderDates}
           //Booking Form Fields for customer and Dog
           contactForm={this.state.contactForm}
+          //Updated Search Query
+          contactCity={this.state.contactCity}
           //Boolean of errors for form validation
           errors={this.state.errors}
           //Modal View Booleans
@@ -581,6 +596,7 @@ class BookingSection extends Component {
           handleBack={this.handleBack}
           //Modal Form
           handleFormFieldChange={this.handleFormFieldChange}
+          updateCity={this.updateCity}
         />
       </BookingContainer>
     );

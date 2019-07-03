@@ -6,6 +6,7 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
+require('handlebars');
 
 //ROUTES
 const bookingRequests = require("./routes/api/booking/requests");

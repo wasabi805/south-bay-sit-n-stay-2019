@@ -4,6 +4,7 @@ import LandingContainer from "./Components/Landing/landing-container";
 import AboutContainer from "./Components/About/about-container";
 import Footer from "./Components/Footer/footer";
 import { Route } from "react-router-dom";
+import { ThemeProvider } from "@material-ui/styles";
 
 const App = () => {
   return (
