@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Calendar from "react-calendar/dist/entry.nostyle";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Box from "@material-ui/core/Box";
@@ -97,3 +98,7 @@ class CalendarPresenter extends Component {
 }
 
 export default CalendarPresenter;
+
+CalendarPresenter.propTypes={
+  getDaysClicked : PropTypes.func.isRequired
+};

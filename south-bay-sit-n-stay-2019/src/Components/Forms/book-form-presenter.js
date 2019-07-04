@@ -214,6 +214,8 @@ class BookFormPresenter extends Component {
 export default BookFormPresenter;
 
 BookFormPresenter.propTypes = {
+  errors: PropTypes.object.isRequired,
+
   //Shows the Form Modal
   showModal2: PropTypes.bool.isRequired,
 
@@ -221,5 +223,8 @@ BookFormPresenter.propTypes = {
   contactForm: PropTypes.object.isRequired,
 
   //sets state in parent when form input is entered by user
-  handleFormFieldChange: PropTypes.func.isRequired
+  handleFormFieldChange: PropTypes.func.isRequired,
+
+  //Updated Search Query
+  updateCity: PropTypes.func.isRequired
 };

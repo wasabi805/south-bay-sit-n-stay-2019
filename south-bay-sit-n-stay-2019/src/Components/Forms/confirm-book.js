@@ -205,5 +205,8 @@ ConfirmBook.propTypes = {
   renderDates: PropTypes.array.isRequired,
 
   //parent state updated with info provided by user form
-  contactForm: PropTypes.object.isRequired
+  contactForm: PropTypes.object.isRequired,
+
+  //Updated Search Query
+  contactCity: PropTypes.string
 };

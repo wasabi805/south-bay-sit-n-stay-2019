@@ -51,6 +51,8 @@ class BookingSection extends Component {
 
       btnView: {
         nextBtnId: "next-01",
+        nextBtnName: "next",
+
         backBtnId: ""
       },
 
@@ -201,7 +203,10 @@ class BookingSection extends Component {
 
           btnView: {
             backBtnId: "back-01",
+            nextBtnName: "next",
+
             nextBtnId: "next-02"
+            //wutang
           }
         });
         return;
@@ -322,7 +327,8 @@ class BookingSection extends Component {
             {
               btnView: {
                 backBtnId: "back-02",
-                nextBtnId: ""
+                nextBtnId: "",
+                nextBtnName: "submit"
               },
               modalView: {
                 showModal1: false,
@@ -368,7 +374,7 @@ class BookingSection extends Component {
 
           btnView: {
             backBtnId: "back-01",
-            nextBtnId: "next-02"
+            nextBtnId: "next-02",
           }
         });
         return;

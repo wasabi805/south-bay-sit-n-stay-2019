@@ -169,7 +169,7 @@ const CalendarModal = withStyles(styles)(props => {
         ) : null}
 
         <Button id={btnView.nextBtnId} onClick={e => props.handleNext(e)}>
-          Next
+          {btnView.nextBtnName}
         </Button>
       </DialogActions>
     </Dialog>
@@ -199,5 +199,10 @@ CalendarModal.propTypes = {
   handleBack: PropTypes.func.isRequired,
 
   //add form inputs to parent component state
-  handleFormFieldChange: PropTypes.func.isRequired
+  handleFormFieldChange: PropTypes.func.isRequired,
+
+  //Updated Search Query
+  contactCity: PropTypes.string,
+  //grabs the autocomplete field for city
+  updateCity: PropTypes.func.isRequired
 };

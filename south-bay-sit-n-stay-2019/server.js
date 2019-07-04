@@ -13,8 +13,9 @@ const bookingRequests = require("./routes/api/booking/requests");
 
 //MiddleWare
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+app.use(express.json({extended : false}));
 
 app.get("/", (req, res) => {
   res.send("Hello, this is the 1st, server route");
