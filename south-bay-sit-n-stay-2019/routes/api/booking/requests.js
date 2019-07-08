@@ -39,7 +39,13 @@ router.post(
       contactLastName,
       contactPhone,
       contactEmail,
-      contactCity
+      contactCity,
+      dogName,
+      dogBreed,
+      dogAge,
+      dogWeight,
+      comments,
+      renderDates
     } = req.body;
     let request;
 
@@ -58,6 +64,15 @@ router.post(
     if (contactPhone) bookingFormFields.contactPhone = contactPhone;
     if (contactEmail) bookingFormFields.contactEmail = contactEmail;
     if (contactCity) bookingFormFields.contactCity = contactCity;
+    if (dogName) bookingFormFields.dogName = dogName;
+    if (dogBreed) bookingFormFields.dogBreed = dogBreed;
+    if (dogAge) bookingFormFields.dogAge = dogAge;
+    if (dogWeight) bookingFormFields.dogWeight = dogWeight;
+    if (comments) bookingFormFields.comments = comments;
+    if (renderDates) bookingFormFields.renderDates = renderDates;
+
+    //uncomment for debugging
+    console.log("THIS IS WHAT WILL GO TO THE DB", req.body);
 
     //Create / Add request into mongoDB
     request = new Request(bookingFormFields);

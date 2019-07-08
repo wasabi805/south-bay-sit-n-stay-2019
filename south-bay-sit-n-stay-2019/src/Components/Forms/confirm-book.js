@@ -71,7 +71,6 @@ const ConfirmBook = props => {
     comments
   } = props.contactForm;
 
-
   return (
     <Grow in={props.showModal3}>
       <Grid

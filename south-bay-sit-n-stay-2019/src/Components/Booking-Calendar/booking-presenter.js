@@ -136,12 +136,6 @@ class BookingSection extends Component {
     });
   };
 
-  handleSubmit = () => {
-    let userData = this.state.contactForm;
-
-    console.log(userData, "im ready to submit something");
-  };
-
   //==========  ==========  CALENDAR METHODS  ==========  ==========
 
   //Gets the days that were clicked from react-calendar module
@@ -354,6 +348,9 @@ class BookingSection extends Component {
       case "submit-request-form":
         //send the form data to redux action
         let userData = this.state.contactForm;
+          userData.renderDates = this.state.renderDates
+
+
         this.props.sendRequestToDb(userData);
 
         return;
@@ -617,7 +614,6 @@ class BookingSection extends Component {
           //Modal Form
           handleFormFieldChange={this.handleFormFieldChange}
           updateCity={this.updateCity}
-          handleSubmit={this.handleSubmit}
         />
       </BookingContainer>
     );

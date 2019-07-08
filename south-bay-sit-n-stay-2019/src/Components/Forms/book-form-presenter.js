@@ -201,6 +201,7 @@ class BookFormPresenter extends Component {
                   rows={3}
                   rowsMax={4}
                   variant="outlined"
+                  onChange={this.props.handleFormFieldChange("comments")}
                 />
               </div>
             </div>
