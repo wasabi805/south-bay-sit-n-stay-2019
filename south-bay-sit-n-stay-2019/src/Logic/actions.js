@@ -2,10 +2,11 @@ import {
   TEST_ACTION,
   CONFIRM_CALENDAR_DATES,
   RENDER_CALENDAR_MODAL_DATE,
-  SET_CONTACT_FORM_FIELDS
+  SET_CONTACT_FORM_FIELDS,
+  SEND_REQUEST_TO_DB
 } from "./types";
 
-import React from "react";
+import axios from "axios";
 
 export const testAction = data => {
   // console.log("test Action was clicked");
@@ -15,11 +16,20 @@ export const testAction = data => {
   };
 };
 
-export const setContactFormFields =()=>{
-  return{
+export const setContactFormFields = () => {
+  return {
     type: SET_CONTACT_FORM_FIELDS,
-    payload: "",
-  }
+    payload: ""
+  };
+};
+
+export const sendRequestToDb = userData => {
+  // console.log(userData, "THIS IS FROM sendRequestToDb on ACTIONS.js ");
+  axios.post("api/booking/requests/book-now", userData);
+
+  return {
+    type: SEND_REQUEST_TO_DB
+  };
 };
 
 export const getCalendarDates = selectedCalState => dispatch => {
