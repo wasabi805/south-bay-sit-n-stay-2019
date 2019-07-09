@@ -6,15 +6,9 @@ import {
   SEND_REQUEST_TO_DB
 } from "./types";
 
-import axios from "axios";
+require("regenerator-runtime/runtime");
 
-export const testAction = data => {
-  // console.log("test Action was clicked");
-  return {
-    type: TEST_ACTION,
-    payload: data
-  };
-};
+import axios from "axios";
 
 export const setContactFormFields = () => {
   return {
@@ -24,12 +18,15 @@ export const setContactFormFields = () => {
 };
 
 export const sendRequestToDb = userData => {
-  // console.log(userData, "THIS IS FROM sendRequestToDb on ACTIONS.js ");
-  axios.post("api/booking/requests/book-now", userData);
 
-  return {
-    type: SEND_REQUEST_TO_DB
-  };
+  return (dispatch)=>{
+    dispatch({type : SEND_REQUEST_TO_DB});
+    axios.post("api/booking/requests/book-now", userData).then( (res)=>{
+      dispatch({type : SEND_REQUEST_TO_DB , payload: res.status });
+    }).catch((err)=>{
+      dispatch({type : SEND_REQUEST_TO_DB , payload : err})
+    })
+  }
 };
 
 export const getCalendarDates = selectedCalState => dispatch => {

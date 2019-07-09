@@ -3,7 +3,9 @@ import Presenter from "./booking-presenter";
 import {getCalendarDates, renderCalendarModalDates, sendRequestToDb} from "../../Logic/actions"
 
 const mapStateToProps = state => {
+
   return {
+    confirmDbEntry : state.modalReducer.confirmDbEntry
   };
 };
 

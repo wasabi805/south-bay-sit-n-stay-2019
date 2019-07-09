@@ -323,33 +323,27 @@ class BookingSection extends Component {
           // alert("The form contains ERRORS");
         } else {
           //move on to the confirm screen
-          this.setState(
-            {
-              btnView: {
-                backBtnId: "back-02",
-                nextBtnId: "submit-request-form",
-                nextBtnName: "submit"
-              },
-              modalView: {
-                showModal1: false,
-                showModal2: false,
-                showModal3: true
-              },
-
-              isSubmit: true
+          this.setState({
+            btnView: {
+              backBtnId: "back-02",
+              nextBtnId: "submit-request-form",
+              nextBtnName: "submit"
             },
-            () => {
-              // console.log(this.state.isErrors, "FORM SUBMIT WAS CLICKED");
-            }
-          );
+            modalView: {
+              showModal1: false,
+              showModal2: false,
+              showModal3: true
+            },
+
+            isSubmit: true
+          });
         }
         return;
 
       case "submit-request-form":
         //send the form data to redux action
         let userData = this.state.contactForm;
-          userData.renderDates = this.state.renderDates
-
+        userData.renderDates = this.state.renderDates;
 
         this.props.sendRequestToDb(userData);
 
@@ -560,6 +554,15 @@ class BookingSection extends Component {
       });
     }
   };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(this.props, "FINALLY!!");
+    let { confirmDbEntry } = this.props;
+
+    if (confirmDbEntry === 200) {
+      alert("display a success window : data successfully saved in DB!");
+    }
+  }
 
   /////////////////////////////////////////////////////////////////////////////////
 

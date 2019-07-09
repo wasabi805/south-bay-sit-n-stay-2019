@@ -76,9 +76,9 @@ router.post(
 
     //Create / Add request into mongoDB
     request = new Request(bookingFormFields);
-    request.save();
+    // request.save();
 
-    res.send(bookingFormFields);
+    res.status(200).send("Success");
   }
 );
 

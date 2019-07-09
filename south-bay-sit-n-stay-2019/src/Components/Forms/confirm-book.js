@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+
 import PropTypes from "prop-types";
 import Grow from "@material-ui/core/Grow";
 import Grid from "@material-ui/core/Grid";
@@ -17,7 +18,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import LocationIcon from "@material-ui/icons/PinDrop";
 import PawIcon from "@material-ui/icons/Pets";
 
-const useStyles = makeStyles(theme => ({
+const classes = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     width: "100vw"
@@ -55,144 +56,149 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ConfirmBook = props => {
-  const classes = useStyles();
+class ConfirmBook extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-  let {
-    contactFirstName,
-    contactLastName,
-    contactPhone,
-    contactEmail,
-    contactCity,
-    dogName,
-    dogBreed,
-    dogAge,
-    dogWeight,
-    comments
-  } = props.contactForm;
+  render() {
+    // const classes = useStyles();
+    let {
+      contactFirstName,
+      contactLastName,
+      contactPhone,
+      contactEmail,
+      contactCity,
+      dogName,
+      dogBreed,
+      dogAge,
+      dogWeight,
+      comments
+    } = this.props.contactForm;
 
-  return (
-    <Grow in={props.showModal3}>
-      <Grid
-        container
-        style={{
-          position: "absolute",
-          top: 0,
-          width: "100%",
-          background: "lime"
-        }}
-      >
-        <Paper className={classes.paper}>
-          {/*<Grid item xs={12} style={{border: "1px solid blue"}}>*/}
-          {/*<List subheader={<ListSubheader>Confirm the following information is correct:</ListSubheader>} >*/}
+    return (
+      <Grow in={this.props.showModal3}>
+        <Grid
+          container
+          style={{
+            position: "absolute",
+            top: 0,
+            width: "100%",
+            background: "lime"
+          }}
+        >
+          <Paper className={classes.paper}>
+            {/*<Grid item xs={12} style={{border: "1px solid blue"}}>*/}
+            {/*<List subheader={<ListSubheader>Confirm the following information is correct:</ListSubheader>} >*/}
 
-          {/*</List>*/}
-          {/*</Grid>*/}
+            {/*</List>*/}
+            {/*</Grid>*/}
 
-          <Grid
-            item
-            xs={12}
-            style={{ border: "1px solid purple", fontSize: "2rem" }}
-          >
-            <List subheader={<ListSubheader>Dates </ListSubheader>}>
-              {props.renderDates.map(date => {
-                return (
-                  <span key={"render-date" + date.month + "-" + date.days}>
-                    {date.month} , {date.days}
-                    <br />
-                  </span>
-                );
-              })}
-            </List>
-          </Grid>
+            <Grid
+              item
+              xs={12}
+              style={{ border: "1px solid purple", fontSize: "2rem" }}
+            >
+              <List subheader={<ListSubheader>Dates </ListSubheader>}>
+                {this.props.renderDates.map(date => {
+                  return (
+                    <span key={"render-date" + date.month + "-" + date.days}>
+                      {date.month} , {date.days}
+                      <br />
+                    </span>
+                  );
+                })}
+              </List>
+            </Grid>
 
-          <Grid className={classes.row}>
-            <Grid item xs={6} className={classes.col}>
-              <List subheader={<ListSubheader>Contact Info </ListSubheader>}>
+            <Grid className={classes.row}>
+              <Grid item xs={6} className={classes.col}>
+                <List subheader={<ListSubheader>Contact Info </ListSubheader>}>
+                  <ListItem>
+                    <ListItemIcon>
+                      <FaceIcon />
+                    </ListItemIcon>
+                    <ListItemText
+                      id=""
+                      primary={[contactFirstName + " ", contactLastName]}
+                    />
+                  </ListItem>
+                </List>
+
                 <ListItem>
                   <ListItemIcon>
-                    <FaceIcon />
+                    <SmartPhoneIcon />
+                  </ListItemIcon>
+                  <ListItemText id="" primary={contactPhone} />
+                </ListItem>
+
+                <ListItem>
+                  <ListItemIcon>
+                    <EmailIcon />
                   </ListItemIcon>
                   <ListItemText
+                    className={classes.text}
                     id=""
-                    primary={[contactFirstName + " ", contactLastName]}
+                    primary={contactEmail}
                   />
                 </ListItem>
-              </List>
 
-              <ListItem>
-                <ListItemIcon>
-                  <SmartPhoneIcon />
-                </ListItemIcon>
-                <ListItemText id="" primary={contactPhone} />
-              </ListItem>
+                <ListItem>
+                  <ListItemIcon>
+                    <LocationIcon />
+                  </ListItemIcon>
+                  <ListItemText id="" primary={contactCity} />
+                </ListItem>
+              </Grid>
 
-              <ListItem>
-                <ListItemIcon>
-                  <EmailIcon />
-                </ListItemIcon>
-                <ListItemText
-                  className={classes.text}
-                  id=""
-                  primary={contactEmail}
-                />
-              </ListItem>
+              <Grid item xs={6} className={classes.col}>
+                <List subheader={<ListSubheader>Dog Info </ListSubheader>}>
+                  <ListItem>
+                    <ListItemIcon>
+                      <PawIcon />
+                    </ListItemIcon>
+                    <ListItemText id="" primary={dogName} />
+                  </ListItem>
 
-              <ListItem>
-                <ListItemIcon>
-                  <LocationIcon />
-                </ListItemIcon>
-                <ListItemText id="" primary={contactCity} />
-              </ListItem>
+                  <ListItem>
+                    <ListItemIcon>
+                      <PawIcon />
+                    </ListItemIcon>
+                    <ListItemText id="" primary={dogBreed} />
+                  </ListItem>
+
+                  <ListItem>
+                    <ListItemIcon>
+                      <PawIcon />
+                    </ListItemIcon>
+                    <ListItemText id="" primary={dogAge + " yrs old"} />
+                  </ListItem>
+
+                  <ListItem>
+                    <ListItemIcon>
+                      <PawIcon />
+                    </ListItemIcon>
+                    <ListItemText
+                      id="switch-list-label-wifi"
+                      primary={dogWeight + " lbs"}
+                    />
+                  </ListItem>
+                </List>
+              </Grid>
             </Grid>
+          </Paper>
 
-            <Grid item xs={6} className={classes.col}>
-              <List subheader={<ListSubheader>Dog Info </ListSubheader>}>
-                <ListItem>
-                  <ListItemIcon>
-                    <PawIcon />
-                  </ListItemIcon>
-                  <ListItemText id="" primary={dogName} />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemIcon>
-                    <PawIcon />
-                  </ListItemIcon>
-                  <ListItemText id="" primary={dogBreed} />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemIcon>
-                    <PawIcon />
-                  </ListItemIcon>
-                  <ListItemText id="" primary={dogAge + " yrs old"} />
-                </ListItem>
-
-                <ListItem>
-                  <ListItemIcon>
-                    <PawIcon />
-                  </ListItemIcon>
-                  <ListItemText
-                    id="switch-list-label-wifi"
-                    primary={dogWeight + " lbs"}
-                  />
-                </ListItem>
-              </List>
+          <Paper className={classes.comments}>
+            <Grid>
+              <List subheader={<ListSubheader>Comments </ListSubheader>} />
+              <ListItem>{comments}</ListItem>
             </Grid>
-          </Grid>
-        </Paper>
-
-        <Paper className={classes.comments}>
-          <Grid>
-            <List subheader={<ListSubheader>Comments </ListSubheader>} />
-            <ListItem>{comments}</ListItem>
-          </Grid>
-        </Paper>
-      </Grid>
-    </Grow>
-  );
-};
+          </Paper>
+        </Grid>
+      </Grow>
+    );
+  }
+}
 
 export default ConfirmBook;
 
