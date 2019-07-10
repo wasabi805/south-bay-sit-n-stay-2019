@@ -80,8 +80,12 @@ const DialogActions = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 
-const CalendarModal = withStyles(styles)(props => {
-  const { classes, modalView, btnView, errors } = props;
+
+
+
+
+const CalendarModalPresenter = withStyles(styles)(props => {
+  const { classes, modalView, btnView, errors , modalViewzzz} = props;
 
   return (
     <Dialog
@@ -104,7 +108,8 @@ const CalendarModal = withStyles(styles)(props => {
           padding: "0 13px"
         }}
       >
-        <Grow in={modalView.showModal1}>
+        <Grow in={modalViewzzz.modalView.showModal1}>
+        {/*<Grow in={modalView.showModal1}>*/}
           <div
             style={{
               position: "absolute",
@@ -141,14 +146,14 @@ const CalendarModal = withStyles(styles)(props => {
 
         <BookFormContainer
           errors={errors}
-          showModal2={modalView.showModal2}
+          showModal2={modalViewzzz.modalView.showModal2}
           contactForm={props.contactForm}
           handleFormFieldChange={props.handleFormFieldChange}
           updateCity={props.updateCity}
         />
 
         <ConfirmBook
-          showModal3={modalView.showModal3}
+          showModal3={modalViewzzz.modalView.showModal3}
           renderDates={props.renderDates}
           contactForm={props.contactForm}
           contactCity={props.contactCity}
@@ -158,27 +163,46 @@ const CalendarModal = withStyles(styles)(props => {
       {/*/!*MODAL BTNS*!/*/}
 
       <DialogActions>
-        {btnView.backBtnId ? (
+        {/*<===== ===== BACK BUTTON ===== ======>*/}
+        {/*HIDE THE BACK BUTTON ON THE FIRST MODAL*/}
+        {modalViewzzz.btnView.backBtnId ? (
           <Button
-            id={btnView.backBtnId}
-            onClick={e => props.handleBack(e)}
+            id={modalViewzzz.btnView.backBtnId}
+            onClick={e => props.handleBackBtnBookingModal(e)}
             color="primary"
           >
             Back
           </Button>
         ) : null}
 
-        <Button id={btnView.nextBtnId} onClick={e => props.handleNext(e)}>
-          {btnView.nextBtnName}
+
+        {/*<===== ===== NEXT BUTTON ===== ======>*/}
+
+        <Button id={modalViewzzz.btnView.nextBtnId}
+
+                // onClick={e => props.handleNext(e)}
+                onClick={(e)=>{
+                  e.preventDefault()
+
+
+                  //this is getting passed down from react state
+                  props.handleNext(e)
+
+                  //this ges to redux...
+                  // props.handleNextBtnBookingModal(e)
+
+                }}
+        >
+          {modalViewzzz.btnView.nextBtnName}
         </Button>
       </DialogActions>
     </Dialog>
   );
 });
 
-export default CalendarModal;
+export default CalendarModalPresenter;
 
-CalendarModal.propTypes = {
+CalendarModalPresenter.propTypes = {
   //style object
   classes: PropTypes.object,
 

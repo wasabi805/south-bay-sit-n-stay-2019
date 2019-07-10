@@ -14,7 +14,7 @@ import {
   isPhoneNum
 } from "../../../utils/ValidationErrors";
 
-import CalendarModal from "../Modals/calendar-modal";
+import CalendarModalPresenter from "../Modals/calendar-modal-container";
 
 const BookingContainer = styled(Box)({
   "& h1": {
@@ -46,7 +46,8 @@ class BookingSection extends Component {
       modalView: {
         showModal1: true,
         showModal2: false,
-        showModal3: false
+        showModal3: false,
+        showModal4: false,
       },
 
       btnView: {
@@ -189,205 +190,185 @@ class BookingSection extends Component {
     });
   };
 
+
+
+
   handleNext = e => {
+    let { isSubmit, isErrors } = this.state;
     let { id } = e.currentTarget;
 
-    switch (id) {
-      case "next-01":
-        this.setState({
-          modalView: {
-            showModal1: false,
-            showModal2: true,
-            showModal3: false
-          },
 
-          btnView: {
-            backBtnId: "back-01",
-            nextBtnName: "next",
+    //VALIDATE THE FORM
+    if(id === "next-02" ){
+      this.setState({
+        isSubmit : true
+      });
 
-            nextBtnId: "next-02"
-            //wutang
-          }
-        });
-        return;
 
-      case "next-02":
-        //CUSTOMER AND DOG INFO FORM VALIDATION OCCURS HERE
-        let {
-          contactFirstName,
-          contactLastName,
-          contactEmail,
-          contactPhone,
-          contactCity,
-          dogName,
-          dogBreed,
-          dogAge,
-          dogWeight,
-          comments
-        } = this.state.contactForm;
-
-        //NOTE: Normally i'd use an empty object and fill with errors if there are any but,
-        //Material UI accepts a prop of "error" which should contain a boolean to highlight an input box red if error exists.
-        //Since I have that error prop traveling with the error msg, If the key of error is missing without a value of true or false, the page will crash.
-        const errors = {
-          contactFirstName: { error: false, msg: "" },
-          contactLastName: { error: false, msg: "" },
-          contactEmail: { error: false, msg: "" },
-          contactPhone: { error: false, msg: "" },
-          contactCity: { error: false, msg: "" },
-          dogName: { error: false, msg: "" },
-          dogBreed: { error: false, msg: "" },
-          dogAge: { error: false, msg: "" },
-          dogWeight: { error: false, msg: "" },
-          comments: { error: false, msg: "" }
-        };
-
-        // FIRST NAME
-        if (contactFirstName.length === 0 || contactFirstName.length < 2) {
-          errors["contactFirstName"] = {
-            error: true,
-            msg: "First name should be more than 1 letter"
-          };
-        }
-
-        if (
-          hasNumber(contactFirstName) === true ||
-          hasChars(contactFirstName) === true
-        ) {
-          errors["contactFirstName"] = {
-            error: true,
-            msg: "First name should not have numbers or special characters."
-          };
-        }
-
-        // LAST NAME
-        if (contactLastName.length === 0 || contactLastName.length < 2) {
-          errors["contactLastName"] = {
-            error: true,
-            msg: "Last name should be more than 1 letter."
-          };
-        }
-
-        if (
-          hasNumber(contactLastName) === true ||
-          hasChars(contactLastName) === true
-        ) {
-          errors["contactLastName"] = {
-            error: true,
-            msg: "Last name should not have numbers or special characters."
-          };
-        }
-
-        //EMAIL
-
-        if (isEmail(contactEmail) === false) {
-          errors["contactEmail"] = {
-            error: true,
-            msg: "Email is invalid format. "
-          };
-        }
-
-        if (contactEmail.length === 0) {
-          errors["contactEmail"] = {
-            error: true,
-            msg: "*Email required"
-          };
-        }
-
-        //PHONE
-        if (isPhoneNum(contactPhone) !== true) {
-          errors["contactPhone"] = {
-            error: true,
-            msg: "Not a valid phone number"
-          };
-        }
-
-        if (contactPhone.length === 0) {
-          errors["contactPhone"] = {
-            error: true,
-            msg: "*Phone number required"
-          };
-        }
-
-        /// FINAL CHECK
-
-        // Converted errors obj into an array below so that I can iterate and check if any of these fields contains a true value for error key.
-        // If errors object/converted array has any trues, do not pass | If !errors, move to confirm screen.
-        let allErrors = Object.values(errors);
-        if (ifAnyValidationErrors(allErrors) === true) {
-          //set the errors object to state
-          this.setState({
-            errors: errors,
-            isSubmit: true
-          });
-          // alert("The form contains ERRORS");
-        } else {
-          //move on to the confirm screen
-          this.setState({
-            btnView: {
-              backBtnId: "back-02",
-              nextBtnId: "submit-request-form",
-              nextBtnName: "submit"
-            },
-            modalView: {
-              showModal1: false,
-              showModal2: false,
-              showModal3: true
-            },
-
-            isSubmit: true
-          });
-        }
-        return;
-
-      case "submit-request-form":
-        //send the form data to redux action
-        let userData = this.state.contactForm;
-        userData.renderDates = this.state.renderDates;
-
-        this.props.sendRequestToDb(userData);
-
-        return;
+      this.props.validateForm(this.state.contactForm);
     }
+
+    //...then check errors
+    // if(errors is true){
+    //  retur
+    // }
+
+
+
+    if(id !== "next-02"){
+      this.props.handleNextBtnBookingModal(e)
+    }
+
+
+
+
+
+    // switch (id) {
+    //
+    //   case "next-02":
+    //     //CUSTOMER AND DOG INFO FORM VALIDATION OCCURS HERE
+    //     let {
+    //       contactFirstName,
+    //       contactLastName,
+    //       contactEmail,
+    //       contactPhone,
+    //       contactCity,
+    //       dogName,
+    //       dogBreed,
+    //       dogAge,
+    //       dogWeight,
+    //       comments
+    //     } = this.state.contactForm;
+    //
+    //     //NOTE: Normally i'd use an empty object and fill with errors if there are any but,
+    //     //Material UI accepts a prop of "error" which should contain a boolean to highlight an input box red if error exists.
+    //     //Since I have that error prop traveling with the error msg, If the key of error is missing without a value of true or false, the page will crash.
+    //     const errors = {
+    //       contactFirstName: { error: false, msg: "" },
+    //       contactLastName: { error: false, msg: "" },
+    //       contactEmail: { error: false, msg: "" },
+    //       contactPhone: { error: false, msg: "" },
+    //       contactCity: { error: false, msg: "" },
+    //       dogName: { error: false, msg: "" },
+    //       dogBreed: { error: false, msg: "" },
+    //       dogAge: { error: false, msg: "" },
+    //       dogWeight: { error: false, msg: "" },
+    //       comments: { error: false, msg: "" }
+    //     };
+    //
+    //     // FIRST NAME
+    //     if (contactFirstName.length === 0 || contactFirstName.length < 2) {
+    //       errors["contactFirstName"] = {
+    //         error: true,
+    //         msg: "First name should be more than 1 letter"
+    //       };
+    //     }
+    //
+    //     if (
+    //       hasNumber(contactFirstName) === true ||
+    //       hasChars(contactFirstName) === true
+    //     ) {
+    //       errors["contactFirstName"] = {
+    //         error: true,
+    //         msg: "First name should not have numbers or special characters."
+    //       };
+    //     }
+    //
+    //     // LAST NAME
+    //     if (contactLastName.length === 0 || contactLastName.length < 2) {
+    //       errors["contactLastName"] = {
+    //         error: true,
+    //         msg: "Last name should be more than 1 letter."
+    //       };
+    //     }
+    //
+    //     if (
+    //       hasNumber(contactLastName) === true ||
+    //       hasChars(contactLastName) === true
+    //     ) {
+    //       errors["contactLastName"] = {
+    //         error: true,
+    //         msg: "Last name should not have numbers or special characters."
+    //       };
+    //     }
+    //
+    //     //EMAIL
+    //
+    //     if (isEmail(contactEmail) === false) {
+    //       errors["contactEmail"] = {
+    //         error: true,
+    //         msg: "Email is invalid format. "
+    //       };
+    //     }
+    //
+    //     if (contactEmail.length === 0) {
+    //       errors["contactEmail"] = {
+    //         error: true,
+    //         msg: "*Email required"
+    //       };
+    //     }
+    //
+    //     //PHONE
+    //     if (isPhoneNum(contactPhone) !== true) {
+    //       errors["contactPhone"] = {
+    //         error: true,
+    //         msg: "Not a valid phone number"
+    //       };
+    //     }
+    //
+    //     if (contactPhone.length === 0) {
+    //       errors["contactPhone"] = {
+    //         error: true,
+    //         msg: "*Phone number required"
+    //       };
+    //     }
+    //
+    //     /// FINAL CHECK
+    //
+    //     // Converted errors obj into an array below so that I can iterate and check if any of these fields contains a true value for error key.
+    //     // If errors object/converted array has any trues, do not pass | If !errors, move to confirm screen.
+    //     let allErrors = Object.values(errors);
+    //     if (ifAnyValidationErrors(allErrors) === true) {
+    //       //set the errors object to state
+    //       this.setState({
+    //         errors: errors,
+    //         isSubmit: true
+    //       });
+    //       // alert("The form contains ERRORS");
+    //     } else {
+    //       //move on to the confirm screen
+    //       this.setState({
+    //         btnView: {
+    //           backBtnId: "back-02",
+    //           nextBtnId: "submit-request-form",
+    //           nextBtnName: "submit"
+    //         },
+    //         modalView: {
+    //           showModal1: false,
+    //           showModal2: false,
+    //           showModal3: true
+    //         },
+    //
+    //         isSubmit: true
+    //       });
+    //     }
+    //     return;
+    //
+    //   case "submit-request-form":
+    //     //send the form data to redux action
+    //     let userData = this.state.contactForm;
+    //     userData.renderDates = this.state.renderDates;
+    //
+    //     this.props.sendRequestToDb(userData);
+    //
+    //     return;
+    // }
   };
 
-  handleBack = e => {
-    let { id } = e.currentTarget;
-    switch (id) {
-      case "back-01":
-        this.setState({
-          modalView: {
-            showModal1: true,
-            showModal2: false,
-            showModal3: false
-          },
-
-          btnView: {
-            backBtnId: "",
-            nextBtnId: "next-01"
-          }
-        });
-        return;
-
-      case "back-02":
-        this.setState({
-          modalView: {
-            showModal1: false,
-            showModal2: true,
-            showModal3: false
-          },
-
-          btnView: {
-            backBtnId: "back-01",
-            nextBtnId: "next-02"
-          }
-        });
-        return;
-    }
-  };
 
   handleFormFieldChange = name => event => {
     let { isSubmit } = this.state;
+
 
     this.setState(
       {
@@ -403,6 +384,8 @@ class BookingSection extends Component {
   };
 
   handleValidation = () => {
+    this.props.validateBookingFormOnTyping(this.state.contactForm)
+
     //NOTE: The validation in here runs only after the submit button was pressed and it's primary responsibility
     //is to:
     //      1.) highlight inputs w/ red borders and display error msg if any.
@@ -415,153 +398,165 @@ class BookingSection extends Component {
     //==========  ==========  contactFirstName  ==========  ==========
 
     //  if contactFirstNAme is entered, reset input color border
-    if (
-      Object.values(this.state.contactForm)[0].length > 2 &&
-      this.state.errors.contactFirstName.error === true
-    ) {
-      // alert("contactFirstName passes");
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          contactFirstName: {
-            error: false,
-            msg: ""
-          }
-        }
-      });
-    }
-    //if it's empty again...
-    if (
-      Object.values(this.state.contactForm)[0].length === 0 &&
-      this.state.errors.contactFirstName.error === false
-    ) {
-      // alert("You were told to correct contactFirstName and now it's empty again!");
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          contactFirstName: {
-            error: true,
-            msg: "First name can not be blank"
-          }
-        }
-      });
-    }
-
-    //==========  ==========  contactLastName  ==========  ==========
-
-    // console.log(Object.values(this.state.contactForm)[1], 'Object.values(this.state.contactForm)[1]')
-    // console.log(this.state.errors.contactLastName.error, 'this.state.errors.contactLastName.error')
-
-    if (
-      Object.values(this.state.contactForm)[1].length > 2 &&
-      this.state.errors.contactLastName.error === true
-    ) {
-      // alert("contactLastName passes");
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          contactLastName: {
-            error: false,
-            msg: ""
-          }
-        }
-      });
-    }
-    //if it's empty again...
-    if (
-      Object.values(this.state.contactForm)[1].length === 0 &&
-      this.state.errors.contactLastName.error === false
-    ) {
-      // alert("You were told to correct contactLastName and now it's empty again!");
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          contactLastName: {
-            error: true,
-            msg: "Last name can not be blank"
-          }
-        }
-      });
-    }
-
-    //==========  ==========  contactEmail ==========  ==========
-
-    if (
-      isEmail(Object.values(this.state.contactForm)[2]) === true &&
-      this.state.errors.contactEmail.error === true
-    ) {
-      // alert("contactEmail passes");
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          contactEmail: {
-            error: false,
-            msg: ""
-          }
-        }
-      });
-    }
-    //contactEmail is blank again
-    if (
-      Object.values(this.state.contactForm)[2].length === 0 &&
-      this.state.errors.contactEmail.error === false
-    ) {
-      // alert("You were told to correct contactEmail and now it's empty again!");
-
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          contactEmail: {
-            error: true,
-            msg: "Email required"
-          }
-        }
-      });
-    }
-
-    //==========  ==========  contactPhone ==========  ==========
-
-    if (
-      isPhoneNum(Object.values(this.state.contactForm)[3]) === true &&
-      this.state.errors.contactPhone.error === true
-    ) {
-      // alert("contactPhone passes");
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          contactPhone: {
-            error: false,
-            msg: ""
-          }
-        }
-      });
-    }
-
-    if (
-      Object.values(this.state.contactForm)[3].length === 0 &&
-      this.state.errors.contactPhone.error === false
-    ) {
-      // alert("You were told to correct contactPhone and now it's empty again!");
-
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          contactPhone: {
-            error: true,
-            msg: "*Phone number required"
-          }
-        }
-      });
-    }
+    // if (
+    //   Object.values(this.state.contactForm)[0].length > 2 &&
+    //   this.state.errors.contactFirstName.error === true
+    // ) {
+    //   // alert("contactFirstName passes");
+    //   this.setState({
+    //     errors: {
+    //       ...this.state.errors,
+    //       contactFirstName: {
+    //         error: false,
+    //         msg: ""
+    //       }
+    //     }
+    //   });
+    // }
+    // //if it's empty again...
+    // if (
+    //   Object.values(this.state.contactForm)[0].length === 0 &&
+    //   this.state.errors.contactFirstName.error === false
+    // ) {
+    //   // alert("You were told to correct contactFirstName and now it's empty again!");
+    //   this.setState({
+    //     errors: {
+    //       ...this.state.errors,
+    //       contactFirstName: {
+    //         error: true,
+    //         msg: "First name can not be blank"
+    //       }
+    //     }
+    //   });
+    // }
+    //
+    // //==========  ==========  contactLastName  ==========  ==========
+    //
+    // // console.log(Object.values(this.state.contactForm)[1], 'Object.values(this.state.contactForm)[1]')
+    // // console.log(this.state.errors.contactLastName.error, 'this.state.errors.contactLastName.error')
+    //
+    // if (
+    //   Object.values(this.state.contactForm)[1].length > 2 &&
+    //   this.state.errors.contactLastName.error === true
+    // ) {
+    //   // alert("contactLastName passes");
+    //   this.setState({
+    //     errors: {
+    //       ...this.state.errors,
+    //       contactLastName: {
+    //         error: false,
+    //         msg: ""
+    //       }
+    //     }
+    //   });
+    // }
+    // //if it's empty again...
+    // if (
+    //   Object.values(this.state.contactForm)[1].length === 0 &&
+    //   this.state.errors.contactLastName.error === false
+    // ) {
+    //   // alert("You were told to correct contactLastName and now it's empty again!");
+    //   this.setState({
+    //     errors: {
+    //       ...this.state.errors,
+    //       contactLastName: {
+    //         error: true,
+    //         msg: "Last name can not be blank"
+    //       }
+    //     }
+    //   });
+    // }
+    //
+    // //==========  ==========  contactEmail ==========  ==========
+    //
+    // if (
+    //   isEmail(Object.values(this.state.contactForm)[2]) === true &&
+    //   this.state.errors.contactEmail.error === true
+    // ) {
+    //   // alert("contactEmail passes");
+    //   this.setState({
+    //     errors: {
+    //       ...this.state.errors,
+    //       contactEmail: {
+    //         error: false,
+    //         msg: ""
+    //       }
+    //     }
+    //   });
+    // }
+    // //contactEmail is blank again
+    // if (
+    //   Object.values(this.state.contactForm)[2].length === 0 &&
+    //   this.state.errors.contactEmail.error === false
+    // ) {
+    //   // alert("You were told to correct contactEmail and now it's empty again!");
+    //
+    //   this.setState({
+    //     errors: {
+    //       ...this.state.errors,
+    //       contactEmail: {
+    //         error: true,
+    //         msg: "Email required"
+    //       }
+    //     }
+    //   });
+    // }
+    //
+    // //==========  ==========  contactPhone ==========  ==========
+    //
+    // if (
+    //   isPhoneNum(Object.values(this.state.contactForm)[3]) === true &&
+    //   this.state.errors.contactPhone.error === true
+    // ) {
+    //   // alert("contactPhone passes");
+    //   this.setState({
+    //     errors: {
+    //       ...this.state.errors,
+    //       contactPhone: {
+    //         error: false,
+    //         msg: ""
+    //       }
+    //     }
+    //   });
+    // }
+    //
+    // if (
+    //   Object.values(this.state.contactForm)[3].length === 0 &&
+    //   this.state.errors.contactPhone.error === false
+    // ) {
+    //   // alert("You were told to correct contactPhone and now it's empty again!");
+    //
+    //   this.setState({
+    //     errors: {
+    //       ...this.state.errors,
+    //       contactPhone: {
+    //         error: true,
+    //         msg: "*Phone number required"
+    //       }
+    //     }
+    //   });
+    // }
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.log(this.props, "FINALLY!!");
+    let {modalView} = this.state
+
     let { confirmDbEntry } = this.props;
 
-    if (confirmDbEntry === 200) {
+    if (confirmDbEntry === 200 && 1+1===2 ) {
       alert("display a success window : data successfully saved in DB!");
+
+      //1.) clear form && selected dates
+      //2.) close confirm modal
+      //3.) display success modal
+
+
     }
+
+
+
+
+
   }
 
   /////////////////////////////////////////////////////////////////////////////////
@@ -573,6 +568,10 @@ class BookingSection extends Component {
     let CalendarModalBtn = styled(Button)({
       //PUT STYLES IN HERE LATER
     });
+
+    // console.log(this.props, 'WHAT ARE THE PROPS?')
+
+    // console.log(this.props, 'WHAT ARE THE PROPS FOR BOOKING_PRESENTER??')
 
     return (
       <BookingContainer p={6} className={""}>
@@ -594,7 +593,7 @@ class BookingSection extends Component {
         </CalendarModalBtn>
 
         {/*THIS IS THE CALENDAR MODAL THAT SUPPLIES USER REQ DATES AND USER INFO*/}
-        <CalendarModal
+        <CalendarModalPresenter
           //open: boolean opens main modal
           //onClose : setState boolean closes main modal
           open={this.state.open}

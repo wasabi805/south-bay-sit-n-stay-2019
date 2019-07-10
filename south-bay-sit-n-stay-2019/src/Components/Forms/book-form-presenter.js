@@ -51,10 +51,15 @@ class BookFormPresenter extends Component {
   };
 
   render() {
-    const { formConfig, contactForm, errors } = this.props;
+    // const { formConfig, contactForm, errors } = this.props;
+
+    const {errors} = this.props.bookingReducer
+
+
+
+
     return (
       <React.Fragment>
-        <div id="map" style={{ width: 400, height: 300 }} />
 
         <Script
           url={`https://maps.googleapis.com/maps/api/js?key=${

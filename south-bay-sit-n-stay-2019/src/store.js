@@ -6,7 +6,10 @@ import { createLogger } from 'redux-logger';
 
 const initialState = {};
 
-const middleware = [thunk, createLogger()];
+const middleware = [
+    thunk,
+    // createLogger()
+];
 
 const store = createStore(
   rootReducer,
