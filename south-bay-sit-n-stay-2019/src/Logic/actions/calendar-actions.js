@@ -1,33 +1,4 @@
-import {
-  TEST_ACTION,
-  CONFIRM_CALENDAR_DATES,
-  RENDER_CALENDAR_MODAL_DATE,
-  SET_CONTACT_FORM_FIELDS,
-  SEND_REQUEST_TO_DB
-} from "./types";
-
-require("regenerator-runtime/runtime");
-
-import axios from "axios";
-
-export const setContactFormFields = () => {
-  return {
-    type: SET_CONTACT_FORM_FIELDS,
-    payload: ""
-  };
-};
-
-export const sendRequestToDb = userData => {
-
-  return (dispatch)=>{
-    dispatch({type : SEND_REQUEST_TO_DB});
-    axios.post("api/booking/requests/book-now", userData).then( (res)=>{
-      dispatch({type : SEND_REQUEST_TO_DB , payload: res.status });
-    }).catch((err)=>{
-      dispatch({type : SEND_REQUEST_TO_DB , payload : err})
-    })
-  }
-};
+import { CONFIRM_CALENDAR_DATES, RENDER_CALENDAR_MODAL_DATE } from "../types";
 
 export const getCalendarDates = selectedCalState => dispatch => {
   let requestDates = selectedCalState;

@@ -23,7 +23,8 @@ img {
 @import "grid/grid-style";
 @import "components/page";
 @import "components/calendar";
-
+@import "booking-icons";
+@import "components/confirm-book";
 
 
 
@@ -47,3 +48,56 @@ button {
 }
 
 
+
+
+
+
+
+
+//PLACEHOLDER SPINNER/LOADER
+
+.loader {
+  border: 16px solid #dedbe2;
+  border-radius: 50%;
+  border-top: 16px solid #9364db;
+
+  display: inline-block;
+  position: absolute;
+
+  width: 120px;
+  height: 120px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+//LOADING TEXT FOR SPINNER
+.sending{
+  //background: aqua;
+  position: absolute;
+  height: 2rem;
+  text-indent: -50%;
+  display: inline-block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 2rem;
+  margin: auto;
+}

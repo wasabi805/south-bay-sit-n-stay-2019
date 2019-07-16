@@ -51,16 +51,10 @@ class BookFormPresenter extends Component {
   };
 
   render() {
-    // const { formConfig, contactForm, errors } = this.props;
-
-    const {errors} = this.props.bookingReducer
-
-
-
+    const { errors } = this.props.bookingReducer;
 
     return (
       <React.Fragment>
-
         <Script
           url={`https://maps.googleapis.com/maps/api/js?key=${
             process.env.GOOGLE_MAPS
@@ -70,7 +64,7 @@ class BookFormPresenter extends Component {
 
         <Grow in={this.props.showModal2}>
           <form
-            style={{ position: "relative", textAlign: "center" }}
+            // style={{ position: "relative", textAlign: "center" }}
             noValidate
             autoComplete="off"
           >

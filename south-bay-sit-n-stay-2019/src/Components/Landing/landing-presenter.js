@@ -4,7 +4,7 @@ import { styled } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import HeroPresenter from "../Hero/hero-presenter";
 import CardsSection from "../Cards/card-section-component";
-import BookingSection from "../Booking-Calendar/booking-container";
+import BookingSection from "../Booking/booking-container";
 import GallerySection from "../Gallery/gallerySection";
 
 const LandingPresenter = props => {

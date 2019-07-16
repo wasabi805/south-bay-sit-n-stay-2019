@@ -4,7 +4,6 @@ import landingReducer from './landing-reducer';
 import calendarReducer from './calendar-reducer';
 import aboutReducer from './about-reducer';
 import modalReducer from './modal-reducer';
-import contactFormReducer from './contact-form-reducer';
 import bookingReducer from "./booking-reducer"
 
 
@@ -14,6 +13,5 @@ export default combineReducers({
     calendarReducer : calendarReducer,
     modalReducer : modalReducer,
     aboutReducer : aboutReducer,
-    contactFormReducer : contactFormReducer,
     bookingReducer: bookingReducer
 });

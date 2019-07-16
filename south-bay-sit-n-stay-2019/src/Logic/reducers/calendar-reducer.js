@@ -1,4 +1,4 @@
-import { CONFIRM_CALENDAR_DATES , SHOW_CONFIRM_DATES } from "../types";
+import { CONFIRM_CALENDAR_DATES, SHOW_CONFIRM_DATES } from "../types";
 
 const initialState = {
   calendarTest: "I'm just a string"
@@ -9,8 +9,7 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case "CONFIRM_CALENDAR_DATES":
-      return action.payload;
-
+      return payload;
 
     case SHOW_CONFIRM_DATES:
       return action.payload;
