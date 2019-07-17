@@ -80,6 +80,7 @@ class HeroPresenter extends Component {
     }
   };
   render() {
+
     let {
       heroClassName,
       header,
@@ -87,6 +88,10 @@ class HeroPresenter extends Component {
       heroButtons,
       heroImg
     } = this.props.heroContext;
+
+
+
+    console.log(heroClassName, 'heroClassName')
 
     const HeroWrapper = styled(Box)({
       minWidth: "100vw",

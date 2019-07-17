@@ -1,69 +1,54 @@
-.calendar-wrapper{
+.calendar-wrapper {
   background-color: #673ab7;
-
-
-  @media only screen
-  and (min-width: 668px)
-  and (max-width: 1600px) {
-    background-color: blue;
-    width: 50%;
-  }
-
 }
 
-.react-calendar{
-  //Lets keep the calendar shape as a square
+.react-calendar {
+}
 
-  /* Portrait */
-  @media only screen
-  and (min-width: 320px)
-  and (max-width: 667px)
-  and (orientation: portrait) {
-    max-width: 100%;
-    background-color: cyan;
-  }
+.react-calendar {
+  border: 1px solid red;
+  width: 50%;
+}
 
-  /* Landscape */
-  @media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 667px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
-    max-width: 100%;
-  }
+//all calendar tiles
+.react-calendar__month-view__days__day {
+  padding: 5%;
+  //backgrounds: blue;
+}
 
-  /* ----------- Non-Retina Screens ----------- */
-  @media only screen
-  and (min-width: 668px)
-  and (max-width: 1600px) {
-    //background-color: lime;
-  }
-
-  @media only screen
-  and (min-width: 1601px) {
-    background-color: #673ab7;
-    color: #fff;
-    font-size: 2rem;
-    max-width: 50vw;
+.react-calendar__tile {
+  &.calendar__tile {
   }
 }
 
-.react-calendar__tile{
-  &.calendar__tile{
-
-  }
-  //background-color: purple;
-  display: initial;
-  height: 10vh;
-  width: 8vw;
-  max-width: 8vw;
-  max-height: 14vh;
+//HIDE YEAR VIEW
+.react-calendar__navigation__next2-button {
+  display: none;
 }
 
+.react-calendar__navigation__prev2-button {
+  display: none;
+}
 
+//MONTH VIEW CALENDAR ARROWS
+.react-calendar__navigation__next-button {
+  font-size: 3rem;
+}
 
+.react-calendar__navigation__prev-button {
+  font-size: 5rem;
+}
+
+.react-calendar__navigation__label {
+  //height: 6rem;
+}
+.react-calendar__navigation__arrow {
+  height: 4rem;
+  width: 4rem;
+  background: tomato;
+  border-radius: 27%;
+}
 
 .i-am-booked {
-  background-color: #e4d9ec ;
+  background-color: #e4d9ec;
 }
-

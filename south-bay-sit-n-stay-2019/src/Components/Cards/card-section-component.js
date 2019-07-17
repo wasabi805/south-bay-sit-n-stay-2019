@@ -84,6 +84,7 @@ let useStyles = makeStyles(theme => ({
 
   cardGrid: {
     maxWidth: "210rem",
+    minHeight: '80vh',
     display: "inline-block"
   },
 

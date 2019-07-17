@@ -64,6 +64,7 @@ const HeroHeaderB = props => {
   return (
     <ThemeProvider theme={heroHeaderBTheme}>
       <HeaderWrapper>
+        {/*<h1 style={{color: "red"}}>HELLO</h1>*/}
         <HeroHeaderBOne variant={"h1"}>{props.heroHeaderBOne}</HeroHeaderBOne>
         <HeroHeaderBTwo variant={"h1"}>{props.heroHeaderBTwo}</HeroHeaderBTwo>
 

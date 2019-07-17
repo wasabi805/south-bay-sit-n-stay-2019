@@ -20,39 +20,39 @@ img {
   height: auto;
 }
 
+.about-group-pic {
+  width: 50%;
+  height: auto;
+  margin: 4rem 1rem;
+}
+
+.our-mission {
+  text-align: start;
+  color: cornsilk;
+  background: #7300ffa8;
+  padding: 2rem;
+}
+
+//SECTIONS
+#gallery {
+  min-height: 100vh;
+  border: 1px solid lime;
+}
+
 @import "grid/grid-style";
 @import "components/page";
 @import "components/calendar";
 @import "booking-icons";
 @import "components/confirm-book";
-
-
-
-button {
-    .react-calendar__tile {
-      background-color: yellow;
-
-      &.i-am-booked {
-        border-color: #b3aae0;
-      }
-    }
-}
-
+@import "components/about";
 
 .pac-container {
-  background-color: #FFF;
+  background-color: #fff;
   z-index: 20;
   position: fixed;
   display: inline-block;
   float: left;
 }
-
-
-
-
-
-
-
 
 //PLACEHOLDER SPINNER/LOADER
 
@@ -78,17 +78,25 @@ button {
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 //LOADING TEXT FOR SPINNER
-.sending{
+.sending {
   //background: aqua;
   position: absolute;
   height: 2rem;

@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import Presenter from "./about-presenter";
 
 const mapStateToProps = state => {
-  let { hero } = state.aboutReducer;
+  let { hero, body_02, body_01 } = state.aboutReducer;
   return {
-    hero: hero
+    heroContext: hero,
+    body_01: body_01,
+    body_02: body_02
   };
 };
 

@@ -14,7 +14,7 @@ const LandingPresenter = props => {
   });
 
   return (
-    <LandingPage className={""}>
+    <LandingPage id={'home'} className={""}>
       <HeroPresenter heroContext={props.heroContext} />
 
       <CardsSection

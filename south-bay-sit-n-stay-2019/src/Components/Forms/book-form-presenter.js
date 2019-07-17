@@ -21,8 +21,10 @@ class BookFormPresenter extends Component {
   }
 
   handleScriptLoad = () => {
+    //for google auto complete , ref => https://medium.com/@hamza.qaisrani.hq/using-the-google-maps-places-autocomplete-javascript-api-in-a-react-project-5742bab4abc9
+
     // Declare Options For Autocomplete
-    var options = { types: ["(cities)"] };
+    var options = { types: ['(cities)'] };
 
     // Initialize Google Autocomplete
     /*global google*/
@@ -30,19 +32,34 @@ class BookFormPresenter extends Component {
       document.getElementById("autocomplete"),
       options
     );
+    console.log( document.getElementById("autocomplete"), ' document.getElementById("autocomplete"),')
+    console.log(this.autocomplete, 'this.autocomplete'); //= {} w/ methods
+
 
     // Fire Event when a suggested name is selected
-    this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
+    this.autocomplete.addListener("place_changed", this.handlePlaceSelect());
   };
 
   handlePlaceSelect = () => {
+
+    console.log('one fired' , this.autocomplete.getPlace())
     // Extract City From Address Object
-    let addressObject = this.autocomplete.getPlace();
+    let addressObject =  document.getElementById("autocomplete");
     let address = addressObject.address_components;
+
+    console.log('one and a half fired ' ,  addressObject,)
+
+
+    console.log(address, ' two fired')
+
 
     // Check if address is valid
     if (address) {
       //pass the updated form w/ auto-complete city back to booking-presenter(parent) to update state
+
+      console.log(address[0].long_name, "three fired")
+
+
       this.props.updateCity(
         address[0].long_name,
         addressObject.formatted_address
@@ -54,7 +71,7 @@ class BookFormPresenter extends Component {
     const { errors } = this.props.bookingReducer;
 
     return (
-      <React.Fragment>
+      <div>
         <Script
           url={`https://maps.googleapis.com/maps/api/js?key=${
             process.env.GOOGLE_MAPS
@@ -206,7 +223,7 @@ class BookFormPresenter extends Component {
             </div>
           </form>
         </Grow>
-      </React.Fragment>
+      </div>
     );
   }
 }

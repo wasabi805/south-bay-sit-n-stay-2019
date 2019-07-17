@@ -87,7 +87,7 @@ const SelectSvc = props => {
                         <div className={`ch-info-front ${svc.bgImg}`} />
                         <div className="ch-info-back">
                           <h3>{svc.name}</h3>
-                          <p>some text</p>
+                          <p>{svc.text}</p>
                         </div>
                       </div>
                     </div>

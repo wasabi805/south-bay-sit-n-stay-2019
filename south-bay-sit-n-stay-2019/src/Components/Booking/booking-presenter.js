@@ -18,7 +18,8 @@ const BookingContainer = styled(Box)({
     "url('https://sb-sit-2019.s3.amazonaws.com/calendar01-transparent.png')",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "right",
-  backgroundSize: "55%"
+  backgroundSize: "55%",
+  minHeight: "93vh"
 });
 
 class BookingSection extends Component {
@@ -220,15 +221,15 @@ class BookingSection extends Component {
     // console.log(this.props, "WHAT ARE THE PROPS FOR BOOKING_PRESENTER??");
 
     return (
-      <BookingContainer p={6} className={""}>
+      <BookingContainer id={"book-now"} className={""} p={6}>
         <Typography variant={"h1"} align="left">
           Check out which days we can provide you service
         </Typography>
 
         {/*CALENDAR*/}
-        <Box component="div" display="inline-block">
-          <CalendarContainer getDaysClicked={this.getDaysClicked} />
-        </Box>
+        {/*<Box component="div" display="inline-block">*/}
+        <CalendarContainer getDaysClicked={this.getDaysClicked} />
+        {/*</Box>*/}
 
         {/*THIS WILL OPEN THE CALENDAR MODAL*/}
         <CalendarModalBtn

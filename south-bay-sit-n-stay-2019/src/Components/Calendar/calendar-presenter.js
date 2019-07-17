@@ -62,6 +62,7 @@ class CalendarPresenter extends Component {
     }
   };
 
+
   //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
   render() {
     //Ceiling on Future Calendar Days
@@ -79,20 +80,19 @@ class CalendarPresenter extends Component {
     //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
 
     //===== ===== ===== ===== ===== ===== ===== ===== ===== =====
+
+
     return (
-      <Box className={"calendar-wrapper"}>
-        <Card width={"100%"}>
-          <Calendar
-            onChange={value => this.dayClicked(value)}
-            minDate={floor}
-            maxDate={ceiling}
-            //paints the tiles that are clicked
-            tileClassName={({ date, view }) => {
-              return this.paintDayClicked({ date, view });
-            }}
-          />
-        </Card>
-      </Box>
+        <Calendar
+          onChange={value => this.dayClicked(value)}
+          minDate={floor}
+          maxDate={ceiling}
+          //paints the tiles that are clicked
+          tileClassName={({ date, view }) => {
+            return this.paintDayClicked({ date, view });
+          }}
+        />
+
     );
   }
 }

@@ -91,7 +91,7 @@ const GallerySection = () => {
   const classes = useStyles();
 
   return (
-    <Box className={classes.root} pt={"5rem"} pr={"5rem"}>
+    <Box id={'gallery'} className={classes.root} pt={"5rem"} pr={"5rem"}>
       <Box>
         <Typography variant={"h1"}>
           Meet some of our previous guest and pals

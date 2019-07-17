@@ -4,7 +4,7 @@ const initialState = {
     nav_names: [
         {id: '/' ,        name: 'home'},
         {id: 'services' , name: 'services'},
-        {id: 'book-now' , name: 'book now'},
+        {id: '#book-now' , name: 'book now'},
         {id: 'about' ,    name: 'about'},
         {id: 'gallery' ,  name: 'gallery'},
         {id: 'contact' ,  name: 'contact'},

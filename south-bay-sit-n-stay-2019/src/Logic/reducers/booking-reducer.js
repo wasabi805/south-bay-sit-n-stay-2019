@@ -67,21 +67,24 @@ const initialState = {
       id: "drop-in",
       name: "drop-in",
       bgImg: "ch-img-1",
-      bgWrap: "info-wrap-door"
+      bgWrap: "info-wrap-door",
+      text: "visit",
     },
 
     {
       id: "overnight",
       name: "overnight",
       bgImg: "ch-img-2",
-      bgWrap: "info-wrap-moon"
+      bgWrap: "info-wrap-moon",
+      text: "stay",
     },
 
     {
       id: "boarding",
       name: "boarding",
       bgImg: "ch-img-3",
-      bgWrap: "info-wrap-doghouse"
+      bgWrap: "info-wrap-doghouse",
+      text: "lodge",
     }
   ],
 

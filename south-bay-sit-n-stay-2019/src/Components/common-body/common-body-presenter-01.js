@@ -11,9 +11,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import FolderIcon from "@material-ui/icons/People";
 
-const CommonBodyPresenter01 = () => {
+const CommonBodyPresenter01 = props => {
   const CommonBody01Grid = styled(Grid)({
-    // background: 'lime'
+    padding: "0 10%"
   });
 
   const RowTop = styled(Grid)({
@@ -22,20 +22,6 @@ const CommonBodyPresenter01 = () => {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end"
-  });
-
-  const ItemBottom = styled(Grid)({
-    minHeight: "30rem",
-    textAlign: "center",
-    // border: "1px solid yellow",
-    position: "relative"
-  });
-
-  const ItemContext = styled(Box)({
-    position: "relative",
-    display: "inline-block",
-    width: "50%",
-    left: "-5rem"
   });
 
   let Avatar = styled(ListItemIcon)({
@@ -49,166 +35,86 @@ const CommonBodyPresenter01 = () => {
     position: "relative"
   });
 
-  return (
-    <CommonBody01Grid container direction="row">
-      <RowTop item xs={12}>
-        <ItemContext>
-          <Typography variant={"h1"}>Our Mission</Typography>
+  const ItemContext = styled(Box)({
+    position: "relative",
+    display: "inline-block",
+    width: "50%",
+    left: "-5rem"
+  });
 
-          <Typography variant={"body1"}>
-            Lorem ipsum is a pseudo-Latin text used in web design,typography,
-            layout, and printing in place of English to emphasise design
-            elements over content. It's also called placeholder (or filler)
-            text.
-          </Typography>
+  const ItemBottom = styled(Grid)({
+    minHeight: "30rem"
+    // border: "1px solid yellow",
+  });
+
+  const TraitsList = styled(List)({
+    display: "inline-block",
+    // border: "1px solid blue",
+    textAlign: "start"
+  });
+
+  const showImage = context => {
+    if (context) {
+      return (
+        <img className={context.imageClassName} src={context.image} alt={""} />
+      );
+    }
+  };
+
+  console.log(props, "common-body-presenter");
+
+  let { className, context, list } = props.body_01;
+
+  return (
+    <CommonBody01Grid id={"its-me"} container direction="row">
+      <RowTop item xs={12} className={className}>
+        {showImage(context)}
+
+        <ItemContext className={"our-mission"}>
+          <Typography variant={"h1"}>{context.header}</Typography>
+          <Typography variant={"body1"}>{context.body}</Typography>
         </ItemContext>
       </RowTop>
 
-      <ItemBottom item xs={12} sm={4}>
-        <List className={CommonBodyPres01Styles["grey-box"]}>
-          <Box>
-            <Avatar>
-              <FolderIcon />
-            </Avatar>
+      {list.map(items => {
+        return (
+          <ItemBottom
+            item
+            key={items.id}
+            xs={12}
+            sm={4}
+            className={items.listWrapperStyle}
+            // style={{ border: "1px solid red" }}
+          >
+            {/*List Title*/}
+            <Box>
+              <Avatar>
+                <FolderIcon />
+              </Avatar>
+              <ListHeader variant={"h6"} display={"inline"}>
+                {items.header}
+              </ListHeader>
+            </Box>
 
-            <ListHeader variant={"h6"} display={"inline"}>
-              We Are
-            </ListHeader>
-          </Box>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 1
-              </Typography>
-            </ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 2
-              </Typography>
-            </ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 3
-              </Typography>
-            </ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 4
-              </Typography>
-            </ListItemText>
-          </ListItem>
-        </List>
-      </ItemBottom>
-
-      {/*=====    ======  ======  ======  =====   =====   ====    */}
-
-      <ItemBottom item xs={12} sm={4}>
-        <List className={CommonBodyPres01Styles["grey-box"]}>
-          <Box>
-            <Avatar>
-              <FolderIcon />
-            </Avatar>
-
-            <ListHeader
-              variant={"h6"}
-              display={"inline"}
-              style={{ width: "75%" }}
-            >
-              We Are Not
-            </ListHeader>
-          </Box>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 1
-              </Typography>
-            </ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 2
-              </Typography>
-            </ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 3
-              </Typography>
-            </ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 4
-              </Typography>
-            </ListItemText>
-          </ListItem>
-        </List>
-      </ItemBottom>
-
-      {/*=====    ======  ======  ======  =====   =====   ====    */}
-
-      <ItemBottom item xs={12} sm={4}>
-        <List>
-          <Box>
-            <Avatar>
-              <FolderIcon />
-            </Avatar>
-
-            <ListHeader variant={"h6"} display={"inline"}>
-              What We Do
-            </ListHeader>
-          </Box>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 1
-              </Typography>
-            </ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 2
-              </Typography>
-            </ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 3
-              </Typography>
-            </ListItemText>
-          </ListItem>
-
-          <ListItem>
-            <ListItemText>
-              <Typography variant={"body1"} align={"center"}>
-                List item text 4
-              </Typography>
-            </ListItemText>
-          </ListItem>
-        </List>
-      </ItemBottom>
+            {/*Ordered List*/}
+            <TraitsList>
+              {items.listText.map((item, index) => {
+                return (
+                  <ListItem
+                    key={item + index}
+                    // style={{ border: "1px solid yellow" }}
+                  >
+                    <Typography variant={"body1"} align={"center"}>
+                      {item}
+                    </Typography>
+                  </ListItem>
+                );
+              })}
+            </TraitsList>
+            {/*END List*/}
+          </ItemBottom>
+        );
+      })}
     </CommonBody01Grid>
   );
 };

@@ -5,7 +5,9 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+
+// import { Route, Link, HashRouter } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
 
 const NavList = props => {
   let headerNavClassName = "headerNav";
@@ -24,17 +26,61 @@ const NavList = props => {
     }
   });
 
+    //Offsets the scroll pos for react-router-hash-link
+  const scrollWithOffset = (el, offset)=>{
+      const elementPosition = el.offsetTop - offset;
+      window.scroll({
+          top: elementPosition,
+          left: 0,
+          behavior: "smooth"
+      });
+  };
+
   return (
     <HeaderNav className={`${headerNavClassName}`} component="nav">
-      {props.navNames.map(link => {
-        return (
-          <Link to={link.id} key={link.id}>
-            <ListItem key={`${link.id}` + "header-nav"}>
-              <ListItemText primary={`${link.name}`} />
+      {/*{props.navNames.map(link => {*/}
+        {/*return (*/}
+
+          {/*<Link to={link.id} key={link.id}>*/}
+            {/*<ListItem key={`${link.id}` + "header-nav"}>*/}
+              {/*<ListItemText primary={`${link.name}`} />*/}
+            {/*</ListItem>*/}
+          {/*</Link>*/}
+
+
+        {/*);*/}
+      {/*})}*/}
+
+
+        <Link to={'/#home'} >
+            <ListItem >
+                <ListItemText primary={'home'} />
             </ListItem>
-          </Link>
-        );
-      })}
+        </Link>
+
+        <Link to={'/about'} >
+            <ListItem >
+                <ListItemText primary={'about'} />
+            </ListItem>
+        </Link>
+
+        <Link to={'/services'} >
+            <ListItem >
+                <ListItemText primary={'services'} />
+            </ListItem>
+        </Link>
+
+        <Link to={'/#book-now'} scroll={el => scrollWithOffset(el, 60)}  >
+            <ListItem >
+                <ListItemText primary={'book now'} />
+            </ListItem>
+        </Link>
+
+        <Link to={'/#gallery'} scroll={el => scrollWithOffset(el, 65)}  >
+            <ListItem >
+                <ListItemText primary={'gallery'} />
+            </ListItem>
+        </Link>
     </HeaderNav>
   );
 };

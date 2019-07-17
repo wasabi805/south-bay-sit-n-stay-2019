@@ -1,23 +1,21 @@
 @import "../colors/colors";
 
-
-.grey-box{
+.grey-box {
   background: $grey;
-  height: 100%
+  height: 100%;
 }
 
-.weAre{
-
+.we_are_list_wrapper {
+  background: #ffffff;
 }
 
-.weAreNot{
-
+.we_are_not_wrapper {
+  background: #d6d6d6;
 }
 
-.whatWeDo{
-  background: purple;
-
+.what_we_do_wrapper {
+  background: #d6d6d6;
 }
-.i-am-booked{
-  background-color: #e4d9ec !important;
+
+.i-am-booked {
 }

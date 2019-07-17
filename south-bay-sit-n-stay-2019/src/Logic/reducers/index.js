@@ -5,6 +5,7 @@ import calendarReducer from './calendar-reducer';
 import aboutReducer from './about-reducer';
 import modalReducer from './modal-reducer';
 import bookingReducer from "./booking-reducer"
+import servicesReducer from "./services-reducer"
 
 
 export default combineReducers({
@@ -13,5 +14,6 @@ export default combineReducers({
     calendarReducer : calendarReducer,
     modalReducer : modalReducer,
     aboutReducer : aboutReducer,
-    bookingReducer: bookingReducer
+    bookingReducer: bookingReducer,
+    servicesReducer: servicesReducer,
 });
