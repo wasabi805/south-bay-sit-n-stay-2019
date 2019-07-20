@@ -10,16 +10,20 @@ const initialState = {
     heroSubHeader:
       "Have us for drop in visits, schedule boarding when you're away, or have us sit for you.",
     heroButtonOne: "Get Started",
+    heroButtonOneDestination: "/#book-now",
+
     heroButtonTwo: "About us"
   },
 
   body_01: {
-    id: "landing-cards-services",
-    header: "Explore how we can provide the best level of comfort for your pets.",
+    id: "get-started",
+    header:
+      "Explore how we can provide the best level of comfort for your pets.",
     subHeader: "",
     context: [
       {
         id: "card-01",
+        class: "",
         ariaLabel: "Drop-Ins",
         avatarLetter: "D",
         title: "Drop In Visits",
@@ -33,6 +37,7 @@ const initialState = {
 
       {
         id: "card-02",
+        class: "",
         ariaLabel: "Overnight",
         avatarLetter: "O",
         title: "Overnight Care",
@@ -45,6 +50,7 @@ const initialState = {
 
       {
         id: "card-03",
+        class: "",
         ariaLabel: "Boarding",
         avatarLetter: "B",
         title: "Boarding",
@@ -59,6 +65,7 @@ const initialState = {
 
   body_02: {
     id: "landing-calendar",
+    class: "",
     header: "",
     subHeader: "",
     context: []

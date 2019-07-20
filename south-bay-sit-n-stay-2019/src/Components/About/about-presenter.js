@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { styled } from "@material-ui/styles";
 import PropTypes from "prop-types";
 import HeroPresenter from "../../Components/Hero/hero-presenter";
 import CommonBodyContainer01 from "../../Components/common-body/common-body-container-01";
-import { styled } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 
 import CardsSection from "../../Components/Cards/card-section-component";
@@ -11,6 +11,7 @@ class AboutPresenter extends Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -29,6 +30,7 @@ class AboutPresenter extends Component {
           myProps={"the props coming from about"}
           body_01={this.props.body_01}
         />
+
         <CardsSection
           className={"about-employee-cards"}
           body_01={this.props.body_02}

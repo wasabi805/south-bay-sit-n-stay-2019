@@ -1,0 +1,109 @@
+.cbc-lft-and-rt-header {
+  //position: absolute;
+  font-size: 1.5rem;
+  font-family: Roboto;
+  font-weight: 300;
+  line-height: 1;
+
+  @media screen and(min-width: 768px) {
+    font-size: 3rem;
+  }
+}
+
+.cbc-lft-and-rt-text {
+  font-family: Roboto;
+  //position: absolute;
+  font-size: 0.5rem;
+  color: #534e59;
+  z-index: 1;
+  -webkit-font-smoothing: antialiased;
+
+  @media screen and(min-width: 768px) {
+    font-size: 1.4rem;
+  }
+
+  @media screen and(min-width: 1280px) {
+    font-size: 2rem;
+  }
+}
+
+.cbc-rt-img {
+  z-index: 0;
+}
+
+//  ======  ===== ===== =====
+
+.drop-in-visits-header {
+  @media screen and(min-width: 768px) {
+    top: 20%;
+    margin-left: 2%;
+  }
+
+  @media screen and(min-width: 1280px) {
+    top: 20%;
+    margin-left: 2%;
+  }
+}
+.drop-in-visits-context {
+  //color: cornsilk;
+  top: 33%;
+  margin: 2%;
+  color: white;
+
+  @media screen and(min-width: 768px) {
+    font-size: 1.4rem;
+  }
+
+  @media screen and(min-width: 1280px) {
+    font-size: 2rem;
+  }
+}
+
+.drop-in-visits-wrapper {
+  //background-image: linear-gradient(to right, #ece8e7, rgb(135, 141, 157));
+}
+
+//  ======  ===== ===== =====
+.overnight-header {
+  text-align: center;
+
+  @media screen and(min-width: 768px) {
+    font-size: 3rem;
+    top: 20%;
+  }
+
+  @media screen and(min-width: 1280px) {
+    font-size: 4rem;
+    top: 20%;
+  }
+}
+
+.overnight-context {
+  top: 33%;
+  margin: 2%;
+}
+
+//  ======  ===== ===== =====
+.board-with-us-header {
+  font-family: Roboto;
+  top: 25%;
+  margin-left: 2%;
+
+  @media screen and(min-width: 768px) {
+    top: 20%;
+    margin-left: 2%;
+  }
+}
+
+.board-with-us-context {
+  top: 36%;
+  margin: 2%;
+  color: white;
+}
+
+.section-nav-links {
+  margin-left: 15%;
+}
+
+.board-with-us-wrapper {
+}

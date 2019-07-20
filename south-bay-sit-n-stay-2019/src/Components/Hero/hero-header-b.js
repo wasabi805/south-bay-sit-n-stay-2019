@@ -58,8 +58,14 @@ const HeroHeaderB = props => {
   const HeroHeaderBTwo = headers;
 
   const HeroSubHeaderB = styled(Typography)({
-    color: "white"
+    color: "white",
+
+    "&:a" : {
+
+    }
   });
+
+  console.log(props)
 
   return (
     <ThemeProvider theme={heroHeaderBTheme}>
@@ -69,6 +75,9 @@ const HeroHeaderB = props => {
         <HeroHeaderBTwo variant={"h1"}>{props.heroHeaderBTwo}</HeroHeaderBTwo>
 
         <HeroSubHeaderB variant={"h3"}>{props.heroSubHeaderB}</HeroSubHeaderB>
+
+
+
       </HeaderWrapper>
     </ThemeProvider>
   );

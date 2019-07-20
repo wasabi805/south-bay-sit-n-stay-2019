@@ -39,12 +39,14 @@ img {
   border: 1px solid lime;
 }
 
+@import "svg/svg";
 @import "grid/grid-style";
 @import "components/page";
 @import "components/calendar";
 @import "booking-icons";
 @import "components/confirm-book";
 @import "components/about";
+@import "components/services";
 
 .pac-container {
   background-color: #fff;

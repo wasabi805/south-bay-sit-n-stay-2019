@@ -9,6 +9,8 @@ import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
+import MuiDialogContentText from "@material-ui/core/DialogContentText";
+import Slide from "@material-ui/core/Slide";
 
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
@@ -17,6 +19,10 @@ import BookFormContainer from "../Forms/book-form-container";
 import ConfirmBook from "./booking/confirm-book";
 import SuccessBook from "./booking/success-book";
 import SelectedDates from "./booking/select-svc";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 //MODAL
 const styles = theme => ({
@@ -69,26 +75,19 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 const BookingModalPresenter = withStyles(styles)(props => {
-  const { errors, bookingReducer } = props;
-
+  const { errors, bookingReducer, openErrorModal } = props;
   const { modalView, btnView, modalHeader, selectSvc } = props.bookingReducer;
+  console.log(openErrorModal, "is this here openErrorModal");
 
-  return (
-    <React.Fragment>
+  let success = () => {
+    return (
       <Dialog maxWidth={"md"} open={props.open} onClose={props.onClose}>
         <DialogTitle id="customized-dialog-title" onClose={props.onClose}>
           {props.bookingReducer.modalHeader}
         </DialogTitle>
 
-        <div
-          style={{
-            // background: 'yellow',
-            position: "relative",
-            overflow: "scroll"
-          }}
-        >
+        <div>
           <DialogContent dividers>
-            {/*<div style={{background: "pink"}}>*/}
             <SelectedDates
               showModal1={modalView.showModal1}
               renderDates={props.renderDates}
@@ -152,9 +151,52 @@ const BookingModalPresenter = withStyles(styles)(props => {
           </Button>
         </DialogActions>
       </Dialog>
-    </React.Fragment>
-    //======  ??????  ======  ??????  =======
-  );
+    );
+  };
+
+  let fail = () => {
+    let { open} = props;
+    console.log(props, "WHAT ARE THESE ??");
+
+    return (
+      <div>
+        <Dialog
+          open={open}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={props.onClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {"Please select a date before proceeding"}
+          </DialogTitle>
+          <DialogContent style={{
+            // minHeight: "15rem",
+            background: "white" }}>
+            <MuiDialogContentText id="alert-dialog-slide-description">
+              Click on a at least one day on the calendar to get started with our services.
+            </MuiDialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={props.onClose} color="primary">
+              close
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    );
+  };
+
+  let handleRenderModal = () => {
+    if (openErrorModal === false) {
+      return success();
+    }
+
+    if (openErrorModal === true) return fail();
+  };
+
+  return handleRenderModal();
 });
 
 export default BookingModalPresenter;

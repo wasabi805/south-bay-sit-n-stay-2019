@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Spinner from "../common/spinner";
 
-import CalendarModalPresenter from "../Modals/booking-modal-container";
+import BookingModalPresenter from "../Modals/booking-modal-container";
 
 const BookingContainer = styled(Box)({
   "& h1": {
@@ -53,6 +53,8 @@ class BookingSection extends Component {
       //MODAL PROPS
       open: false,
       modalName: "dates",
+
+      openErrorModal: false,
 
       //calendar props
       bookedDates: [],
@@ -112,10 +114,28 @@ class BookingSection extends Component {
 
   //==========  ==========  MODAL METHODS ==========  ==========
   handleOpenGenericModal = () => {
-    this.setState({
-      isCalendarHidden: 1,
-      open: true
-    });
+
+    let {renderDates} = this.state
+
+    if(renderDates.length === 0 ){
+      this.setState({
+        isCalendarHidden: 1,
+        openErrorModal: true,
+        open: true
+      });
+
+      // alert('WHAT THE HELL?? NO DATES')
+      return
+    }
+
+    if(renderDates.length > 0){
+      this.setState({
+        isCalendarHidden: 1,
+        open: true,
+        openErrorModal: false,
+      });
+    }
+
   };
 
   handleCloseGenericModal = () => {
@@ -236,11 +256,11 @@ class BookingSection extends Component {
           variant="outlined"
           onClick={() => this.handleOpenGenericModal()}
         >
-          NEW REVIEW DATES
+          CHECK AVAILABILITY
         </CalendarModalBtn>
 
         {/*THIS IS THE CALENDAR MODAL THAT SUPPLIES USER REQ DATES AND USER INFO*/}
-        <CalendarModalPresenter
+        <BookingModalPresenter
           //open: boolean opens main modal
           //onClose : setState boolean closes main modal
           open={this.state.open}
@@ -266,6 +286,8 @@ class BookingSection extends Component {
           //Modal Form
           handleFormFieldChange={this.handleFormFieldChange}
           updateCity={this.updateCity}
+          openErrorModal={this.state.openErrorModal}
+
         />
       </BookingContainer>
     );

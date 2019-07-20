@@ -8,6 +8,7 @@ import HeroHeaderB from "./hero-header-b";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import teal from "@material-ui/core/colors/teal";
+import { HashLink as Link } from "react-router-hash-link";
 
 const heroTheme = theme => {
   return createMuiTheme({
@@ -26,10 +27,6 @@ const heroTheme = theme => {
         color: "white",
         fontSize: "3rem",
         marginBottom: "2rem"
-
-        // [theme.breakpoints.up("md")]: {
-        //         //   color: "red"
-        //         // }
       },
 
       h2: {
@@ -45,6 +42,15 @@ class HeroPresenter extends Component {
     super(props);
   }
 
+  scrollWithOffset = (el, offset) => {
+    const elementPosition = el.offsetTop - offset;
+    window.scroll({
+      top: elementPosition,
+      left: 0,
+      behavior: "smooth"
+    });
+  };
+
   displayHeroButtons = () => {
     let btn = this.props.heroContext;
 
@@ -59,8 +65,48 @@ class HeroPresenter extends Component {
     if (btn.heroButtonOne && btn.heroButtonTwo) {
       return (
         <React.Fragment>
-          <button>{btn.heroButtonOne}</button>
-          <button>{btn.heroButtonTwo}</button>
+
+          {/*<button>*/}
+            <Link
+              to={"/#get-started"}
+              scroll={el => this.scrollWithOffset(el, 60)}
+              style={{
+                padding: '2rem 6rem',
+                color: 'white',
+                background: '#673ab736',
+                margin: '2rem 4rem',
+                textDecoration: 'none',
+                fontSize: '2rem',
+                border: '1px solid white',
+                borderRadius: '4rem',
+              }}
+            >
+              {btn.heroButtonOne}
+            </Link>
+          {/*</button>*/}
+          ;
+
+
+            <Link
+                to={"/about/#about-us"}
+                onClick={() => console.log("goodbye")}
+                style={{
+                  padding: '2rem 6rem',
+                  color: 'white',
+                  background: '#673ab736',
+                  margin: '2rem 4rem',
+                  textDecoration: 'none',
+                  fontSize: '2rem',
+                  border: '1px solid white',
+                  borderRadius: '4rem',
+                }}
+
+                scroll={el => this.scrollWithOffset(el, 60)}
+            >
+              {btn.heroButtonTwo}
+            </Link>
+
+
         </React.Fragment>
       );
     }
@@ -75,12 +121,12 @@ class HeroPresenter extends Component {
           heroHeaderBOne={header.heroHeaderBOne}
           heroHeaderBTwo={header.heroHeaderBTwo}
           heroSubHeaderB={header.heroSubHeaderB}
+          button_01={header.button_01}
         />
       );
     }
   };
   render() {
-
     let {
       heroClassName,
       header,
@@ -89,9 +135,7 @@ class HeroPresenter extends Component {
       heroImg
     } = this.props.heroContext;
 
-
-
-    console.log(heroClassName, 'heroClassName')
+    console.log(heroClassName, "heroClassName");
 
     const HeroWrapper = styled(Box)({
       minWidth: "100vw",
@@ -154,6 +198,10 @@ class HeroPresenter extends Component {
         backgroundColor: "#673ab736"
       }
     });
+
+    const handleHeroButtonOne = () => {
+      console.log("i fired");
+    };
 
     return (
       <ThemeProvider theme={heroTheme}>

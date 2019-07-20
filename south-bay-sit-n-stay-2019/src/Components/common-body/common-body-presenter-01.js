@@ -61,12 +61,11 @@ const CommonBodyPresenter01 = props => {
     }
   };
 
-  console.log(props, "common-body-presenter");
 
   let { className, context, list } = props.body_01;
 
   return (
-    <CommonBody01Grid id={"its-me"} container direction="row">
+    <CommonBody01Grid id={props.body_01.id} container direction="row">
       <RowTop item xs={12} className={className}>
         {showImage(context)}
 

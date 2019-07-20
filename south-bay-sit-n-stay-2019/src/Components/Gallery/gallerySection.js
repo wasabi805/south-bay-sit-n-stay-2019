@@ -38,7 +38,7 @@ const tileData = [
   },
   {
     img: "https://placedog.net/501",
-    title: "Mr. McDuck",
+    title: "Mickey",
     author: "Walt D."
   },
   {
@@ -48,7 +48,7 @@ const tileData = [
   },
   {
     img: "https://placedog.net/503",
-    title: "Lass",
+    title: "Lassie",
     author: "Timmy T."
   },
   {
@@ -58,13 +58,13 @@ const tileData = [
   },
   {
     img: "https://placedog.net/505",
-    title: "Buster",
+    title: "Simba",
     author: "Raymond H."
   },
 
   {
     img: "https://placedog.net/506",
-    title: "Sparks",
+    title: "Bolt",
     author: "Jenn D."
   },
 

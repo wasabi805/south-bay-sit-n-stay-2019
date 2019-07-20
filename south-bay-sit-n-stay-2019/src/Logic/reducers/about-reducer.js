@@ -15,38 +15,49 @@ const initialState = {
   },
 
   body_01: {
-    id: "our-mission",
-    className : "our_mission",
+    id: "about-us",
+    className: "our_mission",
 
-    context:{
+    context: {
       className: "our_mission_text_box",
       header: "Our Mission",
-      body: "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text.",
+      body:
+        "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text.",
       image: "https://sb-sit-2019.s3.amazonaws.com/yuko_kayla_catherine.jpg",
-      imageClassName: "about-group-pic",
+      imageClassName: "about-group-pic"
     },
 
     list: [
       {
-        id: 'we-are-list',
+        id: "we-are-list",
         header: "We Are",
-        listText: ['Attentive' , 'Attentive' , 'Compassionate' , 'Fun' ],
-        listWrapperStyle : 'we_are_list_wrapper' //see scss common-body-presenter-01.scss
+        listText: ["Attentive", "Compassionate", "Adventurous", "Fun"],
+        listWrapperStyle: "we_are_list_wrapper" //see scss common-body-presenter-01.scss
       },
 
       {
-        id: 'we-are-not',
+        id: "we-are-not",
         header: "We Are Not",
-        listText: ['List item text 1' , 'List item text 2' , 'List item text 3' , 'List item text 4' ],
-        listWrapperStyle : 'we_are_not_wrapper' //see scss common-body-presenter-01.scss
+        listText: [
+          "List item text 1",
+          "List item text 2",
+          "List item text 3",
+          "List item text 4"
+        ],
+        listWrapperStyle: "we_are_not_wrapper" //see scss common-body-presenter-01.scss
       },
 
       {
-        id: 'what-we-do',
+        id: "what-we-do",
         header: "What We Do",
-        listText: ['List item text 1' , 'List item text 2' , 'List item text 3' , 'List item text 4' ],
-        listWrapperStyle : 'what_we_do_wrapper' //see scss common-body-presenter-01.scss
-      },
+        listText: [
+          "List item text 1",
+          "List item text 2",
+          "List item text 3",
+          "List item text 4"
+        ],
+        listWrapperStyle: "what_we_do_wrapper" //see scss common-body-presenter-01.scss
+      }
     ]
   },
 
@@ -57,10 +68,10 @@ const initialState = {
     context: [
       {
         id: "card-01",
-        class: "",
+        class: " catherine-profile",
         ariaLabel: "Catherine",
         avatarLetter: "C",
-        title: "Catherine",
+        title: " Catherine",
         imgOrIcon: "https://sb-sit-2019.s3.amazonaws.com/catherine.jpg",
         imgTitle: "Dog Hanging with the Sitter",
         subHeader: "",
@@ -70,11 +81,11 @@ const initialState = {
 
       {
         id: "card-02",
-        class: "",
-        ariaLabel: "Overnight",
+        class: " kayla-profile",
+        ariaLabel: "kayla",
         avatarLetter: "K",
         title: "Kayla",
-        imgOrIcon: "https://sb-sit-2019.s3.amazonaws.com/kayla-profile-02.jpg",
+        imgOrIcon: "https://sb-sit-2019.s3.amazonaws.com/kayla-profile-01.jpg",
         imgTitle: "Dog Enjoying the Evening",
         subHeader: "",
         cardContext:
@@ -83,7 +94,7 @@ const initialState = {
 
       {
         id: "card-03",
-        class: "",
+        class: " sabrina-profile",
         ariaLabel: "Overnight",
         avatarLetter: "S",
         title: "Sabrina",

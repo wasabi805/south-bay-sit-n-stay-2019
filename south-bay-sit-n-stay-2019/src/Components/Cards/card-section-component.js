@@ -17,6 +17,7 @@ import CardContent from "@material-ui/core/CardContent";
 
 import red from "@material-ui/core/colors/red";
 import teal from "@material-ui/core/colors/teal";
+import classNames from "classnames";
 
 const CardSectionTheme = theme => {
   return createMuiTheme({
@@ -79,12 +80,12 @@ let useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "space-evenly",
     marginBottom: "5%",
-    maxWidth : '85vw'
+    maxWidth: "85vw"
   },
 
   cardGrid: {
     maxWidth: "210rem",
-    minHeight: '80vh',
+    minHeight: "80vh",
     display: "inline-block"
   },
 
@@ -108,7 +109,8 @@ let useStyles = makeStyles(theme => ({
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
-    width: "100%"
+    width: "100%",
+    backgroundSize: 'contain'
   }
 }));
 
@@ -116,9 +118,11 @@ let useStyles = makeStyles(theme => ({
 const CardSectionComponent = props => {
   const classes = useStyles();
 
+  console.log(props, "WHAT ARE THE PROPS");
+
   return (
     <ThemeProvider theme={CardSectionTheme}>
-      <CardGrid className={classes.cardGrid} p={1}>
+      <CardGrid className={classes.cardGrid} p={1} id={props.body_01.id}>
         <CardGridHeader
           className={classes.cardContainerHeading}
           variant={"h1"}
@@ -140,7 +144,8 @@ const CardSectionComponent = props => {
                       aria-label={card.ariaLabel}
                       className={classes.avatar}
                     >
-                      {card.avatarLetter}
+                      {card.avatarLetter}{" "}
+                      {console.log(card.class, "what is card?")}
                     </Avatar>
                   }
                   title={card.title}
