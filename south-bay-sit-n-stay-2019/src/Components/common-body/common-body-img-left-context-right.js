@@ -1,64 +1,69 @@
 import React from "react";
-import { withStyles } from "@material-ui/styles";
+import { styled } from "@material-ui/styles";
 
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography"
+import Typography from "@material-ui/core/Typography";
 
-const styles = {
-  container: {
+import { ThemeProvider } from "@material-ui/styles";
+import { cb_img_right_context_left } from "../common/Themes/themes-common";
+
+const CommonBodyContextRightImgLeft = props => {
+  const { context } = props;
+
+  const Wrapper = styled(Grid)({
     position: "relative",
     padding: "2rem",
 
     maxWidth: "80%",
     margin: "auto",
-    marginBottom: "5%"
-  },
+    marginBottom: "3%"
+  });
 
-  context: {},
+  const Container = styled(Box)({
+    position: "absolute",
+    marginLeft: "-12%",
+    top: "24%"
+  });
 
-  image: {
-    "& img": {
-      width: "100%"
-    }
-  },
+  const Header = styled(Typography)({
+    fontWeight: "400",
 
-  text: {
-      position: "absolute",
-      top: "17%",
-      marginLeft: "-10%",
-      marginRight: "2%",
-      padding: "2%",
-      zIndex: 1
-  }
-};
+    color: "534e59"
+    // textShadow: "0 1px 1px #111111",
+    // padding: "0.5rem"
+  });
 
-const CommonBodyContextRightImgLeft = props => {
-  const { classes, context } = props;
+  const Text = styled(Typography)({
+    fontWeight: "400",
+
+    color: "#534e59",
+    // textShadow: "0 1px 1px #111111",
+    padding: "1rem",
+    width: "100%"
+  });
+
+  const Image = styled(Grid)({
+    display: "inline-block"
+  });
 
   return (
-    <Grid container className={classes.container}>
-      <Grid item xs={6} className={classes.image}>
+    <Wrapper container className={`${context.wrapperColor}`}>
+      <Image item xs={6}>
         <img className={context.imageClass} src={context.image} alt={""} />
+      </Image>
+
+      <Grid item xs={6}>
+        <ThemeProvider theme={cb_img_right_context_left}>
+          <Container>
+            <Header variant={"h2"}>{context.header}</Header>
+
+            <Text variant={"body1"}>{context.context}</Text>
+          </Container>
+        </ThemeProvider>
       </Grid>
-
-      <Grid item xs={6} className={classes.context}>
-        <Box className={classes.text}>
-
-          <Typography variant={"h2"}>{context.header}</Typography>
-          {/*<h2 className={`${context.headerClass} cbc-lft-and-rt-header`}>*/}
-          {/*{context.header}*/}
-          {/*</h2>*/}
-
-            {console.log(context.contextClass, 'context.contextClass')}
-          <Typography variant={'body2'} className={`${context.contextClass} cbc-lft-and-rt-text`}>
-            {context.context}
-          </Typography>
-
-        </Box>
-      </Grid>
-    </Grid>
+    </Wrapper>
   );
 };
 
-export default withStyles(styles)(CommonBodyContextRightImgLeft);
+export default CommonBodyContextRightImgLeft;

@@ -6,10 +6,10 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
 
-import {sectionHeader} from "./Themes/themes-common"
+import {cb_context_right_img_left} from "./Themes/themes-common"
 
 
-console.log(sectionHeader , 'WHAT IS sectionHeader')
+console.log(cb_context_right_img_left , 'WHAT IS cb_context_right_img_left')
 
 const useStyles = makeStyles(theme => ({
   root: {
