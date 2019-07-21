@@ -1,59 +1,70 @@
 import React from "react";
-import { withStyles } from "@material-ui/styles";
+import { styled } from "@material-ui/styles";
 
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 
-const styles = {
-  container: {
+import { ThemeProvider } from "@material-ui/styles";
+import { sectionHeader } from "../common/Themes/themes-common";
+
+const CommonBodyContextRightImgLeft = props => {
+  const { context } = props;
+
+  const Wrapper = styled(Grid)({
     position: "relative",
-    // backgroundImage: `url("paper.gif")`,
     padding: "2rem",
     maxWidth: "75%",
     margin: "auto",
-    marginBottom: "5%"
-  },
+    marginBottom: "15%"
+  });
 
-  context: {
+  const Container = styled(Box)({
+    top: "18%",
+    position: "absolute",
+    // top: '18%',
+    border: "1px solid lime",
+    marginRight: "42%"
+  });
+
+  const Header = styled(Typography)({
+    fontWeight: "400",
+    background: "#7300ffa8",
+    color: "cornsilk",
+    textShadow: "0 1px 1px #111111",
+    padding: "1rem"
+  });
+
+  const Text = styled(Typography)({
+    fontWeight: "400",
+    background: "#7300ffa8",
+    color: "cornsilk",
+    textShadow: "0 1px 1px #111111",
+    padding: "1rem",
+    width: "100%"
+  });
+
+  const Image = styled(Grid)({
     display: "inline-block"
-  },
-
-  image: {
-    display: "inline-block"
-  }
-};
-
-const CommonBodyContextRightImgLeft = props => {
-  const { classes, context } = props;
+  });
 
   return (
-    <Grid container className={`${classes.container} ${context.wrapperColor}`}>
-      <Grid item xs={6} className={classes.context}>
-        <div
-          style={{
-            position: "absolute",
-            top: "17%",
-            color: "white",
-            background: "#7300ffa8",
-            marginRight: "41%",
-            padding: "2%",
-            zIndex: 1
-          }}
-        >
-          <h2 className={`${context.headerClass} cbc-lft-and-rt-header`}>
-            {context.header}
-          </h2>
+    <Wrapper container className={`${context.wrapperColor}`}>
+      <Grid item xs={6}>
+        <ThemeProvider theme={sectionHeader}>
+          <Container id={"myRoot"}>
+            <Header variant={"h2"}>{context.header}</Header>
 
-          <p className={`${context.contextClass} cbc-lft-and-rt-text`}>
-            {context.context}
-          </p>
-        </div>
+            <Text variant={"body1"}>{context.context}</Text>
+          </Container>
+        </ThemeProvider>
       </Grid>
 
-      <Grid item xs={6} className={classes.image}>
+      <Image item xs={6}>
         <img className={context.imageClass} src={context.image} alt={""} />
-      </Grid>
-    </Grid>
+      </Image>
+    </Wrapper>
   );
 };
 
-export default withStyles(styles)(CommonBodyContextRightImgLeft);
+export default CommonBodyContextRightImgLeft;

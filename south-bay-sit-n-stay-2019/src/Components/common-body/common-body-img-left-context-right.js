@@ -1,8 +1,9 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
-import Typography from "@material-ui/core/Typography";
 
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography"
 
 const styles = {
   container: {
@@ -14,13 +15,22 @@ const styles = {
     marginBottom: "5%"
   },
 
+  context: {},
+
   image: {
     "& img": {
       width: "100%"
     }
   },
 
-  context: {}
+  text: {
+      position: "absolute",
+      top: "17%",
+      marginLeft: "-10%",
+      marginRight: "2%",
+      padding: "2%",
+      zIndex: 1
+  }
 };
 
 const CommonBodyContextRightImgLeft = props => {
@@ -33,24 +43,19 @@ const CommonBodyContextRightImgLeft = props => {
       </Grid>
 
       <Grid item xs={6} className={classes.context}>
-        <div
-          style={{
-            position: "absolute",
-            top: "17%",
-            marginLeft: "-10%",
-            marginRight: "2%",
-            padding: "2%",
-            zIndex: 1
-          }}
-        >
-          <h2 className={`${context.headerClass} cbc-lft-and-rt-header`}>
-            {context.header}
-          </h2>
+        <Box className={classes.text}>
 
-          <p className={`${context.contextClass} cbc-lft-and-rt-text`}>
+          <Typography variant={"h2"}>{context.header}</Typography>
+          {/*<h2 className={`${context.headerClass} cbc-lft-and-rt-header`}>*/}
+          {/*{context.header}*/}
+          {/*</h2>*/}
+
+            {console.log(context.contextClass, 'context.contextClass')}
+          <Typography variant={'body2'} className={`${context.contextClass} cbc-lft-and-rt-text`}>
             {context.context}
-          </p>
-        </div>
+          </Typography>
+
+        </Box>
       </Grid>
     </Grid>
   );

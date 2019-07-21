@@ -5,6 +5,12 @@ import { DogAndBall, DogFood, DogMedicine } from "../SVG/all-svgs";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
+
+import {sectionHeader} from "./Themes/themes-common"
+
+
+console.log(sectionHeader , 'WHAT IS sectionHeader')
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -65,13 +71,14 @@ export default function CardsNoBg(props) {
 
             <Box className={classes.textContainer}>
               {/*<h3>Active</h3>*/}
-              <Typography
-                gutterBottom
-                variant="h2"
-                className={classes.headerContainer}
-              >
-                Active
-              </Typography>
+
+
+
+                <Typography gutterBottom variant="h2" className={classes.headerContainer}>
+                  Active
+                </Typography>
+
+
 
               <Typography color="textSecondary" variant={"body1"}>
                 She's got a smile it seems to me Reminds me of childhood
