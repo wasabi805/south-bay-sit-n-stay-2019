@@ -7,8 +7,8 @@
     "server": "nodemon server.js",
     "client": "webpack-dev-server --env.API_URL=http://localhost:8000 --mode development --hot --open",
     "start": "node server.js",
-    "build": "webpack --mode production",
-    "dev": "concurrently --kill-others \"npm run client\" \"npm run server\""
+    "dev": "concurrently --kill-others \"npm run client\" \"npm run server\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && webpack --mode production"
   },
   "proxy": "http://localhost:5000",
   "author": "Tim Ocampo",
