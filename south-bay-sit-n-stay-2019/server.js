@@ -17,10 +17,6 @@ app.use(cors());
 // app.use(bodyParser.json());
 app.use(express.json({extended : false}));
 
-app.get("/", (req, res) => {
-  res.send("Hello, this is the 1st, server route");
-});
-
 //Pass into connect() to access mongoDB
 const mongoConfig = {
   mongoURI: process.env.mongoURI,
