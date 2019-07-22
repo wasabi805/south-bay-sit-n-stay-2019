@@ -17,7 +17,9 @@ const CommonBodyContextRightImgLeft = props => {
 
     maxWidth: "80%",
     margin: "auto",
-    marginBottom: "3%"
+    marginBottom: "3%",
+
+
   });
 
   const Container = styled(Box)({

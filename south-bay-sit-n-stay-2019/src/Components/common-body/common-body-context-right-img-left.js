@@ -1,6 +1,8 @@
 import React from "react";
 import { styled } from "@material-ui/styles";
 
+import { makeStyles } from "@material-ui/core/styles";
+
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -8,15 +10,32 @@ import Typography from "@material-ui/core/Typography";
 import { ThemeProvider } from "@material-ui/styles";
 import { cb_context_right_img_left } from "../common/Themes/themes-common";
 
+
+
+const useStyles = makeStyles(theme => ({
+    root:{
+      width :'100%'
+    },
+
+}));
+
+
+
+
+
 const CommonBodyContextRightImgLeft = props => {
   const { context } = props;
+  const classes = useStyles();
 
   const Wrapper = styled(Grid)({
     position: "relative",
     padding: "2rem",
     maxWidth: "75%",
     margin: "auto",
-    marginBottom: "3%"
+    marginBottom: "3%",
+
+
+
   });
 
   const Container = styled(Box)({
@@ -24,7 +43,8 @@ const CommonBodyContextRightImgLeft = props => {
     position: "absolute",
     // top: '18%',
     border: "1px solid #7300ffa8",
-    marginRight: "42%"
+    margin: '0 31% 0 0',
+    // marginRight: "42%"
   });
 
   const Header = styled(Typography)({
@@ -49,7 +69,7 @@ const CommonBodyContextRightImgLeft = props => {
   });
 
   return (
-    <Wrapper container className={`${context.wrapperColor}`}>
+    <Wrapper container >
       <Grid item xs={6}>
 
         <ThemeProvider theme={cb_context_right_img_left}>
