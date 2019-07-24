@@ -70,7 +70,7 @@ const CardContainer = styled(Box)(
   compose(
     spacing,
     palette
-  )
+  ),
 );
 
 //==========    ==========  ==========  ==========
@@ -80,7 +80,9 @@ let useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "space-evenly",
     marginBottom: "5%",
-    maxWidth: "85vw"
+    maxWidth: "85vw",
+    // backgroundColor: "#de0063",
+    // backgroundImage: "radial-gradient(circle farthest-side at left top, #00bcde, #640487 125%)",
   },
 
   cardGrid: {

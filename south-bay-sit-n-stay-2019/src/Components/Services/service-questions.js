@@ -1,7 +1,13 @@
 import React from "react";
 
 const ServiceQuestions = () => {
-  return <div />;
+  return (
+      <div style={{
+        minHeight: '100vh'
+      }}>
+        FAQ
+      </div>
+  )
 };
 
 export default ServiceQuestions;

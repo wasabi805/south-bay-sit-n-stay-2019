@@ -21,8 +21,8 @@ const initialState = {
     context: {
       className: "our_mission_text_box",
       header: "Our Mission",
-      body:
-        "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text.",
+      body: "South Bay Sit N’ Stay is a unique business offering a wide range of services aimed at the health and happiness of your pets. From overnight stays in our home to adventures to the beach to stop-in visits, we tailor each of our services to your pet so they come home with wagging tails and a big smile for you! ",
+
       image: "https://sb-sit-2019.s3.amazonaws.com/yuko_kayla_catherine.jpg",
       imageClassName: "about-group-pic"
     },
@@ -76,7 +76,7 @@ const initialState = {
         imgTitle: "Dog Hanging with the Sitter",
         subHeader: "",
         cardContext:
-          "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text."
+          "Catherine joined the South Bay Sit N’ Stay team after moving to California in 2016. Her volunteer work at the Humane Society and dog sitting in her home state of Wisconsin has developed her into an incredibly patient caregiver. It is a passion of hers to work with animals and provide them with the love and attention they need, especially when they are away from their owners."
       },
 
       {
@@ -89,7 +89,7 @@ const initialState = {
         imgTitle: "Dog Enjoying the Evening",
         subHeader: "",
         cardContext:
-          "Lorem ipsum is a pseudo-Latin text used in web design,typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text."
+          "Kayla started South Bay Sit N’ Stay in 2013 after receiving her certifications in dog training, pet massage, pet nutrition, and pet boarding through Animal Behavior College. She has also spent over 100 hours working with dogs at the Humane Society- Silicon Valley as a volunteer. She loves taking her own dogs out for adventures to the beach and hiking throughout the South Bay."
       },
 
       {

@@ -1,6 +1,8 @@
 import { createMuiTheme } from "@material-ui/core";
 
-export const cb_context_right_img_left = createMuiTheme();
+
+
+export const cb_context_right_img_left = createMuiTheme( );
 
 cb_context_right_img_left.typography.h2 = {
   [cb_context_right_img_left.breakpoints.up("xs")]: {
@@ -69,4 +71,10 @@ card.typography.body1={
 
 
 
-console.log(card.typography.body1, 'WHAT is cards.typography')
+export const header_and_buttons_only = createMuiTheme();
+
+header_and_buttons_only.typography.h2={
+  [header_and_buttons_only.breakpoints.up("lg")]: {
+    fontSize: '',
+  }
+};
