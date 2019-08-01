@@ -17,7 +17,7 @@ const h1FontColor = grey["100"];
 //GLOBAL APPTHEME
 const appTheme = createMuiTheme({
   palette: {
-    primary: deepPurple
+    // primary: deepPurple
   },
 
   typography: {
@@ -27,13 +27,13 @@ const appTheme = createMuiTheme({
 
     h1: {
       fontWeight: "lighter",
-      fontSize: "3rem",
+      fontSize: "4rem",
       zIndex: 500,
       marginBottom: "0.33em"
     },
 
     h2: {
-      fontSize: "1.5rem"
+      fontSize: "2.5rem"
     }
   }
 });

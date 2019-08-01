@@ -18,6 +18,13 @@ const initialState = {
 
   body_02: {
     context: {
+
+      // circleImgs:[
+      //   {id: "circle-drop-in-visits" , image: "https://sb-sit-2019.s3.amazonaws.com/court-prather-ZGpLHN5lrp8-unsplash-768px.jpg"},
+      //   {id: "circle-overnight" , image: "https://sb-sit-2019.s3.amazonaws.com/zack-dowdy-NMVXMIsXas8-unsplash-768px.jpg"},
+      //   {id: "circle-boarding" , image: "https://sb-sit-2019.s3.amazonaws.com/manuel-meza-bOxX33tiQd4-unsplash.jpg"},
+      // ],
+
       one: {
         headerClass: "drop-in-visits-header",
         header: "Drop In Visits",
@@ -30,6 +37,7 @@ const initialState = {
         imageClass: "cbc-rt-img",
         image:
           "https://sb-sit-2019.s3.amazonaws.com/court-prather-ZGpLHN5lrp8-unsplash-768px.jpg",
+        bgImgPos: "91% 50%",
 
         wrapperColor: "drop-in-visits-wrapper"
       },
@@ -45,6 +53,7 @@ const initialState = {
         imageClass: "",
         image:
           "https://sb-sit-2019.s3.amazonaws.com/zack-dowdy-NMVXMIsXas8-unsplash-768px.jpg",
+        bgImgPos: "25% 50%",
 
         wrapperColor: ""
       },
@@ -61,6 +70,7 @@ const initialState = {
         imageClass: "cbc-rt-img",
         image:
           "https://sb-sit-2019.s3.amazonaws.com/manuel-meza-bOxX33tiQd4-unsplash.jpg",
+        bgImgPos: "50% 50%",
 
         wrapperColor: "board-with-us-wrapper"
       }

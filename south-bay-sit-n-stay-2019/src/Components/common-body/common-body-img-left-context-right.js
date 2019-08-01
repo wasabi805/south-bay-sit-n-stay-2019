@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -8,18 +9,30 @@ import Typography from "@material-ui/core/Typography";
 import { ThemeProvider } from "@material-ui/styles";
 import { cb_img_right_context_left } from "../common/Themes/themes-common";
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    [theme.breakpoints.up("md")]: {
+      background: "cyan"
+    }
+  },
+
+  circleImg: {
+    position: "relative",
+    height: "20vw",
+    width: "20vw",
+    margin: "auto",
+
+    borderRadius: "50%",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
+  }
+}));
+
 const CommonBodyContextRightImgLeft = props => {
   const { context } = props;
+  const classes = useStyles();
 
-  const MainWrapper = styled(Grid)({
-    // position: "relative",
-    // padding: "2rem",
-    //
-    // maxWidth: "80%",
-    // margin: "auto",
-    // marginBottom: "3%",
-    // zIndex: 1,
-  });
+  const MainWrapper = styled(Grid)({});
 
   const Container = styled(Box)({
     position: "absolute",
@@ -29,7 +42,8 @@ const CommonBodyContextRightImgLeft = props => {
     zIndex: 1,
     background: "#00000047",
     top: "32%",
-    marginRight: "10%"
+    marginRight: "22%",
+    padding: "6%"
   });
 
   const Header = styled(Typography)({
@@ -42,32 +56,20 @@ const CommonBodyContextRightImgLeft = props => {
 
   const Text = styled(Typography)({
     fontWeight: "400",
-
     // color: "#534e59",
     color: "white",
     textShadow: "0 1px 1px #111111",
     padding: "1rem",
-    width: "100%"
+    width: "100%",
+    fontSize: "2rem"
   });
 
-  const Image = styled(Box)({
-    position: "relative",
-    height: "20vw",
-    width: "20vw",
-    margin: "auto",
-    background: "blue",
-    borderRadius: "50%",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "20% 50%",
-    // display: "inline-block",
-    backgroundImage:
-      "url('https://sb-sit-2019.s3.amazonaws.com/zack-dowdy-NMVXMIsXas8-unsplash-768px.jpg')"
-  });
+  let bgImg = props.context.image;
 
   const ImageWrapper = styled(Grid)({
     position: "relative",
-    padding: "7%"
+    padding: "7%",
+    zIndex: 1
   });
 
   const TextWrapper = styled(Grid)({
@@ -77,7 +79,16 @@ const CommonBodyContextRightImgLeft = props => {
   return (
     <MainWrapper container className={`${context.wrapperColor}`}>
       <ImageWrapper item xs={5}>
-        <Image id={"myImg"} />
+        {/*{console.log('What is the bg pos?' , props)}*/}
+        {console.log("WHat is  context ?", context.bgImgPos)}
+
+        <div
+          className={classes.circleImg}
+          style={{
+            backgroundImage: `url("${props.circleImg}")`,
+            backgroundPosition: `${context.bgImgPos}`
+          }}
+        />
       </ImageWrapper>
 
       <TextWrapper item xs={7} style={{ position: "relative" }}>
