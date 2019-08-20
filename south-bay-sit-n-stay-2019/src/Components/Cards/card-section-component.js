@@ -75,12 +75,23 @@ const CardContainer = styled(Box)(
 
 //==========    ==========  ==========  ==========
 
+
+
 let useStyles = makeStyles(theme => ({
+
   cardContainer: {
     display: "flex",
     justifyContent: "space-evenly",
     marginBottom: "5%",
     maxWidth: "85vw",
+
+  //MEDIA QUERY
+    [theme.breakpoints.down('sm')]:{
+      maxWidth : '100vw',
+      display: 'block'
+    }
+
+
     // backgroundColor: "#de0063",
     // backgroundImage: "radial-gradient(circle farthest-side at left top, #00bcde, #640487 125%)",
   },
@@ -88,7 +99,9 @@ let useStyles = makeStyles(theme => ({
   cardGrid: {
     maxWidth: "210rem",
     minHeight: "80vh",
-    display: "inline-block"
+    display: "inline-block",
+
+    textAlign: "-webkit-center",
   },
 
   cardContainerHeading: {
@@ -105,7 +118,12 @@ let useStyles = makeStyles(theme => ({
   card: {
     display: "inline-block",
     flex: 1,
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+
+
+    [theme.breakpoints.down('sm')]:{
+      margin: " 1vh 10%"
+    }
   },
 
   media: {

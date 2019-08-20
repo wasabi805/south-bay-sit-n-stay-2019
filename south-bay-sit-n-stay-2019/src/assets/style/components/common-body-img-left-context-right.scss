@@ -1,0 +1,85 @@
+.vert-title-container {
+  display: inline-block;
+  color: white;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  // border: '1px solid cyan',
+  left: 6%;
+  position: absolute;
+  font-size: 3rem;
+
+  .title {
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    line-height: 150%;
+    background: #763ddb75;
+    padding: 2rem 0;
+
+    //stretch font
+    -webkit-transform: scale(1.5, 1); //* Safari and Chrome */,
+    // '-moz-transform':'scale(2,1)', /* Firefox */
+    // '-ms-transform':'scale(2,1)', /* IE 9 */
+    // '-o-transform':'scale(2,1)', /* Opera */
+    transform: scale(1.5, 1); /* W3C */
+  }
+}
+
+#image-and-text {
+  text-align: center;
+
+  .container {
+    position: relative;
+    border: 1px solid #494065;
+    outline: 4px solid white;
+    text-align: justify;
+    padding: 2rem 1rem;
+    //overflow: hidden;
+    display: inline-block;
+    width: 75%;
+    height: 100%;
+    background-image: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+
+    .text {
+      font-size: 1.7rem;
+      // color: 'white'
+      color: #445382;
+      margin: 8% 2% 0 2%;
+      font-family: Inter;
+    }
+  }
+
+  .price {
+    display: inline-block;
+    position: relative;
+    transform: translate(19%, 34%);
+    float: right;
+    // width: '10vw',
+    // height: '10vh',
+    // background: 'grey',
+    background: #dddddd;
+    padding: 2rem 5rem;
+    box-shadow: 2px 9px 25px -9px #2e7a82;
+
+    h2 {
+      color: white;
+      text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+      font-size: 2rem;
+    }
+
+    h3 {
+      display: inline-block;
+      font-size: 3vw;
+      font-weight: 300;
+      vertical-align: top;
+    }
+
+    .cost {
+      display: inline-block;
+      font-size: 4vw;
+    }
+
+    .service-type {
+      text-align: right;
+    }
+  }
+}

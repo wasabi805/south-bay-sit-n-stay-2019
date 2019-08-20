@@ -28,7 +28,8 @@ const initialState = {
       one: {
         headerClass: "drop-in-visits-header",
         header: "Drop In Visits",
-
+        header2: "Drop Ins",
+        //
         contextClass: "drop-in-visits-context",
         context:
           "Working late? Date night? We’ve got you covered with an hour stop in visit. We can feed, play, and spend quality time with your pet while you are out. \n" +
@@ -45,6 +46,7 @@ const initialState = {
       two: {
         headerClass: "overnight-header",
         header: "Overnight Stays",
+        header2: "Overnight",
         contextClass: "overnight-context",
         context:
           "This option is ideal for the homebody pet. We come to you and take care of your pet overnight in the comfort of their home.  Also offered for overnight stays: watering your indoor and outdoor plants, picking up your mail, accepting deliveries, and more!\n" +
@@ -61,6 +63,7 @@ const initialState = {
       three: {
         headerClass: "board-with-us-header",
         header: "Board with US",
+        header2: "Boarding",
         contextClass: "board-with-us-context",
         context:
           "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter " +

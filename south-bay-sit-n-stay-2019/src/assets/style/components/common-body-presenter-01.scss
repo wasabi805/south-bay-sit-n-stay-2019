@@ -19,3 +19,47 @@
 
 .i-am-booked {
 }
+
+
+.rect2 {
+  display: block;
+  height: 35rem;
+  top: 0;
+  //width: 100vw;
+  margin-right: 25%;
+  background: #404040;
+  position: relative;
+  /* margin-top: 100px; */
+  margin-left: 132px;
+  color: white;
+
+}
+
+.circle2 {
+
+  display: inline-block;
+  width: 503px;
+  height: 503px;
+  /* top: 100px; */
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+
+}
+
+
+.circle2:after {
+
+  content: '';
+  width: 336px;
+  height: 295px;
+  -moz-border-radius: 100px;
+  -webkit-border-radius: 100px;
+  border-radius: 328px;
+  background: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: -74px;
+  left: -318px;
+  border: 101px solid #404040;
+
+}
