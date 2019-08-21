@@ -20,13 +20,9 @@ class NavBarPresenter extends Component {
   }
 
   handleScroll = () => {
-    this.setState({
+    (window.scrollY>700) ? this.setState({
       navBarColor: "#673ab7"
-    });
-
-    setTimeout(() => {
-      this.setState({ navBarColor: "transparent" });
-    }, 3000);
+    }): this.setState({navBarColor : "transparent"});
   };
 
   render() {
