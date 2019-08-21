@@ -77,7 +77,7 @@ const CommonBodyContextRightImgLeft = props => {
       style={{ margin: "2rem 0", zIndex: 2 }}
     >
       <div className={"vert-title-container"}>
-        <h2 className={"title"}>{context.header2 ? context.header2 : ""}</h2>
+        <h2 className={"title"}>{context.header2 ? context.header2.toUpperCase() : ""}</h2>
       </div>
 
       <div id={"image-and-text"}>
