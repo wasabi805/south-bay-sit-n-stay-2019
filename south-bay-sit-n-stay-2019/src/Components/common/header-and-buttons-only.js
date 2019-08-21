@@ -17,6 +17,9 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#de0063',
         backgroundImage: 'radial-gradient(circle farthest-side at left top, #00bcde, #640487 125%)',
 
+        position: 'relative',
+        transform: 'translate(0px, -20px)',
+
         [theme.breakpoints.up('lg')] : {
 
         }
@@ -76,7 +79,7 @@ const HeaderAndButtonsOnly = (props)=>{
     const classes = useStyles();
 
     return(
-        <div className={classes.root}>
+        <div  id={'service-book-now-btn-container'} className={classes.root} >
             <Header variant={'h2'} className={classes.header} >{context.header}</Header>
 
             <div className={classes.buttonContainer}>
