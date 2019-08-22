@@ -4,34 +4,29 @@ import LandingContainer from "./Components/Landing/landing-container";
 import AboutContainer from "./Components/About/about-container";
 import ServicesContainer from "./Components/Services/services-container";
 import Footer from "./Components/Footer/footer";
-import { BrowserRouter as Router,  Route,  Link,  Switch,  Redirect, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+  NavLink
+} from "react-router-dom";
 
 
-const App = (props) => {
+const App = props => {
   return (
+    <div>
+      <NavBarContainer />
 
+      <Route exact path="/" render={props => <LandingContainer />} />
 
-          <div>
-              <NavBarContainer />
+      <Route path="/about" component={AboutContainer} />
+      <Route path="/services" component={ServicesContainer} />
 
-              <Route exact path="/" render={props => <LandingContainer />} />
-
-
-              <Route path="/about" component={AboutContainer} />
-              <Route path="/services" component={ServicesContainer} />
-
-
-              <Footer />
-          </div>
-
-
-
+      <Footer />
+    </div>
   );
 };
-
-
-
-
-
 
 export default App;
