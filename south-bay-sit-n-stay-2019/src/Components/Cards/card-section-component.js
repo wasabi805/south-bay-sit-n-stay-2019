@@ -114,6 +114,7 @@ let useStyles = makeStyles(theme => ({
     margin: theme.spacing(2),
 
 
+
     [theme.breakpoints.down('sm')]:{
       margin: " 1vh 10%"
     }
@@ -129,8 +130,13 @@ let useStyles = makeStyles(theme => ({
     height: 0,
     paddingTop: "56.25%", // 16:9
     width: "100%",
-    backgroundSize: 'contain'
-  }
+    backgroundSize: 'contain',
+  },
+
+  cardHeader:{
+    textIndent : '-60px'
+  },
+
 }));
 
 //==========    ==========  ==========  ==========
@@ -157,12 +163,12 @@ const CardSectionComponent = props => {
           {props.body_01.context.map(card => {
             return (
               <Card key={card.id} className={classes.card}>
-                <CardHeader
+                <CardHeader className={classes.cardHeader}
                   avatar={
                     <Avatar
                       aria-label={card.ariaLabel}
                       className={classes.avatar}
-                    >
+                     >
                       {card.avatarLetter}{" "}
                       {console.log(card.class, "what is card?")}
                     </Avatar>
@@ -177,7 +183,7 @@ const CardSectionComponent = props => {
                   title={card.imgTitle}
                 />
 
-                <CardContent>
+                <CardContent >
                   <Typography
                     variant={"body2"}
                     color="textSecondary"
