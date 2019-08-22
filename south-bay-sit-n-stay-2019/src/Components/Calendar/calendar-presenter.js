@@ -87,6 +87,8 @@ class CalendarPresenter extends Component {
           onChange={value => this.dayClicked(value)}
           minDate={floor}
           maxDate={ceiling}
+          minDetail={"month"} //disables user from selecting months that are centuries away.
+
           //paints the tiles that are clicked
           tileClassName={({ date, view }) => {
             return this.paintDayClicked({ date, view });

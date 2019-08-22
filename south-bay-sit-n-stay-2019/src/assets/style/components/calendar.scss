@@ -1,23 +1,30 @@
 .calendar-wrapper {
-  background-color: #673ab7;
+  //background-color: #673ab7;
 }
 
 .react-calendar {
+
 }
 
 .react-calendar {
   border: 1px solid red;
   width: 50%;
+
 }
 
 //all calendar tiles
 .react-calendar__month-view__days__day {
   padding: 5%;
+  background: white;
+  border-width: 0.01em;
+  border-color: rgb(88.6%,88.6%,88.6%);
+
   //backgrounds: blue;
 }
 
 .react-calendar__tile {
   &.calendar__tile {
+
   }
 }
 
@@ -43,12 +50,40 @@
   //height: 6rem;
 }
 .react-calendar__navigation__arrow {
-  height: 4rem;
-  width: 4rem;
-  background: tomato;
-  border-radius: 27%;
+
+  width: 5rem;
+  //background: tomato;
+  background: #673ab7;
+
 }
 
 .i-am-booked {
   background-color: #e4d9ec;
+}
+
+
+.react-calendar__navigation__label{
+  font-size: 3rem;
+  padding: 3rem 0;
+  background: #673ab7;
+  color: white;
+}
+
+.react-calendar__month-view__weekdays{
+  padding-top: 2%;
+  background: white;
+  height: 3.6rem;
+
+  abbr{
+
+    padding: 2rem 0;
+    text-decoration: none;
+    font-size: 1.45rem;
+    color: #a8a5a5;
+
+    text-align: center;
+
+  }
+
+
 }
