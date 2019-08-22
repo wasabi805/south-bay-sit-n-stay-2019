@@ -37,9 +37,6 @@ const CardSectionTheme = theme => {
         fontSize: "3rem",
         marginBottom: "2rem",
         fontWeight: 500
-        // [theme.breakpoints.up("md")]: {
-        //         //   color: "red"
-        //         // }
       },
 
       h2: {
@@ -90,10 +87,6 @@ let useStyles = makeStyles(theme => ({
       maxWidth : '100vw',
       display: 'block'
     }
-
-
-    // backgroundColor: "#de0063",
-    // backgroundImage: "radial-gradient(circle farthest-side at left top, #00bcde, #640487 125%)",
   },
 
   cardGrid: {
@@ -124,6 +117,12 @@ let useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]:{
       margin: " 1vh 10%"
     }
+  },
+
+  cardText:{
+    textAlign: 'initial',
+    padding: '0 8%',
+    fontWeight : 200
   },
 
   media: {
@@ -184,7 +183,7 @@ const CardSectionComponent = props => {
                     color="textSecondary"
                     component="p"
                   />
-                  <Box fontSize={16}>{card.cardContext}</Box>
+                  <Box className={classes.cardText} fontSize={16}>{card.cardContext}</Box>
                 </CardContent>
               </Card>
             );
