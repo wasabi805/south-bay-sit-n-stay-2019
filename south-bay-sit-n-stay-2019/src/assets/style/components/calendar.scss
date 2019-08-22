@@ -18,6 +18,8 @@
   background: white;
   border-width: 0.01em;
   border-color: rgb(88.6%,88.6%,88.6%);
+  font-weight: 500;
+  font-size: 2rem;
 
   //backgrounds: blue;
 }
@@ -39,11 +41,13 @@
 
 //MONTH VIEW CALENDAR ARROWS
 .react-calendar__navigation__next-button {
-  font-size: 3rem;
+  font-size: 5rem;
+  color:white;
 }
 
 .react-calendar__navigation__prev-button {
   font-size: 5rem;
+  color:white;
 }
 
 .react-calendar__navigation__label {
@@ -53,20 +57,33 @@
 
   width: 5rem;
   //background: tomato;
-  background: #673ab7;
+
+  background: rgb(34,29,111);
+  background: linear-gradient(180deg, rgba(34,29,111,1) 0%, rgba(68,17,113,1) 17%, rgba(151,0,255,1) 100%);
 
 }
 
+// SELECTED CALENDAR TILES
 .i-am-booked {
-  background-color: #e4d9ec;
-}
+  //background-color: #e4d9ec;
+  font-weight: 500;
+  color: white;
+  font-size: 2rem;
 
+
+  background: #8227dc;
+
+
+}
 
 .react-calendar__navigation__label{
   font-size: 3rem;
   padding: 3rem 0;
-  background: #673ab7;
+  //background: #673ab7;
   color: white;
+
+  background: rgb(34,29,111);
+  background: linear-gradient(180deg, rgba(34,29,111,1) 0%, rgba(68,17,113,1) 17%, rgba(151,0,255,1) 100%);
 }
 
 .react-calendar__month-view__weekdays{
@@ -80,10 +97,7 @@
     text-decoration: none;
     font-size: 1.45rem;
     color: #a8a5a5;
-
     text-align: center;
 
   }
-
-
 }
