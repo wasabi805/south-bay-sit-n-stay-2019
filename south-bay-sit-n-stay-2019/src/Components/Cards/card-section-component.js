@@ -17,31 +17,30 @@ import CardContent from "@material-ui/core/CardContent";
 
 import red from "@material-ui/core/colors/red";
 import teal from "@material-ui/core/colors/teal";
-import classNames from "classnames";
 
 const CardSectionTheme = theme => {
   return createMuiTheme({
     palette: {
       primary: teal,
-      text: {
-        // primary: "black",
-        // secondary: "#00000"
-      }
+      text: {}
     },
 
     typography: {
       fontFamily: "Roboto",
-      fontSize: "24",
-
-      h1: {
-        fontSize: "3rem",
-        marginBottom: "2rem",
-        fontWeight: 500
-      },
 
       h2: {
-        color: "white",
-        fontSize: "1.5rem"
+        fontSize: "0.75em",
+        fontWeight: 300,
+        // color: 'black',
+        color: "pink"
+      },
+
+      h3: {
+        color: "pink"
+      },
+
+      subtitle1: {
+        color: "blue"
       }
     }
   });
@@ -67,25 +66,22 @@ const CardContainer = styled(Box)(
   compose(
     spacing,
     palette
-  ),
+  )
 );
 
 //==========    ==========  ==========  ==========
 
-
-
 let useStyles = makeStyles(theme => ({
-
   cardContainer: {
     display: "flex",
     justifyContent: "space-evenly",
     marginBottom: "5%",
     maxWidth: "85vw",
 
-  //MEDIA QUERY
-    [theme.breakpoints.down('sm')]:{
-      maxWidth : '100vw',
-      display: 'block'
+    //MEDIA QUERY
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "100vw",
+      display: "block"
     }
   },
 
@@ -94,7 +90,7 @@ let useStyles = makeStyles(theme => ({
     minHeight: "80vh",
     display: "inline-block",
 
-    textAlign: "-webkit-center",
+    textAlign: "-webkit-center"
   },
 
   cardContainerHeading: {
@@ -105,52 +101,51 @@ let useStyles = makeStyles(theme => ({
   },
 
   avatar: {
-    backgroundColor: red[500]
+    backgroundColor: red[500],
+    textIndent: 0,
+    fontSize: "2rem"
   },
 
   card: {
     display: "inline-block",
     flex: 1,
+
     margin: theme.spacing(2),
 
-
-
-    [theme.breakpoints.down('sm')]:{
+    [theme.breakpoints.down("sm")]: {
       margin: " 1vh 10%"
     }
   },
 
-  cardText:{
-    textAlign: 'initial',
-    padding: '0 8%',
-    fontWeight : 200
+  cardText: {
+    textAlign: "initial",
+    padding: "0 8%",
+    fontWeight: 200
   },
 
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
     width: "100%",
-    backgroundSize: 'contain',
+    backgroundSize: "contain"
   },
 
-  cardHeader:{
-    textIndent : '-60px'
-  },
-
+  cardHeader: {
+    fontSize: "3rem",
+    textIndent: "-8rem"
+  }
 }));
 
 //==========    ==========  ==========  ==========
 const CardSectionComponent = props => {
   const classes = useStyles();
 
-  console.log(props, "WHAT ARE THE PROPS");
-
   return (
     <ThemeProvider theme={CardSectionTheme}>
       <CardGrid className={classes.cardGrid} p={1} id={props.body_01.id}>
         <CardGridHeader
           className={classes.cardContainerHeading}
-          variant={"h1"}
+          variant={"h3"}
           color={"black"}
           p={6}
         >
@@ -163,14 +158,16 @@ const CardSectionComponent = props => {
           {props.body_01.context.map(card => {
             return (
               <Card key={card.id} className={classes.card}>
-                <CardHeader className={classes.cardHeader}
+                <CardHeader
+                  className={classes.cardHeader}
+                  titleTypographyProps={{ variant: "h4" }}
+                  subheaderTypographyProps={{ variant: "h5" }}
                   avatar={
                     <Avatar
                       aria-label={card.ariaLabel}
                       className={classes.avatar}
-                     >
+                    >
                       {card.avatarLetter}{" "}
-                      {console.log(card.class, "what is card?")}
                     </Avatar>
                   }
                   title={card.title}
@@ -183,13 +180,15 @@ const CardSectionComponent = props => {
                   title={card.imgTitle}
                 />
 
-                <CardContent >
+                <CardContent>
                   <Typography
                     variant={"body2"}
                     color="textSecondary"
                     component="p"
                   />
-                  <Box className={classes.cardText} fontSize={16}>{card.cardContext}</Box>
+                  <Box className={classes.cardText} fontSize={16}>
+                    {card.cardContext}
+                  </Box>
                 </CardContent>
               </Card>
             );

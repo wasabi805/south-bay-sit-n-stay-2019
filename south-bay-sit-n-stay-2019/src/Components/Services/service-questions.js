@@ -7,8 +7,6 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles(theme => ({
   root: {
     position: "relative",
-    // minHeight: '100vh',
-    border: "1px solid purple",
     paddingBottom: "20%"
   },
 

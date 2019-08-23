@@ -32,8 +32,25 @@ const appTheme = createMuiTheme({
       marginBottom: "0.33em"
     },
 
+    //section header
     h2: {
-      fontSize: "2.5rem"
+      fontSize: "2.5rem",
+      "@media (min-width:600px)": {
+        // color: 'red'
+      }
+    },
+
+    //sub1
+    h3: {
+      fontSize: "2rem",
+      color: "purple",
+      background: "lime"
+    },
+
+    //sub2
+    h4: {
+      fontWeight: "lighter",
+      fontSize: "2.4rem"
     }
   }
 });

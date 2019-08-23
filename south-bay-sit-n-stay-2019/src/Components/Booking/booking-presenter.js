@@ -7,15 +7,14 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 
 import Spinner from "../common/spinner";
-import {ButtonTypeOne} from "../common/buttons"
+import { ButtonTypeOne } from "../common/buttons";
 
 import BookingModalPresenter from "../Modals/booking-modal-container";
-
 
 const BookingContainer = styled(Box)({
   "& h1": {
     marginBottom: "5rem",
-    color: "#5a5a5a",
+    color: "#5a5a5a"
   },
   background:
     "url('https://sb-sit-2019.s3.amazonaws.com/calendar01-transparent.png')",
@@ -117,10 +116,9 @@ class BookingSection extends Component {
 
   //==========  ==========  MODAL METHODS ==========  ==========
   handleOpenGenericModal = () => {
+    let { renderDates } = this.state;
 
-    let {renderDates} = this.state
-
-    if(renderDates.length === 0 ){
+    if (renderDates.length === 0) {
       this.setState({
         isCalendarHidden: 1,
         openErrorModal: true,
@@ -128,17 +126,16 @@ class BookingSection extends Component {
       });
 
       // alert('WHAT THE HELL?? NO DATES')
-      return
+      return;
     }
 
-    if(renderDates.length > 0){
+    if (renderDates.length > 0) {
       this.setState({
         isCalendarHidden: 1,
         open: true,
-        openErrorModal: false,
+        openErrorModal: false
       });
     }
-
   };
 
   handleCloseGenericModal = () => {
@@ -236,66 +233,57 @@ class BookingSection extends Component {
 
   /////////////////////////////////////////////////////////////////////////////////
   render() {
-
-    const{buttons}= this.props.bookingReducer;
-    let CalendarModalBtn = styled(Button)({
-      //PUT STYLES IN HERE LATER
-    });
-
-    //uncomment for debugging
-    // console.log(this.props, "WHAT ARE THE PROPS FOR BOOKING_PRESENTER??");
+    const { buttons } = this.props.bookingReducer;
 
     return (
-        <React.Fragment>
-      <BookingContainer id={"book-now"} className={""} >
-        <Typography variant={"h1"} align="left">
-          Check out which days we can provide you service
-        </Typography>
+      <React.Fragment>
+        <BookingContainer id={"book-now"} className={""}>
+          <Typography variant={"h1"} align="left">
+            Check out which days we can provide you service
+          </Typography>
 
-        {/*CALENDAR*/}
-        {/*<Box component="div" display="inline-block">*/}
-        <CalendarContainer getDaysClicked={this.getDaysClicked} />
-        {/*</Box>*/}
+          {/*CALENDAR*/}
+          <CalendarContainer getDaysClicked={this.getDaysClicked} />
 
-        {/*THIS IS THE CALENDAR MODAL THAT SUPPLIES USER REQ DATES AND USER INFO*/}
-        <BookingModalPresenter
-          //open: boolean opens main modal
-          //onClose : setState boolean closes main modal
-          open={this.state.open}
-          onClose={this.handleCloseGenericModal}
-          modalName={this.state.modalName}
-          //Array of dates that are clicked by user
-          renderDates={this.state.renderDates}
-          //Booking Form Fields for customer and Dog
-          contactForm={this.state.contactForm}
-          //Updated Search Query
-          contactCity={this.state.contactCity}
-          spinner={<Spinner isPosting={this.props.bookingReducer.isPosting} />}
-          //Boolean of errors for form validation
-          errors={this.props.bookingReducer.errors}
-          //Modal Headers
-          modalHeader={this.props.modalHeader}
-          //Modal View Booleans
-          modalView={this.props.bookingReducer.modalView}
-          btnView={this.props.bookingReducer.btnView}
-          //Modal Button Functions
-          handleNext={this.handleNext}
-          handleBack={this.props.handleBackBtnBookingModal}
-          //Modal Form
-          handleFormFieldChange={this.handleFormFieldChange}
-          updateCity={this.updateCity}
-          openErrorModal={this.state.openErrorModal}
+          {/*THIS IS THE CALENDAR MODAL THAT SUPPLIES USER REQ DATES AND USER INFO*/}
+          <BookingModalPresenter
+            //open: boolean opens main modal
+            //onClose : setState boolean closes main modal
+            open={this.state.open}
+            onClose={this.handleCloseGenericModal}
+            modalName={this.state.modalName}
+            //Array of dates that are clicked by user
+            renderDates={this.state.renderDates}
+            //Booking Form Fields for customer and Dog
+            contactForm={this.state.contactForm}
+            //Updated Search Query
+            contactCity={this.state.contactCity}
+            spinner={
+              <Spinner isPosting={this.props.bookingReducer.isPosting} />
+            }
+            //Boolean of errors for form validation
+            errors={this.props.bookingReducer.errors}
+            //Modal Headers
+            modalHeader={this.props.modalHeader}
+            //Modal View Booleans
+            modalView={this.props.bookingReducer.modalView}
+            btnView={this.props.bookingReducer.btnView}
+            //Modal Button Functions
+            handleNext={this.handleNext}
+            handleBack={this.props.handleBackBtnBookingModal}
+            //Modal Form
+            handleFormFieldChange={this.handleFormFieldChange}
+            updateCity={this.updateCity}
+            openErrorModal={this.state.openErrorModal}
+          />
 
-        />
-
-        <div onClick={this.handleOpenGenericModal}
-             className={'check-avail-btn-container'}
+          <div
+            onClick={this.handleOpenGenericModal}
+            className={"check-avail-btn-container"}
           >
-          <ButtonTypeOne buttons={buttons} />
-        </div>
-
-      </BookingContainer>
-
+            <ButtonTypeOne buttons={buttons} />
+          </div>
+        </BookingContainer>
       </React.Fragment>
     );
   }

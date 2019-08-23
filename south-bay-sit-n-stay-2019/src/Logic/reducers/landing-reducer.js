@@ -6,6 +6,7 @@ const initialState = {
     heroClassName: "hero-landing",
     heroImg:
       "url('https://sb-sit-2019.s3.amazonaws.com/zoe-ra-43393-cropped-2560X1440.jpg')",
+    heroImgMobile:  "url('https://sb-sit-2019.s3.amazonaws.com/hannah-lim-U6nlG0Y5sfs-unsplash-web.jpg')",
     header: "We have you and your pet covered",
     heroSubHeader:
       "Have us for drop in visits, schedule boarding when you're away, or have us sit for you.",

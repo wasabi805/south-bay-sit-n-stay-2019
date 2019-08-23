@@ -20,7 +20,8 @@ class NavBarPresenter extends Component {
   }
 
   handleScroll = () => {
-    window.scrollY > 700 ? this.setState({navBarColor: "#673ab7"})
+    window.scrollY > 700
+      ? this.setState({ navBarColor: "#673ab7" })
       : this.setState({ navBarColor: "transparent" });
   };
 
@@ -44,7 +45,7 @@ class NavBarPresenter extends Component {
       <div>
         <NavBarWrapper id={"navBar"}>
           <Toolbar>
-            <NavBarLogo variant="h2">South Bay Sit N' Stay</NavBarLogo>
+            <NavBarLogo variant="h6">South Bay Sit N' Stay</NavBarLogo>
 
             <NavList navNames={nav_names} />
           </Toolbar>

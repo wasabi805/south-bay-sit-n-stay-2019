@@ -21,6 +21,9 @@ const useStyles = makeStyles(theme => ({
     backgroundRepeat: "no-repeat",
     paddingBottom: '8rem',
     textAlign: 'end',
+    // border: "1px solid red",
+    padding: '1rem 2rem',
+    marginTop: '7rem'
   },
   gridList: {
     width: 900,
