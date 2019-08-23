@@ -3,13 +3,11 @@
 }
 
 .react-calendar {
+  width: 100%;
 
-}
-
-.react-calendar {
-  border: 1px solid red;
-  width: 50%;
-
+  @media screen and(min-width: 768px) {
+    width: 50%;
+  }
 }
 
 //all calendar tiles
@@ -77,11 +75,10 @@
 }
 
 .react-calendar__navigation__label{
-  font-size: 3rem;
-  padding: 3rem 0;
-  //background: #673ab7;
-  color: white;
+  font-size: 2rem;
+  padding: 2rem 0;
 
+  color: white;
   background: rgb(34,29,111);
   background: linear-gradient(180deg, rgba(34,29,111,1) 0%, rgba(68,17,113,1) 17%, rgba(151,0,255,1) 100%);
 }

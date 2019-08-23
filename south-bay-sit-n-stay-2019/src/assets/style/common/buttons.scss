@@ -11,10 +11,13 @@
 
 .one {
   background: #673ab736;
+  &:hover{
+    background: #673ab78a;
+  }
 }
 
 .two {
-  background: lime;
+  background: #9b0cff;
 }
 
 .check-avail-btn-container {

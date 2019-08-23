@@ -70,15 +70,13 @@ class HeroPresenter extends Component {
       },
 
       "& h2": {
-        fontWeight: "lighter",
-        zIndex: 5
+        color:'white',
+        zIndex: 5,
+        fontSize: '5rem'
       },
 
-      "& button": {
-        zIndex: 5,
-        backgroundColor: "#01968869",
-        flexBasis: "8%",
-        height: "6rem"
+      "& h6":{
+        color:"white", fontWeight:'100'
       }
     });
 
@@ -104,11 +102,11 @@ class HeroPresenter extends Component {
     return (
       <ThemeProvider theme={heroButtons}>
         <HeroWrapper className={heroClassName} button={""}>
-          <Typography variant="h1">{header}</Typography>
+          <Typography variant="h2" style={{fontSize: '6rem', color:"white", fontWeight: '200'}} >{header}</Typography>
 
           {this.displayHeroHeader()}
 
-          <Typography variant="h2">{heroSubHeader}</Typography>
+          <Typography variant="h6" style={{color:"white"}} >{heroSubHeader}</Typography>
 
           <HeroButtonBox className={heroButtons}>
             <ButtonTypeOne buttons={btn.buttons} />

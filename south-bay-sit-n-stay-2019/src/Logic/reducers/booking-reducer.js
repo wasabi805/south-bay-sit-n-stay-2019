@@ -16,7 +16,7 @@ const initialState = {
   buttons:[
     {
       id: 'check-availability',
-      name: 'CHECK AVAILABILITY',
+      name: 'AVAILABILITY',
       destinationUrl: "",
       style: 'two'
     },
