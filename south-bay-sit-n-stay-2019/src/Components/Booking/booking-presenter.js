@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Spinner from "../common/spinner";
 
+
 import BookingModalPresenter from "../Modals/booking-modal-container";
 
 const BookingContainer = styled(Box)({
@@ -258,6 +259,7 @@ class BookingSection extends Component {
         >
           CHECK AVAILABILITY
         </CalendarModalBtn>
+
 
         {/*THIS IS THE CALENDAR MODAL THAT SUPPLIES USER REQ DATES AND USER INFO*/}
         <BookingModalPresenter

@@ -9,10 +9,27 @@ const initialState = {
     header: "We have you and your pet covered",
     heroSubHeader:
       "Have us for drop in visits, schedule boarding when you're away, or have us sit for you.",
-    heroButtonOne: "Get Started",
-    heroButtonOneDestination: "/#book-now",
+    // heroButtonOne: "Get Started",
+    // heroButtonOneDestination: "/#book-now",
+    //
+    // heroButtonTwo: "About us",
 
-    heroButtonTwo: "About us"
+    buttons:[
+      {
+        id: 'hero-btn-get-started',
+        name: 'Get Started',
+        destinationUrl: "/#get-started",
+
+      },
+
+      {
+        id: 'hero-btn-about-us',
+        name: 'About US',
+        destinationUrl: "/about/#about-us",
+
+      },
+
+    ]
   },
 
   body_01: {

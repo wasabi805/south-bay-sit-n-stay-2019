@@ -2,115 +2,17 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { styled } from "@material-ui/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import { createMuiTheme } from "@material-ui/core";
 
 import HeroHeaderB from "./hero-header-b";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import teal from "@material-ui/core/colors/teal";
-import { HashLink as Link } from "react-router-hash-link";
 
-const heroTheme = theme => {
-  return createMuiTheme({
-    palette: {
-      primary: teal,
-      text: {
-        primary: "#ffffff",
-        secondary: "#00000"
-      }
-    },
-
-    typography: {
-      fontFamily: "Roboto",
-
-      h1: {
-        color: "white",
-        fontSize: "3rem",
-        marginBottom: "2rem"
-      },
-
-      h2: {
-        color: "white",
-        fontSize: "1.5rem"
-      }
-    }
-  });
-};
+import { ButtonTypeOne } from "../common/buttons";
 
 class HeroPresenter extends Component {
   constructor(props) {
     super(props);
   }
-
-  scrollWithOffset = (el, offset) => {
-    const elementPosition = el.offsetTop - offset;
-    window.scroll({
-      top: elementPosition,
-      left: 0,
-      behavior: "smooth"
-    });
-  };
-
-  displayHeroButtons = () => {
-    let btn = this.props.heroContext;
-
-    if (btn.heroButtonOne === "" && btn.heroButtonTwo === "") {
-      return;
-    }
-
-    if (btn.heroButtonOne && btn.heroButtonTwo === "") {
-      return <button>{btn.heroButtonOne}</button>;
-    }
-
-    if (btn.heroButtonOne && btn.heroButtonTwo) {
-      return (
-        <React.Fragment>
-
-          {/*<button>*/}
-            <Link
-              to={"/#get-started"}
-              scroll={el => this.scrollWithOffset(el, 60)}
-              style={{
-                padding: '2rem 6rem',
-                color: 'white',
-                background: '#673ab736',
-                margin: '2rem 4rem',
-                textDecoration: 'none',
-                fontSize: '2rem',
-                border: '1px solid white',
-                borderRadius: '4rem',
-              }}
-            >
-              {btn.heroButtonOne}
-            </Link>
-          {/*</button>*/}
-          ;
-
-
-            <Link
-                to={"/about/#about-us"}
-                onClick={() => console.log("goodbye")}
-                style={{
-                  padding: '2rem 6rem',
-                  color: 'white',
-                  background: '#673ab736',
-                  margin: '2rem 4rem',
-                  textDecoration: 'none',
-                  fontSize: '2rem',
-                  border: '1px solid white',
-                  borderRadius: '4rem',
-                }}
-
-                scroll={el => this.scrollWithOffset(el, 60)}
-            >
-              {btn.heroButtonTwo}
-            </Link>
-
-
-        </React.Fragment>
-      );
-    }
-  };
 
   displayHeroHeader = () => {
     let header = this.props.heroContext;
@@ -127,6 +29,8 @@ class HeroPresenter extends Component {
     }
   };
   render() {
+    let btn = this.props.heroContext;
+
     let {
       heroClassName,
       header,
@@ -134,8 +38,6 @@ class HeroPresenter extends Component {
       heroButtons,
       heroImg
     } = this.props.heroContext;
-
-    console.log(heroClassName, "heroClassName");
 
     const HeroWrapper = styled(Box)({
       minWidth: "100vw",
@@ -199,19 +101,17 @@ class HeroPresenter extends Component {
       }
     });
 
-    const handleHeroButtonOne = () => {
-      console.log("i fired");
-    };
-
     return (
-      <ThemeProvider theme={heroTheme}>
+      <ThemeProvider theme={heroButtons}>
         <HeroWrapper className={heroClassName} button={""}>
           <Typography variant="h1">{header}</Typography>
+
           {this.displayHeroHeader()}
+
           <Typography variant="h2">{heroSubHeader}</Typography>
 
           <HeroButtonBox className={heroButtons}>
-            {this.displayHeroButtons()}
+            <ButtonTypeOne buttons={btn.buttons} />
           </HeroButtonBox>
         </HeroWrapper>
       </ThemeProvider>
