@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
 
+
   image: {
     position: "relative",
     display: "inline-block",

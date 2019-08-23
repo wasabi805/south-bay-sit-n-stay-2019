@@ -18,7 +18,9 @@ const useStyles = makeStyles(theme => ({
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
     // background: "url('https://sb-sit-2019.s3.amazonaws.com/dog-paws-trail.png')",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    paddingBottom: '8rem',
+    textAlign: 'end',
   },
   gridList: {
     width: 900,

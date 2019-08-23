@@ -1,16 +1,37 @@
 .button-type {
-  padding: 2rem 6rem;
+  padding: 2rem 2rem;
   color: white;
+  //max-width: 30vw;
 
-  margin: 2rem 4rem;
   text-decoration: none;
   font-size: 2rem;
   border: 1px solid white;
   border-radius: 4rem;
+
+  @media only screen and(min-width: 600px){
+    padding: 2rem 6rem;
+  }
+
 }
 
 .one {
   background: #673ab736;
+  margin: 2rem 0rem;
+  align-items: center;
+  display: block;
+  max-width: 70vw;
+
+  @media only screen and(max-width: 599px){
+    transform: translate(15%, 80%);
+  }
+
+
+  @media only screen and(min-width: 600px){
+    padding: 2rem 4rem;
+    margin: 0 5rem;
+    display: inline-block;
+  }
+
   &:hover{
     background: #673ab78a;
   }

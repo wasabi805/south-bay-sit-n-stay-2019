@@ -247,7 +247,7 @@ class BookingSection extends Component {
 
     return (
         <React.Fragment>
-      <BookingContainer id={"book-now"} className={""} p={6}>
+      <BookingContainer id={"book-now"} className={""} >
         <Typography variant={"h1"} align="left">
           Check out which days we can provide you service
         </Typography>

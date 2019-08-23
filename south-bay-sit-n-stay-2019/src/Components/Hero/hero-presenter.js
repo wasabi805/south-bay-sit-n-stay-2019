@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { styled } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
 import HeroHeaderB from "./hero-header-b";
@@ -9,15 +10,96 @@ import Typography from "@material-ui/core/Typography";
 
 import { ButtonTypeOne } from "../common/buttons";
 
-class HeroPresenter extends Component {
-  constructor(props) {
-    super(props);
+const useStyles = makeStyles(theme =>({
+  root:{
+    minWidth: "100vw",
+    height: "100vh",
+    position: "relative",
+    display: "flex",
+
+    flexDirection: "column",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "2rem",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+
+    "&:after": {
+      content: " ' ' ",
+      position: "absolute",
+      zIndex: 1,
+      top: 0,
+      left: 0,
+      bottom: 0,
+      width: "calc(100%)",
+      background: "#00000069"
+    },
+
+    "& h1": {
+      fontWeight: "lighter",
+      zIndex: 5
+    },
+
+    "& h2": {
+      zIndex: 5,
+      fontSize: '4rem',
+      color:"white",
+      fontWeight: '200',
+      lineHeight:1,
+
+      [theme.breakpoints.up("md")]: {
+        fontSize: "5rem",
+        lineHeight: 2
+      },
+    },
+
+    "& h6":{
+      color:"white",
+      fontWeight:'100',
+      lineHeight: 1
+    }
+  },
+
+  buttonContainer:{
+    position: "relative",
+    padding: 0,
+
+    display:"flex",
+    flexDirection: 'column',
+    width: "auto",
+    color: "white",
+    marginTop: "3rem",
+    zIndex: 10,
+
+    [theme.breakpoints.up("sm")]: {
+      display: "block"
+    },
+
+    "& button": {
+      color: "white",
+      fontSize: "2rem",
+      margin: "6px",
+      borderRadius: "5rem",
+      padding: "12px 7.5rem",
+      backgroundColor: "#673ab736"
+    }
   }
 
-  displayHeroHeader = () => {
-    let header = this.props.heroContext;
 
-    if (header.heroHeaderBOne) {
+
+}));
+
+
+
+
+
+const HeroPresenter =(props)=>{
+  const classes = useStyles();
+
+  const displayHeroHeader = () => {
+    let header = props.heroContext;
+
+    if(header.heroHeaderBOne) {
       return (
         <HeroHeaderB
           heroHeaderBOne={header.heroHeaderBOne}
@@ -28,8 +110,11 @@ class HeroPresenter extends Component {
       );
     }
   };
-  render() {
-    let btn = this.props.heroContext;
+
+
+  let heroBg = props.heroContext.heroImg;
+
+    let btn = props.heroContext;
 
     let {
       heroClassName,
@@ -37,85 +122,26 @@ class HeroPresenter extends Component {
       heroSubHeader,
       heroButtons,
       heroImg
-    } = this.props.heroContext;
-
-    const HeroWrapper = styled(Box)({
-      minWidth: "100vw",
-      height: "100vh",
-      position: "relative",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      textAlign: "center",
-      padding: "2rem",
-      //  ===== Hero Background Img =====
-      background: heroImg,
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-
-      "&:after": {
-        content: " ' ' ",
-        position: "absolute",
-        zIndex: 1,
-        top: 0,
-        left: 0,
-        bottom: 0,
-        width: "calc(100%)",
-        background: "#00000069"
-      },
-
-      "& h1": {
-        fontWeight: "lighter",
-        zIndex: 5
-      },
-
-      "& h2": {
-        color:'white',
-        zIndex: 5,
-        fontSize: '5rem'
-      },
-
-      "& h6":{
-        color:"white", fontWeight:'100'
-      }
-    });
-
-    const HeroButtonBox = styled(Box)({
-      position: "relative",
-      padding: 0,
-
-      width: "auto",
-      color: "white",
-      marginTop: "3rem",
-      zIndex: 10,
-
-      "& button": {
-        color: "white",
-        fontSize: "2rem",
-        margin: "6px",
-        borderRadius: "5rem",
-        padding: "12px 7.5rem",
-        backgroundColor: "#673ab736"
-      }
-    });
+    } = props.heroContext;
 
     return (
       <ThemeProvider theme={heroButtons}>
-        <HeroWrapper className={heroClassName} button={""}>
-          <Typography variant="h2" style={{fontSize: '6rem', color:"white", fontWeight: '200'}} >{header}</Typography>
+        <section className={classes.root} style={{background: heroBg , backgroundSize: 'cover'}} >
+          <h2>{header}</h2>
 
-          {this.displayHeroHeader()}
+          {displayHeroHeader()}
 
           <Typography variant="h6" style={{color:"white"}} >{heroSubHeader}</Typography>
 
-          <HeroButtonBox className={heroButtons}>
-            <ButtonTypeOne buttons={btn.buttons} />
-          </HeroButtonBox>
-        </HeroWrapper>
+          <div className={classes.buttonContainer}>
+              <ButtonTypeOne buttons={btn.buttons} />
+          </div>
+
+        </section>
       </ThemeProvider>
     );
-  }
-}
+  };
+
 
 export default HeroPresenter;
 
