@@ -43,7 +43,6 @@ class ServicesPresenter extends Component {
     window.scrollTo(0, 0);
   }
 
-
   render() {
     let { body_02, body_03 } = this.props;
 
@@ -55,9 +54,18 @@ class ServicesPresenter extends Component {
         <CardsNoBG />
 
         <ParallaxWrapper>
-          <CommonBodyImgLeftContextRight context={body_02.context.one} circleImg={body_02.context.one.image} />
-          <CommonBodyImgLeftContextRight context={body_02.context.two} circleImg={body_02.context.two.image} />
-          <CommonBodyImgLeftContextRight context={body_02.context.three} circleImg={body_02.context.three.image} />
+          <CommonBodyImgLeftContextRight
+            context={body_02.context.one}
+            circleImg={body_02.context.one.image}
+          />
+          <CommonBodyImgLeftContextRight
+            context={body_02.context.two}
+            circleImg={body_02.context.two.image}
+          />
+          <CommonBodyImgLeftContextRight
+            context={body_02.context.three}
+            circleImg={body_02.context.three.image}
+          />
         </ParallaxWrapper>
         <HeaderAndButtonsOnly context={body_03.context} />
 

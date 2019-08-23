@@ -11,21 +11,21 @@ export const scrollWithOffset = (el, offset) => {
 };
 
 export const ButtonTypeOne = props => {
-
-  if(props.buttons){
+  if (props.buttons) {
     return props.buttons.map(attr => {
       return (
-          <Link
-              key={attr.id}
-              to={attr.destinationUrl}
-              className={"button-type-one"}
-              scroll={el => scrollWithOffset(el, 60)}
-          >
-            {attr.name}
-          </Link>
+        <Link
+          onClick={() => true}
+          key={attr.id}
+          to={attr.destinationUrl}
+          className={`button-type ${attr.style}`}
+          scroll={el => scrollWithOffset(el, 60)}
+        >
+          {attr.name}
+        </Link>
       );
     });
   }
 
-  return true
+  return true;
 };

@@ -13,6 +13,14 @@ import {
 
 const initialState = {
   msg: "I'm initial state from booking-reducer.js!!!!",
+  buttons:[
+    {
+      id: 'check-availability',
+      name: 'CHECK AVAILABILITY',
+      destinationUrl: "",
+      style: 'two'
+    },
+  ],
 
   contactForm: {
     contactFirstName: "",
